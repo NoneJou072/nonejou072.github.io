@@ -10,12 +10,14 @@
 </copyright>
     <lastBuildDate>Wed, 31 Mar 2021 13:11:22 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Diagram Support</title>
+      <title>机械臂的动作模仿</title>
       <link>/posts/diagram-support/</link>
       <pubDate>Wed, 31 Mar 2021 13:11:22 +0800</pubDate>
       
       <guid>/posts/diagram-support/</guid>
-      <description>&lt;p&gt;Eureka supports the rendering of diagrams by using Mermaid.&lt;/p&gt;</description>
+      <description>1. 前言 对于人类来说，最初的动作都是在婴儿时期模仿大人的行为习得的。而对机器人来说，想要让它学习人类动作，也需要从模仿开始。其实，平常的机器人示教操作，就是一个初步的模仿过程。我们通过人工示教，来引导机器人做出相应的动作，即技能的学习。
+当今，示教操作主要分为三类，分别是直接动觉示教（Kinematics Teaching）、遥操作示教（Teleoperation）和视频演示示教（Learning from Video）。下面使用机械臂来举例说明：
+直接动觉示教：手动拖动机械臂，让其记忆拖动点位 遥操作示教：使用手持设备或VR技术，远程操作机械臂，记忆过程中的数据流 视频演示示教：通过对视频的特征提取，让机械臂学习相应动作 其中，视频演示示教最为自然，但模仿难度更大，因为它属于间接示教，涉及到复杂的人机解耦问题，是近年来的研究热点，也是本篇文章主要的探讨方向。</description>
     </item>
     
     <item>

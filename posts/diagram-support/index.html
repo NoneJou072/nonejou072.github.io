@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Diagram Support | 海豚的个人站</title>
+<title>机械臂的动作模仿 | 海豚的个人站</title>
 
 <meta name="generator" content="Hugo Eureka 0.9.3" />
 <link rel="stylesheet" href="/css/eureka.min.9cec6350e37e534b0338fa9a085bf06855de3b0f2dcf857e792e5e97b07ea905d4d5513db554cbc26a9c3da622bae92d.css">
@@ -75,7 +75,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png">
 
 <meta name="description"
-  content="Eureka supports the rendering of diagrams by using Mermaid.">
+  content="介绍并探讨了模仿学习在机械臂中的应用">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -87,7 +87,7 @@
       "item":"/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"Diagram Support",
+      "name":"机械臂的动作模仿",
       "item":"/posts/diagram-support/"}]
 }
 </script>
@@ -102,12 +102,12 @@
         "@type": "WebPage",
         "@id": "/posts/diagram-support/"
     },
-    "headline": "Diagram Support | 海豚的个人站","datePublished": "2021-03-31T13:11:22+08:00",
+    "headline": "机械臂的动作模仿 | 海豚的个人站","datePublished": "2021-03-31T13:11:22+08:00",
     "dateModified": "2021-03-31T13:11:22+08:00",
-    "wordCount":  80 ,
+    "wordCount":  11 ,
     "author": {
         "@type": "Person",
-        "name": ["example-author"]
+        "name": ["海豚"]
     },
     "publisher": {
         "@type": "Person",
@@ -117,9 +117,9 @@
             "url": "/images/icon.png"
         }
         },
-    "description": "\u003cp\u003eEureka supports the rendering of diagrams by using Mermaid.\u003c\/p\u003e"
+    "description": "介绍并探讨了模仿学习在机械臂中的应用"
 }
-</script><meta property="og:title" content="Diagram Support | 海豚的个人站" />
+</script><meta property="og:title" content="机械臂的动作模仿 | 海豚的个人站" />
 <meta property="og:type" content="article" />
 
 
@@ -130,9 +130,7 @@
 
 
 
-
-<meta property="og:description" content="Eureka supports the rendering of diagrams by using Mermaid." />
-
+<meta property="og:description" content="介绍并探讨了模仿学习在机械臂中的应用" />
 
 
 
@@ -180,9 +178,8 @@
     <div id="target"
         class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
         <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
-            <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">About</a>
-            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  me-4">Posts</a>
-            <a href="/docs/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">Docs</a>
+            <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">关于我</a>
+            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  me-4">帖子</a>
         </div>
 
         <div class="flex">
@@ -240,7 +237,7 @@
       class="lg:col-start-2 bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
     >
       <article class="prose">
-  <h1 class="mb-4">Diagram Support</h1>
+  <h1 class="mb-4">机械臂的动作模仿</h1>
 
   <div
   class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
@@ -265,23 +262,16 @@
   
   
 
-  <p>Eureka supports the rendering of diagrams by using Mermaid.</p>
-<p>Please include the Mermaid diagram as below. Every mermaid chart/graph/diagram definition, has to have separate <code>&lt;div&gt;</code> tags.</p>
-<p>In order to render the HTML code in the Markdown file correctly, please make sure that <code>markup.goldmark.renderer.unsafe</code> in <code>config.yaml</code> is true.</p>
-<p>Here is one mermaid diagram:</p>
-<div class="mermaid">
-  graph TD
-  A[Client] --> B[Load Balancer]
-  B --> C[Server1]
-  B --> D[Server2]
-</div>
-<p>And here is another:</p>
-<div class="mermaid">
-  graph TD
-  A[Client] -->|tcp_123| B(Load Balancer)
-  B -->|tcp_456| C[Server1]
-  B -->|tcp_456| D[Server2]
-</div>
+  <h1 id="1-前言">1. 前言</h1>
+<p>对于人类来说，最初的动作都是在婴儿时期模仿大人的行为习得的。而对机器人来说，想要让它学习人类动作，也需要从模仿开始。其实，平常的机器人示教操作，就是一个初步的模仿过程。我们通过人工示教，来引导机器人做出相应的动作，即技能的学习。</p>
+<p>当今，示教操作主要分为三类，分别是直接动觉示教（Kinematics Teaching）、遥操作示教（Teleoperation）和视频演示示教（Learning from Video）。下面使用机械臂来举例说明：</p>
+<ul>
+<li>直接动觉示教：手动拖动机械臂，让其记忆拖动点位</li>
+<li>遥操作示教：使用手持设备或VR技术，远程操作机械臂，记忆过程中的数据流</li>
+<li>视频演示示教：通过对视频的特征提取，让机械臂学习相应动作</li>
+</ul>
+<p>其中，视频演示示教最为自然，但模仿难度更大，因为它属于间接示教，涉及到复杂的人机解耦问题，是近年来的研究热点，也是本篇文章主要的探讨方向。</p>
+
 </article>
 
 
@@ -295,48 +285,20 @@
         <div class="py-2">
   
     <div class="my-8 flex flex-col items-center md:flex-row">
-      <a href="/authors/example-author/" class="md:me-4 text-primary-text h-24 w-24">
+      <a href="/authors/%E6%B5%B7%E8%B1%9A/" class="md:me-4 text-primary-text h-24 w-24">
         
         
-          <img
-            src="/images/icon.png"
-            class="bg-primary-bg w-full rounded-full"
-            alt="Avatar"
-          />
+          <i class="fas fa-user-circle fa-6x"></i>
         
       </a>
       <div class="mt-4 w-full md:mt-0 md:w-auto">
         <a
-          href="/authors/example-author/"
+          href="/authors/%E6%B5%B7%E8%B1%9A/"
           class="mb-2 block border-b pb-1 text-lg font-bold"
         >
-          <h3>Example Author</h3>
+          <h3>海豚</h3>
         </a>
-        <span class="block pb-2">Aenean vel bibendum quam. Aliquam at mollis quam. Proin efficitur.</span>
-        
-          
-          
-          
-          
-          <a href="mailto:example@example.com" class="me-2">
-            <i class="fas fa-envelope"></i>
-          </a>
-        
-          
-          
-          
-          
-          <a href="https://example.com/" class="me-2">
-            <i class="fab fa-twitter"></i>
-          </a>
-        
-          
-          
-          
-          
-          <a href="https://example.com/" class="me-2">
-            <i class="fab fa-github"></i>
-          </a>
+        <span class="block pb-2"></span>
         
       </div>
     </div>

@@ -10,9 +10,18 @@
 </copyright>
     <lastBuildDate>Wed, 31 Mar 2021 13:11:22 +0800</lastBuildDate><atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>海豚</title>
+      <link>/authors/%E6%B5%B7%E8%B1%9A/</link>
+      <pubDate>Wed, 31 Mar 2021 13:11:22 +0800</pubDate>
+      
+      <guid>/authors/%E6%B5%B7%E8%B1%9A/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Example Author</title>
       <link>/authors/example-author/</link>
-      <pubDate>Wed, 31 Mar 2021 13:11:22 +0800</pubDate>
+      <pubDate>Fri, 20 Nov 2020 22:52:56 +0800</pubDate>
       
       <guid>/authors/example-author/</guid>
       <description>Self Introduction Cras ex dui, tristique a libero eget, consectetur semper ligula. Nunc augue arcu, malesuada a nisi et, molestie finibus metus. Sed lacus odio, ultricies a nisl vitae, sollicitudin tempor ipsum. Vivamus quis feugiat arcu. Sed mi nunc, efficitur quis tellus vitae, posuere mattis metus. Phasellus in mattis dui. Nullam blandit, augue non ullamcorper dapibus, lacus dui molestie massa, in iaculis purus lectus eu lectus. Duis hendrerit lacinia tellus, sit amet feugiat dolor placerat id.</description>
