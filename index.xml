@@ -8,7 +8,7 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;WANG Chucheng&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;MA Ruiqi&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Wed, 31 Mar 2021 13:11:22 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 Jan 2023 13:11:22 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vintage</title>
       <link>/vintage/</link>
@@ -19,11 +19,23 @@
     </item>
     
     <item>
+      <title>pyelastic 梁仿真</title>
+      <link>/posts/timoshenko-beam/</link>
+      <pubDate>Sat, 28 Jan 2023 13:11:22 +0800</pubDate>
+      
+      <guid>/posts/timoshenko-beam/</guid>
+      <description>Timoshenko Beam ​elastica.modules​用于构建不同的仿真系统
+import numpy as np # Import modules from elastica.modules import BaseSystemCollection, Constraints, Forcing, Damping # Import Cosserat Rod Class from elastica.rod.cosserat_rod import CosseratRod # Import Damping Class from elastica.dissipation import AnalyticalLinearDamper # Import Boundary Condition Classes from elastica.boundary_conditions import OneEndFixedRod, FreeRod from elastica.external_forces import EndpointForces # Import Timestepping Functions from elastica.timestepper.symplectic_steppers import PositionVerlet from elastica.timestepper import integrate 在这个例子中，杆的一端被固定住，令另一端受力。
+class TimoshenkoBeamSimulator(BaseSystemCollection, Constraints, Forcing, Damping): pass timoshenko_sim = TimoshenkoBeamSimulator() 接下来，定义这个杆的各项属性，包括材料、几何形状等。
+# setting up test params # rod 中单元体 elements 的数量 n_elem = 100 density = 1000 nu = 1e-4 E = 1e6 # 弹性模量 # For shear modulus of 1e4, nu is 99!</description>
+    </item>
+    
+    <item>
       <title>机械臂的动作模仿</title>
-      <link>/posts/diagram-support/</link>
+      <link>/posts/robot-irl/</link>
       <pubDate>Wed, 31 Mar 2021 13:11:22 +0800</pubDate>
       
-      <guid>/posts/diagram-support/</guid>
+      <guid>/posts/robot-irl/</guid>
       <description>1. 前言 对于人类来说，最初的动作都是在婴儿时期模仿大人的行为习得的。而对机器人来说，想要让它学习人类动作，也需要从模仿开始。其实，平常的机器人示教操作，就是一个初步的模仿过程。我们通过人工示教，来引导机器人做出相应的动作，即技能的学习。
 当今，示教操作主要分为三类，分别是直接动觉示教（Kinematics Teaching）、遥操作示教（Teleoperation）和视频演示示教（Learning from Video）。下面使用机械臂来举例说明：
 直接动觉示教：手动拖动机械臂，让其记忆拖动点位 遥操作示教：使用手持设备或VR技术，远程操作机械臂，记忆过程中的数据流 视频演示示教：通过对视频的特征提取，让机械臂学习相应动作 其中，视频演示示教最为自然，但模仿难度更大，因为它属于间接示教，涉及到复杂的人机解耦问题，是近年来的研究热点，也是本篇文章主要的探讨方向。</description>

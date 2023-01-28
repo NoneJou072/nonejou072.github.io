@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>pyelastic 梁仿真 | 海豚的个人站</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="/css/eureka.min.9cec6350e37e534b0338fa9a085bf06855de3b0f2dcf857e792e5e97b07ea905d4d5513db554cbc26a9c3da622bae92d.css">
+<script defer src="/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="/js/fontawesome.min.f14def4f6943de5b19b19c02e239b98c8cc6a8fe66b6828a21da7c0e9d405df8364cab68aa637c3bbe735eb7c325aa3c.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="介绍使用 pyelastic 对梁仿真的过程">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Posts",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"pyelastic 梁仿真",
+      "item":"/posts/timoshenko-beam/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/timoshenko-beam/"
+    },
+    "headline": "pyelastic 梁仿真 | 海豚的个人站","datePublished": "2023-01-28T13:11:22+08:00",
+    "dateModified": "2023-01-28T13:11:22+08:00",
+    "wordCount":  636 ,
+    "author": {
+        "@type": "Person",
+        "name": ["海豚"]
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "WANG Chucheng",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/images/icon.png"
+        }
+        },
+    "description": "介绍使用 pyelastic 对梁仿真的过程"
+}
+</script><meta property="og:title" content="pyelastic 梁仿真 | 海豚的个人站" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="/images/icon.png">
+
+
+<meta property="og:url" content="/posts/timoshenko-beam/" />
+
+
+
+<meta property="og:description" content="介绍使用 pyelastic 对梁仿真的过程" />
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="海豚的个人站" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2023-01-28T13:11:22&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2023-01-28T13:11:22&#43;08:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">海豚的个人站</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">关于我</a>
+            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  me-4">帖子</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">Light</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">Dark</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">Auto</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class="lg:col-start-2 bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">pyelastic 梁仿真</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2023-01-28</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>3 min read</span>
+  </div>
+
+  
+
+  
+</div>
+
+
+  
+  
+
+  <h1 id="timoshenko-beam">Timoshenko Beam</h1>
+<p>​<code>elastica.modules</code>​用于构建不同的仿真系统</p>
+<pre><code class="language-python">import numpy as np
+
+# Import modules
+from elastica.modules import BaseSystemCollection, Constraints, Forcing, Damping
+
+# Import Cosserat Rod Class
+from elastica.rod.cosserat_rod import CosseratRod
+
+# Import Damping Class
+from elastica.dissipation import AnalyticalLinearDamper
+
+# Import Boundary Condition Classes
+from elastica.boundary_conditions import OneEndFixedRod, FreeRod
+from elastica.external_forces import EndpointForces
+
+# Import Timestepping Functions
+from elastica.timestepper.symplectic_steppers import PositionVerlet
+from elastica.timestepper import integrate
+</code></pre>
+<p>在这个例子中，杆的一端被固定住，令另一端受力。</p>
+<pre><code class="language-python">class TimoshenkoBeamSimulator(BaseSystemCollection, Constraints, Forcing, Damping):
+    pass
+
+
+timoshenko_sim = TimoshenkoBeamSimulator()
+</code></pre>
+<p>接下来，定义这个杆的各项属性，包括材料、几何形状等。</p>
+<pre><code class="language-python"># setting up test params
+# rod 中单元体 elements 的数量
+n_elem = 100
+
+density = 1000
+nu = 1e-4
+E = 1e6  # 弹性模量
+# For shear modulus of 1e4, nu is 99!
+# 泊松比，一般不超过0.5，这里是为了让变形更明显
+poisson_ratio = 99 
+shear_modulus = E / (poisson_ratio + 1.0) # 剪切系数
+
+# 三维空间中的起始坐标
+start = np.zeros((3,))
+# rod 的朝向
+direction = np.array([0.0, 0.0, 1.0])
+normal = np.array([0.0, 1.0, 0.0])
+base_length = 3.0
+base_radius = 0.25
+base_area = np.pi * base_radius ** 2
+</code></pre>
+<p>我们根据上述的参数构建出一根 rod，然后把它加入到一开始创建的仿真系统中</p>
+<pre><code class="language-python">shearable_rod = CosseratRod.straight_rod(
+    n_elem,
+    start,
+    direction,
+    normal,
+    base_length,
+    base_radius,
+    density,
+    0.0,     # internal damping constant, deprecated in v0.3.0
+    E,
+    shear_modulus=shear_modulus,
+)
+
+timoshenko_sim.append(shearable_rod)
+</code></pre>
+<h1 id="添加阻尼">添加阻尼</h1>
+<p>We also need to define <code>damping_constant</code>​ and simulation <code>time_step</code>​ and pass in <code>.using()</code>​ method.</p>
+<pre><code class="language-python">dl = base_length / n_elem
+dt = 0.01 * dl
+timoshenko_sim.dampen(shearable_rod).using(
+    AnalyticalLinearDamper,
+    damping_constant=nu,
+    time_step=dt,
+)
+</code></pre>
+<h1 id="添加边界条件">添加边界条件</h1>
+<p>第一个约束是，固定杆一端的位置。<code>We do this using the </code>.constrain()<code>option and the</code>OneEndFixedRod<code>boundary condition. We are modifying the</code>timoshenko_sim<code>simulator to</code>constrain<code>the</code>shearable_rod<code>object using the</code>OneEndFixedRod<code> type of constraint. ​</code>​</p>
+<p>我们还要定义杆的哪一个节点需要被约束.，可以通过节点的索引 <code>constrained_position_idx</code>​来实现，这里我们固定了第一个节点。为了防止杆绕固定节点旋转, 我们需要在两个节点之间约束一个元素，这固定了杆的方向. 我们通过约束元素的索引 <code>constrained_director_idx</code>​来实现。例如对于 position, 我们约束杆的第一个元素. Together, this contrains the position and orientation of the rod at the origin.</p>
+<pre><code class="language-python">timoshenko_sim.constrain(shearable_rod).using(
+    OneEndFixedRod, constrained_position_idx=(0,), constrained_director_idx=(0,)
+)
+print(&quot;One end of the rod is now fixed in place&quot;)
+</code></pre>
+<p>第二个约束是对杆的末端施加一个力。我们想在d1方向施加一个负的力，同时加到杆的末端，可以通过指定origin_force 和end_force 实现。我们还想随着时间逐渐提高力的大小，通过指定ramp_up_time来改变，这防止了因力的不连续导致的错误。</p>
+<pre><code class="language-python">origin_force = np.array([0.0, 0.0, 0.0])
+end_force = np.array([-10.0, 0.0, 0.0])
+ramp_up_time = 5.0
+
+timoshenko_sim.add_forcing_to(shearable_rod).using(
+    EndpointForces, origin_force, end_force, ramp_up_time=ramp_up_time
+)
+print(&quot;Forces added to the rod&quot;)
+</code></pre>
+<h1 id="添加-unshearable-rod">添加 Unshearable Rod</h1>
+<p>为了比较 shearable rod 和 unshearable rod，我们再添加一个unshearable rod。我们改变 rod 的泊松比来让它 unshearable。对于真实的unshearable rod，泊松比通常为 -1.0，然而这会导致系统数值不稳定，所以我们采用 -0.85 的泊松比。</p>
+<pre><code class="language-python"># Start into the plane
+unshearable_start = np.array([0.0, -1.0, 0.0])
+unshearable_rod = CosseratRod.straight_rod(
+    n_elem,
+    unshearable_start,
+    direction,
+    normal,
+    base_length,
+    base_radius,
+    density,
+    0.0,     # internal damping constant, deprecated in v0.3.0
+    E,
+    # Unshearable rod needs G -&gt; inf, which is achievable with a poisson ratio of -1.0
+    shear_modulus=E / (-0.85 + 1.0),
+)
+
+timoshenko_sim.append(unshearable_rod)
+
+timoshenko_sim.dampen(unshearable_rod).using(
+    AnalyticalLinearDamper,
+    damping_constant=nu,
+    time_step=dt,
+)
+
+timoshenko_sim.constrain(unshearable_rod).using(
+    OneEndFixedRod, constrained_position_idx=(0,), constrained_director_idx=(0,)
+)
+
+timoshenko_sim.add_forcing_to(unshearable_rod).using(
+    EndpointForces, origin_force, end_force, ramp_up_time=ramp_up_time
+)
+print(&quot;Unshearable rod set up&quot;)
+</code></pre>
+<h1 id="系统结束">系统结束</h1>
+<p>现在我们以及添加完需要的rods及其边界条件到我们的系统中。最后，我们需要结束这个系统。这个操作将遍历系统，重新排列事物，并预计算有用的数值，为系统进行仿真做好准备。</p>
+<pre><code class="language-python">timoshenko_sim.finalize()
+print(&quot;System finalized&quot;)
+</code></pre>
+<p>注意，如果在 finalize 后对 rod 做出了一些改变，需要 re-setup 该系统，即重新运行上述的所有代码。</p>
+<h1 id="定义仿真时间">定义仿真时间</h1>
+<p>我们还要决定该仿真的运行时间，以及使用哪种时间步长方法。默认方法是 PositionVerlet 算法。这里我们仿真10s。</p>
+<pre><code class="language-python">final_time = 10.0
+total_steps = int(final_time / dt)
+print(&quot;Total steps to take&quot;, total_steps)
+
+timestepper = PositionVerlet()
+</code></pre>
+<h1 id="运行仿真">运行仿真</h1>
+<p>对于仿真的运行，我们结合 timoshenko_sim，使用 timestepper 方法，执行了 total_steps 步后，到达 final_time。</p>
+<p><code>integrate(timestepper, timoshenko_sim, final_time, total_steps)</code></p>
+<p>‍</p>
+<h1 id="post-processing-results">Post Processing Results</h1>
+<p>现在仿真已经结束，我们想处理仿真结果，我们将比较<code>the solutions for the shearable and unshearable beams</code>​与<code>analytical Timoshenko and Euler-Bernoulli beam results. ​</code>​</p>
+<pre><code class="language-python"># Compute beam position for sherable and unsherable beams.
+def analytical_result(arg_rod, arg_end_force, shearing=True, n_elem=500):
+    base_length = np.sum(arg_rod.rest_lengths)
+    # 在间隔 0.0 和 base_length 之间返回 n_elem 个均匀间隔的数据
+    # 即每个节点距离起始点的长度
+    arg_s = np.linspace(0.0, base_length, n_elem)
+    if type(arg_end_force) is np.ndarray:
+        acting_force = arg_end_force[np.nonzero(arg_end_force)]
+    else:
+        acting_force = arg_end_force
+    acting_force = np.abs(acting_force)
+    linear_prefactor = -acting_force / arg_rod.shear_matrix[0, 0, 0]
+    quadratic_prefactor = (
+        -acting_force
+        / 2.0
+        * np.sum(arg_rod.rest_lengths / arg_rod.bend_matrix[0, 0, 0])
+    )
+    cubic_prefactor = (acting_force / 6.0) / arg_rod.bend_matrix[0, 0, 0]
+    if shearing:
+        return (
+            arg_s,
+            arg_s * linear_prefactor
+            + arg_s ** 2 * quadratic_prefactor
+            + arg_s ** 3 * cubic_prefactor,
+        )
+    else:
+        return arg_s, arg_s ** 2 * quadratic_prefactor + arg_s ** 3 * cubic_prefactor
+</code></pre>
+<p>现在，我们想去画出结果。首先需要指出的是，如何接收杆的位置，它们位于<code>rod.position_collection[dim, n_elem]</code>​。在本例中，我们画出 x- 和 z-轴。</p>
+<pre><code class="language-python">def plot_timoshenko(shearable_rod, unshearable_rod, end_force):
+    import matplotlib.pyplot as plt
+
+    analytical_shearable_positon = analytical_result(
+        shearable_rod, end_force, shearing=True
+    )
+    analytical_unshearable_positon = analytical_result(
+        unshearable_rod, end_force, shearing=False
+    )
+
+    fig = plt.figure(figsize=(5, 4), frameon=True, dpi=150)
+    ax = fig.add_subplot(111)
+    ax.grid(b=True, which=&quot;major&quot;, color=&quot;grey&quot;, linestyle=&quot;-&quot;, linewidth=0.25)
+
+    ax.plot(
+        analytical_shearable_positon[0],
+        analytical_shearable_positon[1],
+        &quot;k--&quot;,
+        label=&quot;Timoshenko&quot;,
+    )
+    ax.plot(
+        analytical_unshearable_positon[0],
+        analytical_unshearable_positon[1],
+        &quot;k-.&quot;,
+        label=&quot;Euler-Bernoulli&quot;,
+    )
+
+    ax.plot(
+        shearable_rod.position_collection[2, :],
+        shearable_rod.position_collection[0, :],
+        &quot;b-&quot;,
+        label=&quot;n=&quot; + str(shearable_rod.n_elems),
+    )
+    ax.plot(
+        unshearable_rod.position_collection[2, :],
+        unshearable_rod.position_collection[0, :],
+        &quot;r-&quot;,
+        label=&quot;n=&quot; + str(unshearable_rod.n_elems),
+    )
+
+    ax.legend(prop={&quot;size&quot;: 12})
+    ax.set_ylabel(&quot;Y Position (m)&quot;, fontsize=12)
+    ax.set_xlabel(&quot;X Position (m)&quot;, fontsize=12)
+    plt.show()
+
+
+plot_timoshenko(shearable_rod, unshearable_rod, end_force)
+</code></pre>
+<p>​<img src="/images/image-20230110224747-4qwh58r.png" alt="i">​</p>
+<p>‍​<img src="image-20230110224747-4qwh58r.png" alt="image1"></p>
+<!-- aa -->
+
+</article>
+
+
+      
+
+      
+
+
+
+      
+        <div class="py-2">
+  
+    <div class="my-8 flex flex-col items-center md:flex-row">
+      <a href="/authors/%E6%B5%B7%E8%B1%9A/" class="md:me-4 text-primary-text h-24 w-24">
+        
+        
+          <i class="fas fa-user-circle fa-6x"></i>
+        
+      </a>
+      <div class="mt-4 w-full md:mt-0 md:w-auto">
+        <a
+          href="/authors/%E6%B5%B7%E8%B1%9A/"
+          class="mb-2 block border-b pb-1 text-lg font-bold"
+        >
+          <h3>海豚</h3>
+        </a>
+        <span class="block pb-2"></span>
+        
+      </div>
+    </div>
+  
+</div>
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+        <span class="text-primary-text block font-bold">Next</span>
+        <a href="/posts/robot-irl/" class="block">机械臂的动作模仿</a>
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+    </div>
+    
+
+    
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">WANG Chucheng</a> and <a href="https://www.ruiqima.com/">MA Ruiqi</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>
