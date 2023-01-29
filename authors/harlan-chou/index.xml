@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>海豚 on 海豚的个人站</title>
+    <link>/authors/harlan-chou/</link>
+    <description>Recent content in 海豚 on 海豚的个人站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;WANG Chucheng&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;MA Ruiqi&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Sun, 29 Jan 2023 13:11:22 +0800</lastBuildDate><atom:link href="/authors/harlan-chou/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>探讨-协作双臂的动作模仿</title>
+      <link>/posts/%E5%8D%8F%E4%BD%9C%E5%8F%8C%E8%87%82%E7%9A%84%E5%8A%A8%E4%BD%9C%E6%A8%A1%E4%BB%BF/</link>
+      <pubDate>Sun, 29 Jan 2023 13:11:22 +0800</pubDate>
+      
+      <guid>/posts/%E5%8D%8F%E4%BD%9C%E5%8F%8C%E8%87%82%E7%9A%84%E5%8A%A8%E4%BD%9C%E6%A8%A1%E4%BB%BF/</guid>
+      <description>1. 前言 对于人类来说，最初的动作都是在婴儿时期模仿大人的行为习得的。而对机器人来说，想要让它学习人类动作，也需要从模仿开始。其实，平常的机器人示教操作，</description>
+    </item>
+    
+    <item>
+      <title>pyelastic 梁仿真</title>
+      <link>/posts/timoshenko-beam/</link>
+      <pubDate>Sat, 28 Jan 2023 13:11:22 +0800</pubDate>
+      
+      <guid>/posts/timoshenko-beam/</guid>
+      <description>Timoshenko Beam ​elastica.modules​用于构建不同的仿真系统 import numpy as np # Import modules from elastica.modules import BaseSystemCollection, Constraints, Forcing, Damping # Import Cosserat Rod Class from elastica.rod.cosserat_rod import CosseratRod # Import Damping Class from elastica.dissipation import AnalyticalLinearDamper # Import Boundary Condition Classes from elastica.boundary_conditions import OneEndFixedRod, FreeRod from elastica.external_forces import</description>
+    </item>
+    
+    <item>
+      <title>Math Support</title>
+      <link>/math-support/</link>
+      <pubDate>Fri, 20 Nov 2020 22:52:56 +0800</pubDate>
+      
+      <guid>/math-support/</guid>
+      <description>&lt;p&gt;Eureka supports the rendering of mathematical formulas by using KaTeX.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

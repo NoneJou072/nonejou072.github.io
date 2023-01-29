@@ -8,31 +8,22 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;WANG Chucheng&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;MA Ruiqi&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Fri, 20 Nov 2020 22:52:56 +0800</lastBuildDate><atom:link href="/authors/example-author/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Math Support</title>
-      <link>/posts/math-support/</link>
-      <pubDate>Fri, 20 Nov 2020 22:52:56 +0800</pubDate>
-      
-      <guid>/posts/math-support/</guid>
-      <description>&lt;p&gt;Eureka supports the rendering of mathematical formulas by using KaTeX.&lt;/p&gt;</description>
-    </item>
-    
+    <lastBuildDate>Tue, 26 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="/authors/example-author/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Featured Image</title>
-      <link>/posts/featured-image/</link>
+      <link>/featured-image/</link>
       <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/featured-image/</guid>
+      <guid>/featured-image/</guid>
       <description>&lt;p&gt;Maecenas maximus, elit in ornare porttitor, nisi eros hendrerit nisl, sed fermentum nulla urna blandit tellus.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Placeholder Text</title>
-      <link>/posts/placeholder-text/</link>
+      <link>/placeholder-text/</link>
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/placeholder-text/</guid>
+      <guid>/placeholder-text/</guid>
       <description>&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;</description>
     </item>
     
