@@ -8,13 +8,22 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;WANG Chucheng&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;MA Ruiqi&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Sun, 29 Jan 2023 13:11:22 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 Jan 2023 22:07:25 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Marching Cubes -1 原理介绍</title>
+      <link>/posts/marching-cubes-1/</link>
+      <pubDate>Sun, 29 Jan 2023 22:07:25 +0800</pubDate>
+      
+      <guid>/posts/marching-cubes-1/</guid>
+      <description>对于某个三维物体，例如下图所示的蓝色物体，MC算法意图使用近似的等值面对其进行重建。我们用一个矩形三维网格将该物体细分为一个个单元格（grid），每个</description>
+    </item>
+    
     <item>
       <title>探讨-协作双臂的动作模仿</title>
-      <link>/posts/%E5%8D%8F%E4%BD%9C%E5%8F%8C%E8%87%82%E7%9A%84%E5%8A%A8%E4%BD%9C%E6%A8%A1%E4%BB%BF/</link>
+      <link>/posts/irl-in-double-arm/</link>
       <pubDate>Sun, 29 Jan 2023 13:11:22 +0800</pubDate>
       
-      <guid>/posts/%E5%8D%8F%E4%BD%9C%E5%8F%8C%E8%87%82%E7%9A%84%E5%8A%A8%E4%BD%9C%E6%A8%A1%E4%BB%BF/</guid>
+      <guid>/posts/irl-in-double-arm/</guid>
       <description>1. 前言 对于人类来说，最初的动作都是在婴儿时期模仿大人的行为习得的。而对机器人来说，想要让它学习人类动作，也需要从模仿开始。其实，平常的机器人示教操作，</description>
     </item>
     
