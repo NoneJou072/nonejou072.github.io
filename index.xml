@@ -8,7 +8,7 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;WANG Chucheng&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;MA Ruiqi&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Sun, 29 Jan 2023 22:07:25 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Sep 2023 13:11:22 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vintage</title>
       <link>/vintage/</link>
@@ -16,6 +16,15 @@
       
       <guid>/vintage/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>打包自己的 Python 包并上传 PyPi</title>
+      <link>/posts/pypi/</link>
+      <pubDate>Thu, 07 Sep 2023 13:11:22 +0800</pubDate>
+      
+      <guid>/posts/pypi/</guid>
+      <description>1. 注册 PyPi 账户并验证 1.为了上传到 PyPi，我们需要在 pypi 网站中注册一个账户，注册完会给你的邮箱发送邮件，要点开邮件中的链接来验证身份。 之后，会跳转到二次</description>
     </item>
     
     <item>
