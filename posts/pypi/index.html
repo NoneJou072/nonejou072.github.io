@@ -104,7 +104,7 @@
     },
     "headline": "打包自己的 Python 包并上传 PyPi | 海豚的个人站","datePublished": "2023-09-07T13:11:22+08:00",
     "dateModified": "2023-09-07T13:11:22+08:00",
-    "wordCount":  1531 ,
+    "wordCount":  1669 ,
     "author": {
         "@type": "Person",
         "name": ["Haoran Zhou"]
@@ -320,7 +320,15 @@ setuptools.setup(
 <li><code>classifiers</code> - 关于包的其他元数据。在示例中，该软件包仅与 Python 3 兼容，根据MIT许可证进行许可，且与操作系统无关。有关分类器的完整列表，参阅 <a href="https://pypi.org/classifiers/">https://pypi.org/classifiers/</a>。</li>
 </ul>
 <p>除了这里提到的还有很多。有关详细信息可以参阅 <a href="https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/">打包和分发项目</a>。</p>
-<h2 id="4-生成分发档案">4. 生成分发档案</h2>
+<h2 id="4-使用-manifestin-打包静态资源">4. 使用 MANIFEST.in 打包静态资源</h2>
+<p>在项目目录下新建 <code>MANIFEST.in</code> 文件，里面的内容参考如下示例：</p>
+<pre><code>include *.txt  #包含根目录下的所有txt文件
+recursive-include examples *.txt *.py  #包含所有位置的examples文件夹下的txt与py文件
+prune examples/sample?/build  #排除所有位置examples/sample?/build
+
+global-include *  # 包含安装包下的所有文件
+</code></pre>
+<h2 id="5-生成分发档案">5. 生成分发档案</h2>
 <p>下一步是为包生成分发包。这些是上传到包索引的档案，可以通过pip安装。</p>
 <p>首先确保安装了最新版本的 setuptools 和 wheel ：</p>
 <pre><code>python3 -m pip install --user --upgrade setuptools wheel
@@ -333,9 +341,11 @@ setuptools.setup(
   example_pkg_your_username-0.0.1-py3-none-any.whl
   example_pkg_your_username-0.0.1.tar.gz
 </code></pre>
-<h2 id="5-上传-pypi">5. 上传 PYPI</h2>
+<h2 id="6-上传-pypi">6. 上传 PYPI</h2>
 <p>接下来我们开始将项目包上传到 PYPI，首先进入 PyPi 账户设置中的 Create API token 界面，根据指引创建新的 API token，记得将生成的 token 复制下来。然后继续按照教程配置 token，具体地：<br>
-新建或修改<code>$HOME/.pypirc</code>文件，将内容改成下面的样子</p>
+新建或修改<code>$HOME/.pypirc</code>文件
+(windows 中在 <code>users`` 目录下新建 </code>.pypirc`)
+文件内容的模板如下：</p>
 <pre><code>[pypi]
   username = __token__
   password = pypi-AgEIcHlwaS5vcmcCJGYzYjQzM2NjLWFiYTMtNGM1Zi05ZWU1LTQ2MTUzOGUyNzA3NwACKlszLCJmMzkyMGY4YS05ZTVkLTQyMmEtOGE2MS1lM2IyYjJhZTNlMjgiXQAABiDQYlxiUUsdywZ2RtK__n0x0lgobwbai2ocPdFTRVG_ig
@@ -430,8 +440,9 @@ Uploading example_pkg_your_username-0.0.1.tar.gz
     <li><a href="#1-注册-pypi-账户并验证">1. 注册 PyPi 账户并验证</a></li>
     <li><a href="#2-调整本地项目的文件结构">2. 调整本地项目的文件结构</a></li>
     <li><a href="#3-配置-setuppy">3. 配置 setup.py</a></li>
-    <li><a href="#4-生成分发档案">4. 生成分发档案</a></li>
-    <li><a href="#5-上传-pypi">5. 上传 PYPI</a></li>
+    <li><a href="#4-使用-manifestin-打包静态资源">4. 使用 MANIFEST.in 打包静态资源</a></li>
+    <li><a href="#5-生成分发档案">5. 生成分发档案</a></li>
+    <li><a href="#6-上传-pypi">6. 上传 PYPI</a></li>
   </ul>
 </nav>
 </div>
