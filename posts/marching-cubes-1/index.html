@@ -104,7 +104,7 @@
     },
     "headline": "Marching Cubes -1 原理介绍 | 海豚的个人站","datePublished": "2023-01-29T22:07:25+08:00",
     "dateModified": "2023-01-30T11:30:21+08:00",
-    "wordCount":  5369 ,
+    "wordCount":  6359 ,
     "author": {
         "@type": "Person",
         "name": ["Harlan-Chou"]
@@ -250,7 +250,7 @@
   </div>
   <div class="me-6 my-2">
     <i class="fas fa-clock me-1"></i>
-    <span>11 min read</span>
+    <span>13 min read</span>
   </div>
 
   
@@ -262,14 +262,20 @@
   
   
 
-  <p>对于某个三维物体，例如下图所示的蓝色物体，MC算法意图使用近似的等值面对其进行重建。我们用一个矩形三维网格将该物体细分为一个个单元格（grid），每个单元格的各顶点和边都用一个标量来索引。</p>
-<div  align="center">    
-    <img src="/assets/image-20230129232238-nnm5qqw.png" width = "400" height = "300" align=center />
-    <img src="/assets/image-20230129232636-amem320.png" width = "400" height = "300" align=center />
-</div>
-<p>在覆盖物体外围的单元格中，物体的表面会与单元格相交，将单元格的某些顶点分隔在外面，我们用 cubeindex 来表示 8 个顶点的内外情况。</p>
+  <h1 id="marching-cubes-详解与实现">Marching Cubes 详解与实现</h1>
+<p>等值面是空间中的一张曲面，在该曲面上函数F(x，y，z)的值等于某一给定值。准确地讲，是指在某一网格空间中，假若每一结点保存着三变量函数F(x，y，z)，而且网格单元在x，y，z方向上的连续采样值为F(x，y，z)，则对于某一给定值Fi，等值面是由所有满足</p>
+<p>$S={(x，y，z) | F(x，y，z)=Fi}$</p>
+<p>的点组成的一张曲面。</p>
+<p>按照此严格定义下得到的等值面表达式如下：</p>
+<p>$F(x，y，z)=a_0+a_1x+a_2y+a_3z+a_4xy+a_5yz+a_6xz+a_7xyz$</p>
+<p>Marching Cubes（MC）算法是一种三维重建算法，常被用于三维重建任务，也在一些游戏中用于程序生成地形。简单来说，对于某个三维物体，例如下图所示的蓝色物体，由于直接提取该物体的等值面较为繁琐，MC算法意图使用近似的等值面对该物体重新建模，以简化等值面的提取。</p>
+<hr>
+<h2 id="1-cube-index">1. Cube Index</h2>
+<p>首先，我们需要将该物体细分为一个个单元格（grid），每个单元格的各个顶点和边都用一个标量来索引。</p>
+<p>​<img src="/assets/image-20230129232238-nnm5qqw.png" alt="image"><img src="/assets/image-20230129232636-amem320.png" alt="image">​</p>
+<p>接下来，我们要判断各单元格的各顶点是否在3D几何体内。在覆盖物体外围的单元格中，物体的表面会与单元格相交，将单元格的某些顶点分隔在外面，我们用 cubeindex 来表示 8 个顶点的内外情况。</p>
 <p>cubeindex 包含 8 个 bit，分别表示单元格的 8 个顶点。假设第一个顶点在等值面的外面，我们令 cubeindex 与 1 作与运算，则 cubeindex 的第 1 个 bit 被置为 1。同理，若第二个顶点在等值面外，我们令 cubeindex 与 2 作与运算，2 的二进制表示为 10，则 cubeindex 的第 2 个 bit 被置为 1。</p>
-<pre><code class="language-python">  cubeindex = 0;
+<pre><code class="language-c#">  cubeindex = 0;
    if (grid.val[0] &lt; isolevel) cubeindex |= 1;
    if (grid.val[1] &lt; isolevel) cubeindex |= 2;
    if (grid.val[2] &lt; isolevel) cubeindex |= 4;
@@ -279,7 +285,22 @@
    if (grid.val[6] &lt; isolevel) cubeindex |= 64;
    if (grid.val[7] &lt; isolevel) cubeindex |= 128;
 </code></pre>
-<p>上述运算完得到的 cubeindex，我们需要以它的十进制作为索引，来找出来在 edgeTable 中对应的一个十六进制数。这个十六进制数表示了 cube 中 12 条边的切割情况。</p>
+<p>其中，<code>isoLevel</code>​表示等值面（isolevel surface）的阈值。Marching Cubes是一种用于从三维体数据生成等值面的算法，等值面是指具有相同数值的体数据点构成的表面。<code>isoLevel</code>​定义了等值面所代表的数值。在算法中，如果一个体数据点的值低于<code>isoLevel</code>​，则该点被认为在等值面的外面；反之，如果一个体数据点的值高于或等于<code>isoLevel</code>​，则该点被认为在等值面内部。</p>
+<hr>
+<p>现在，我们以 Marching Square 为例，尝试重建一个圆出来。本例参考自[2]，图例为本人绘制。</p>
+<p>首先设定一些参数，圆的半径<code>radius</code>​，圆心在世界中的实际坐标<code>center</code>​。我们使用7*7的网格来进行重建，其中各轴上点的数量<code>numPointPerAxis</code>​为 8，那么各轴上 cube 的数量<code>numVoxelPerAxis</code>​为<code>numPointPerAxis-1=7</code>​个，<code>id</code>​ 表示各点在网格中的的索引坐标。另外设定每个 cube 的实际长度为<code>cubeSize</code>​。在本例中，我们将网格的中心与圆心对齐，这在后面的偏置计算中会用到。</p>
+<p>​<img src="/assets/image-20230620235416-34ig2zr.png" alt="image">​</p>
+<p>各顶点在网格中的实际坐标为 <code>id * cubeSize</code>​ ，网格中心(圆心)的实际坐标为 <code>numPointsPerAxis * cubeSize * 0.5</code>​ ，则该顶点相对圆心的偏置为：</p>
+<pre><code class="language-c#">float3 offset = id * cubeSize - numPointsPerAxis * cubeSize * 0.5;
+</code></pre>
+<p>最终，我们可以得到这个点的位置和这个点对应的值。</p>
+<pre><code class="language-c#">float3 pos = center + offset;
+float value = length(offset) - radius
+</code></pre>
+<p>最后，我们拿这个值与等值面的阈值 isolevel 进行比较，判断这个点在等值面内还是面外，并为相应的位值1或0。</p>
+<hr>
+<h2 id="2-cube-edge">2. Cube Edge</h2>
+<p>接下来，我们以上述运算完得到的 cubeindex 的十进制作为索引，找出在 edgeTable 中对应的一个十六进制数。这个十六进制数表示了单元格中 12 条边的被切割情况。</p>
 <pre><code class="language-python">int edgeTable[256]={
 0x0  , 0x109, 0x203, 0x30a, 0x406, 0x50f, 0x605, 0x70c,
 0x80c, 0x905, 0xa0f, 0xb06, 0xc0a, 0xd03, 0xe09, 0xf00,
@@ -314,14 +335,14 @@
 0xf00, 0xe09, 0xd03, 0xc0a, 0xb06, 0xa0f, 0x905, 0x80c,
 0x70c, 0x605, 0x50f, 0x406, 0x30a, 0x203, 0x109, 0x0   };
 </code></pre>
-<p>比如，点 3 在等值面外的 cubeindex = 0000 1000 or 8，而 edgeTable[8] = 1000 0000 1100，表示边 2,3, and 11 与等值面相交。</p>
-<div  align="center">    
-    <img src="/assets/image-20230129224055-iynt5wn.png" width = "400" height = "300" align=center />
-</div>
+<p>在如下面的左图所示，在一个单元格中，假设只有点 3 在等值面外，我们容易得到 cubeindex = 0000 1000 ，对应的十进制为 8。查找表 edgeTable 得到 edgeTable[8] = 1000 0000 1100，表示边 2,3, and 11 与等值面相交（如右图所示）。</p>
+<p>​<img src="/assets/image-20230129232636-amem320.png" alt="image"><img src="/assets/image-20230129224055-iynt5wn.png" alt="image">​</p>
 <p>接下来，我们通过插值的方法找出来三个相交点的坐标 P：</p>
 <p>$P = P_1 + (isovalue - V_1) (P_2 - P_1) / (V_2 - V_1)$</p>
-<p>P1 和 P2 是相交边的两个顶点的坐标，即插值点的坐标，如 2 和 3。V1、V2 是 grid 在上述两个点对应的值，即 grid.val 的值。</p>
-<p>（有人建议，插值应按<a href="http://paulbourke.net/geometry/polygonise/interp.c">这里</a>所示处理，这解决了一个等值面上小裂缝的问题。）</p>
+<p>P1 和 P2 是相交边的两个顶点的坐标，如边2上的点 2 和 3。V1、V2 是这两个点在该 cube 中的值。</p>
+<p>另外，有人建议插值应按[3]所示处理，这解决了一个等值面上小裂缝的问题。</p>
+<hr>
+<h2 id="3-triangular-table">3. Triangular Table</h2>
 <p>最后，我们得到了 n 个坐标点，这些坐标点可以组成 m 个三角形，这就需要我们按照一定的顺序来连接各个顶点，可以通过查表 triTable 来获得。</p>
 <pre><code class="language-python">int triTable[256][16] =
 {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
@@ -581,17 +602,18 @@
 {0, 3, 8, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
 {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
 </code></pre>
-<p>对于上面的例子，我们查找triTable[8][] = {3, 11, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}，3 表示编号为 3 的边，我们按 3-11-2 的顺序，将各边上的点连接起来。这样，就构成了一个三角形。</p>
+<p>对于上面 <code>cubeIndex=8</code>​ 的例子，我们查找triTable[8][] = {3, 11, 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}，3 表示编号为 3 的边，我们按 3-11-2 的顺序，将各边上的点连接起来。这样，就构成了一个三角形。</p>
 <h2 id="网格分辨率">网格分辨率</h2>
-<p>将值已知或可以在空间中任意地方插值的区域多边形化时，我们通常要控制网格的分辨率。这允许根据所需的平滑度或可用于显示该表面的算力来生成等值线的粗略近似。下面是用不同网格大小生成的两个&quot;bobby分子&quot;。<br>
-​</p>
-<div  align="center">    
-    <img src="https://img-blog.csdnimg.cn/20201018151131537.gif#pic_center"  align=center />
-</div>
-参考内容：
+<p>将值已知或可以在空间中任意地方插值的区域多边形化时，我们通常要控制网格的分辨率。可以根据所需的平滑度或可用于显示该表面的算力来生成等值线的粗略近似。下面是用不同网格大小生成的两个&quot;bobby分子&quot;。<br>
+​<img src="https://img-blog.csdnimg.cn/20201018151131537.gif#pic_center" alt="在这里插入图片描述">​</p>
+<h2 id="参考">参考</h2>
 <p>原文：<a href="http://paulbourke.net/geometry/polygonise/">http://paulbourke.net/geometry/polygonise/</a></p>
 <p>原文视频解读：<a href="https://www.bilibili.com/video/BV1Ev411r7vx/">https://www.bilibili.com/video/BV1Ev411r7vx/</a></p>
-<p>原文文字解读：<a href="https://blog.csdn.net/weixin_38060850/article/details/109143025">https://blog.csdn.net/weixin_38060850/article/details/109143025</a></p>
+<p>[1] <a href="https://www.cs.carleton.edu/cs_comps/0405/shape/marching_cubes.html">Marching Cubes (carleton.edu)</a></p>
+<p>[2] <a href="https://www.bilibili.com/video/BV1bW4y1675m">https://www.bilibili.com/video/BV1bW4y1675m</a></p>
+<p>[3] <a href="http://paulbourke.net/geometry/polygonise/interp.c">http://paulbourke.net/geometry/polygonise/interp.c</a></p>
+<p>推荐视频：https://www.bilibili.com/video/BV1yJ411r73v</p>
+<p>‍</p>
 <p>‍</p>
 
 </article>
@@ -699,7 +721,11 @@
 >
   <nav id="TableOfContents">
   <ul>
+    <li><a href="#1-cube-index">1. Cube Index</a></li>
+    <li><a href="#2-cube-edge">2. Cube Edge</a></li>
+    <li><a href="#3-triangular-table">3. Triangular Table</a></li>
     <li><a href="#网格分辨率">网格分辨率</a></li>
+    <li><a href="#参考">参考</a></li>
   </ul>
 </nav>
 </div>

@@ -15,7 +15,7 @@
       <pubDate>Sun, 29 Jan 2023 22:07:25 +0800</pubDate>
       
       <guid>/posts/marching-cubes-1/</guid>
-      <description>对于某个三维物体，例如下图所示的蓝色物体，MC算法意图使用近似的等值面对其进行重建。我们用一个矩形三维网格将该物体细分为一个个单元格（grid），每个</description>
+      <description>Marching Cubes 详解与实现 等值面是空间中的一张曲面，在该曲面上函数F(x，y，z)的值等于某一给定值。准确地讲，是指在某一网格空间中，假若每一结点保存着三变量函数</description>
     </item>
     
     <item>
