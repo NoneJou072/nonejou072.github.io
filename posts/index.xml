@@ -8,7 +8,16 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;WANG Chucheng&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;MA Ruiqi&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Thu, 07 Sep 2023 13:11:22 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Sep 2023 13:11:22 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Blender将三角形mesh转为四边形</title>
+      <link>/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/</link>
+      <pubDate>Sat, 23 Sep 2023 13:11:22 +0800</pubDate>
+      
+      <guid>/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/</guid>
+      <description>介绍 使用三维软件建模后，发现导出的mesh文件是由三角形组成的面，那么如何将该 mesh 转成由四边形组成的面呢？可以使用 Blender 来完成这一操作。 我们需要安装一个 Blender 插</description>
+    </item>
+    
     <item>
       <title>打包自己的 Python 包并上传 PyPi</title>
       <link>/posts/pypi/</link>

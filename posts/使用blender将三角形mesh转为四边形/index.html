@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>打包自己的 Python 包并上传 PyPi | 海豚的个人站</title>
+<title>使用Blender将三角形mesh转为四边形 | 海豚的个人站</title>
 
 <meta name="generator" content="Hugo Eureka 0.9.3" />
 <link rel="stylesheet" href="/css/eureka.min.9cec6350e37e534b0338fa9a085bf06855de3b0f2dcf857e792e5e97b07ea905d4d5513db554cbc26a9c3da622bae92d.css">
@@ -75,7 +75,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar_hu4e2f271179866d8453bc1b6f54b41d59_47656_180x180_fill_q75_box_center.jpg">
 
 <meta name="description"
-  content="介绍如何打包自己的 python 包，并上传到 PyPi 上去。">
+  content="使用Blender将三角形mesh转为四边形">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -87,8 +87,8 @@
       "item":"/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"打包自己的 Python 包并上传 PyPi",
-      "item":"/posts/pypi/"}]
+      "name":"使用Blender将三角形mesh转为四边形",
+      "item":"/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/"}]
 }
 </script>
 
@@ -100,11 +100,11 @@
     "@type": "Article",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/posts/pypi/"
+        "@id": "/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/"
     },
-    "headline": "打包自己的 Python 包并上传 PyPi | 海豚的个人站","datePublished": "2023-09-07T13:11:22+08:00",
-    "dateModified": "2023-09-07T13:11:22+08:00",
-    "wordCount":  1669 ,
+    "headline": "使用Blender将三角形mesh转为四边形 | 海豚的个人站","datePublished": "2023-09-23T13:11:22+08:00",
+    "dateModified": "2023-09-23T13:11:22+08:00",
+    "wordCount":  392 ,
     "author": {
         "@type": "Person",
         "name": ["Haoran Zhou"]
@@ -117,20 +117,20 @@
             "url": "/images/avatar.jpg"
         }
         },
-    "description": "介绍如何打包自己的 python 包，并上传到 PyPi 上去。"
+    "description": "使用Blender将三角形mesh转为四边形"
 }
-</script><meta property="og:title" content="打包自己的 Python 包并上传 PyPi | 海豚的个人站" />
+</script><meta property="og:title" content="使用Blender将三角形mesh转为四边形 | 海豚的个人站" />
 <meta property="og:type" content="article" />
 
 
 <meta property="og:image" content="/images/avatar.jpg">
 
 
-<meta property="og:url" content="/posts/pypi/" />
+<meta property="og:url" content="/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/" />
 
 
 
-<meta property="og:description" content="介绍如何打包自己的 python 包，并上传到 PyPi 上去。" />
+<meta property="og:description" content="使用Blender将三角形mesh转为四边形" />
 
 
 
@@ -146,10 +146,10 @@
 
 
 
-<meta property="article:published_time" content="2023-09-07T13:11:22&#43;08:00" />
+<meta property="article:published_time" content="2023-09-23T13:11:22&#43;08:00" />
 
 
-<meta property="article:modified_time" content="2023-09-07T13:11:22&#43;08:00" />
+<meta property="article:modified_time" content="2023-09-23T13:11:22&#43;08:00" />
 
 
 
@@ -237,7 +237,7 @@
       class=" bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
     >
       <article class="prose">
-  <h1 class="mb-4">打包自己的 Python 包并上传 PyPi</h1>
+  <h1 class="mb-4">使用Blender将三角形mesh转为四边形</h1>
 
   <div
   class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
@@ -245,12 +245,12 @@
   <div class="me-6 my-2">
     <i class="fas fa-calendar me-1"></i>
     <span
-      >2023-09-07</span
+      >2023-09-23</span
     >
   </div>
   <div class="me-6 my-2">
     <i class="fas fa-clock me-1"></i>
-    <span>4 min read</span>
+    <span>1 min read</span>
   </div>
 
   
@@ -262,108 +262,33 @@
   
   
 
-  <h2 id="1-注册-pypi-账户并验证">1. 注册 PyPi 账户并验证</h2>
-<p>1.为了上传到 PyPi，我们需要在 <a href="https://pypi.org/">pypi</a> 网站中注册一个账户，注册完会给你的邮箱发送邮件，要点开邮件中的链接来验证身份。</p>
-<p>之后，会跳转到二次身份验证页面(2FA)。根据指引，我们生成了几行 Account recovery codes，记得先保存下来，再点击继续，把刚才保存的安全码中的一行输入进去，即可验证成功。</p>
-<p>接着，我们开始进行账户的二次验证。pypi 提供了两个途径，分别是 Add 2FA with authentication application 和 Add 2FA with security device。</p>
-<p>我们选择 with authentication application 的方式。去谷歌商店中下载 Microsoft Authenticator，打开 app 后，选择底部的<code>已验证ID-扫描QR码</code>，扫描 Pypi 网页中出现的 QR 码。之后切换到 Authenticator 界面，点开 PyPi，会出现一次性密码代码，将该代码输入到 PyPi 网页中 QR 码右侧的输入栏，然后点击验证即可。</p>
-<h2 id="2-调整本地项目的文件结构">2. 调整本地项目的文件结构</h2>
-<p>要打包的项目应该符合如下文件结构：</p>
-<pre><code>/packaging_tutorial
-  /example_pkg
-    __init__.py
-  setup.py
-  LICENSE
-  README.md
-</code></pre>
-<p>其中，</p>
+  <h2 id="介绍">介绍</h2>
+<p>使用三维软件建模后，发现导出的mesh文件是由三角形组成的面，那么如何将该 mesh 转成由四边形组成的面呢？可以使用 Blender 来完成这一操作。</p>
+<div align=center>
+<img src="../../assets/screenshot-20230923-205733.png">
+</div>
+<p>我们需要安装一个 Blender 插件：<a href="https://github.com/jayanam/jremesh-tools">jremesh-tools</a>，直接在 github 选择下载 ZIP 压缩包。</p>
+<p>参照提供的部署流程，我们再去下载 <a href="https://github.com/wjakob/instant-meshes">instant-meshes</a>，可以直接下载编译好的二进制文件-<a href="https://instant-meshes.s3.eu-central-1.amazonaws.com/Release/instant-meshes-windows.zip">Pre-compiled binaries(windows)</a>。</p>
+<p>然后，将 jremesh-tools 插件导入到 blender 中：</p>
 <ul>
-<li><code>setup.py</code> 是setuptools的构建脚本。它告诉setuptools你的包（例如名称和版本）以及要包含的代码文件。</li>
-<li><code>LICENSE</code> 文件中包含着我们的许可证，用于告诉用户安装你的软件包可以使用您的软件包的条款。有关选择许可证的帮助，请访问 <a href="https://choosealicense.com/">https://choosealicense.com/</a>。选择许可证后，可以将其内容拷贝到 LICENSE 文本文件中。</li>
-<li><code>README.md</code> 可以放入一些对项目的介绍。</li>
+<li>插件安装流程：Blender-编辑-偏好设置-插件-安装-选择下载好的zip压缩包-安装插件-勾选单选框</li>
 </ul>
-<h2 id="3-配置-setuppy">3. 配置 setup.py</h2>
-<p><code>setup.py</code>是 setuptools 的构建脚本。它告诉 setuptools 你的包（例如名称和版本）以及要包含的代码文件。下面是一个<code>setup.py</code>内容示例：</p>
-<pre><code class="language-python">import setuptools
-
-with open(&quot;README.md&quot;, &quot;r&quot;) as fh:
-  long_description = fh.read()
-
-setuptools.setup(
-  name=&quot;example-pkg-your-username&quot;,
-  version=&quot;0.0.1&quot;,
-  author=&quot;Example Author&quot;,
-  author_email=&quot;author@example.com&quot;,
-  description=&quot;A small example package&quot;,
-  long_description=long_description,
-  long_description_content_type=&quot;text/markdown&quot;,
-  url=&quot;https://github.com/pypa/sampleproject&quot;,
-  packages=setuptools.find_packages(),
-  classifiers=[
-  &quot;Programming Language :: Python :: 3&quot;,
-  &quot;License :: OSI Approved :: MIT License&quot;,
-  &quot;Operating System :: OS Independent&quot;,
-  ],
-)
-</code></pre>
-<p>对于<code>setup()</code>中参数的介绍如下：</p>
-<ul>
-<li><code>name</code> - 包的分发名称。只要包含字母，数字_和，就可以是任何名称-。它也不能在pypi.org上使用。请务必使用您的用户名更新此内容，因为这可确保您在上传程序包时不会遇到任何名称冲突。</li>
-<li><code>version</code> - 包的版本。</li>
-<li><code>author</code> - 包的作者。</li>
-<li><code>author_email</code> 包的作者邮箱。</li>
-<li><code>description</code> - 包的一个简短的总结。</li>
-<li><code>long_description</code> - 包的详细说明。这显示在Python Package Index的包详细信息包中。在这种情况下，加载长描述README.md是一种常见模式。</li>
-<li><code>long_description_content_type</code> - 告诉索引什么类型的标记用于长描述。在这种情况下，它是Markdown。</li>
-<li><code>url</code> - 是项目主页的URL。在许多项目中是一个指向GitHub，GitLab，Bitbucket或类似代码托管服务的链接。</li>
-<li><code>packages</code> - 应包含在分发包中的所有导入包的列表。我们可以使用 <code>find_packages()</code> 自动发现所有包和子包。在示例中，包列表为 <code>example_pkg</code>，因为它是唯一存在的包。</li>
-<li><code>classifiers</code> - 关于包的其他元数据。在示例中，该软件包仅与 Python 3 兼容，根据MIT许可证进行许可，且与操作系统无关。有关分类器的完整列表，参阅 <a href="https://pypi.org/classifiers/">https://pypi.org/classifiers/</a>。</li>
-</ul>
-<p>除了这里提到的还有很多。有关详细信息可以参阅 <a href="https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/">打包和分发项目</a>。</p>
-<h2 id="4-使用-manifestin-打包静态资源">4. 使用 MANIFEST.in 打包静态资源</h2>
-<p>在项目目录下新建 <code>MANIFEST.in</code> 文件，里面的内容参考如下示例：</p>
-<pre><code>include *.txt  #包含根目录下的所有txt文件
-recursive-include examples *.txt *.py  #包含所有位置的examples文件夹下的txt与py文件
-prune examples/sample?/build  #排除所有位置examples/sample?/build
-
-global-include *  # 包含安装包下的所有文件
-</code></pre>
-<h2 id="5-生成分发档案">5. 生成分发档案</h2>
-<p>下一步是为包生成分发包。这些是上传到包索引的档案，可以通过pip安装。</p>
-<p>首先确保安装了最新版本的 setuptools 和 wheel ：</p>
-<pre><code>python3 -m pip install --user --upgrade setuptools wheel
-</code></pre>
-<p>现在从与<code>setup.py</code>位于的同一目录运行此命令：</p>
-<pre><code>python3 setup.py sdist bdist_wheel
-</code></pre>
-<p>完成后，会在生成 dist 文件夹，并包含两个文件：</p>
-<pre><code>dist/
-  example_pkg_your_username-0.0.1-py3-none-any.whl
-  example_pkg_your_username-0.0.1.tar.gz
-</code></pre>
-<h2 id="6-上传-pypi">6. 上传 PYPI</h2>
-<p>接下来我们开始将项目包上传到 PYPI，首先进入 PyPi 账户设置中的 Create API token 界面，根据指引创建新的 API token，记得将生成的 token 复制下来。然后继续按照教程配置 token，具体地：<br>
-新建或修改<code>$HOME/.pypirc</code>文件
-(windows 中在 <code>users`` 目录下新建 </code>.pypirc`)
-文件内容的模板如下：</p>
-<pre><code>[pypi]
-  username = __token__
-  password = pypi-AgEIcHlwaS5vcmcCJGYzYjQzM2NjLWFiYTMtNGM1Zi05ZWU1LTQ2MTUzOGUyNzA3NwACKlszLCJmMzkyMGY4YS05ZTVkLTQyMmEtOGE2MS1lM2IyYjJhZTNlMjgiXQAABiDQYlxiUUsdywZ2RtK__n0x0lgobwbai2ocPdFTRVG_ig
-</code></pre>
-<p>回到项目命令行，输入</p>
-<pre><code>sudo apt install twine
-twine upload dist/*
-</code></pre>
-<p>输入 PyPI 的用户名和密码。命令完成后，应该看到与此类似的输出：</p>
-<pre><code>Uploading distributions to https://test.pypi.org/legacy/
-Enter your username: [your username]
-Enter your password:
-Uploading example_pkg_your_username-0.0.1-py3-none-any.whl
-100%|█████████████████████| 4.65k/4.65k [00:01&lt;00:00, 2.88kB/s]
-Uploading example_pkg_your_username-0.0.1.tar.gz
-100%|█████████████████████| 4.25k/4.25k [00:01&lt;00:00, 3.05kB/s]
-</code></pre>
-<p>现在，我们的包已经上传到 PyPi 上了，可以进入到 projects 界面查看我们的项目。</p>
+<div align=center>
+<img src="../../assets/screenshot-20230923-210523.png">
+</div>
+<p>之后，点开单选框左边的箭头，在偏好设置中，将之前下载好的 instant-meshes 的二进制文件 <code>Instant Meshes.exe</code> 添加到路径中。</p>
+<div align=center>
+<img src="../../assets/screenshot-20230923-210946.png">
+</div>
+<p>添加完路径后，在 Blender 主界面按 <code>N</code> 键，出现选项卡，选择 JRemesh</p>
+<div align=center>
+<img src="../../assets/screenshot-20230923-210740.png">
+</div>
+<p>之后，导入并选中我们的 mesh 模型，点击重构网格，即可生成由四边形面片构成的 mesh。</p>
+<div align=center>
+<img src="../../assets/screenshot-20230923-211405.png">
+</div>
+<p>如果报错 <code>JRemesh: Path to Instant Meshes is missing</code> ，参考 <a href="https://github.com/jayanam/jremesh-tools/issues/9">JRemesh: Path to Instant Meshes is missing. #9</a>，是 instant-meshes 的路径没有正确索引到。</p>
 
 </article>
 
@@ -406,16 +331,11 @@ Uploading example_pkg_your_username-0.0.1.tar.gz
   >
     <div>
       
-        <span class="text-primary-text block font-bold"
-          >Previous</span
-        >
-        <a href="/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/" class="block">使用Blender将三角形mesh转为四边形</a>
-      
     </div>
     <div class="mt-4 md:mt-0 md:text-right">
       
         <span class="text-primary-text block font-bold">Next</span>
-        <a href="/posts/marching-cubes-1/" class="block">Marching Cubes -1 原理介绍</a>
+        <a href="/posts/pypi/" class="block">打包自己的 Python 包并上传 PyPi</a>
       
     </div>
   </div>
@@ -442,12 +362,7 @@ Uploading example_pkg_your_username-0.0.1.tar.gz
 >
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-注册-pypi-账户并验证">1. 注册 PyPi 账户并验证</a></li>
-    <li><a href="#2-调整本地项目的文件结构">2. 调整本地项目的文件结构</a></li>
-    <li><a href="#3-配置-setuppy">3. 配置 setup.py</a></li>
-    <li><a href="#4-使用-manifestin-打包静态资源">4. 使用 MANIFEST.in 打包静态资源</a></li>
-    <li><a href="#5-生成分发档案">5. 生成分发档案</a></li>
-    <li><a href="#6-上传-pypi">6. 上传 PYPI</a></li>
+    <li><a href="#介绍">介绍</a></li>
   </ul>
 </nav>
 </div>
