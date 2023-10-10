@@ -264,30 +264,20 @@
 
   <h2 id="介绍">介绍</h2>
 <p>使用三维软件建模后，发现导出的mesh文件是由三角形组成的面，那么如何将该 mesh 转成由四边形组成的面呢？可以使用 Blender 来完成这一操作。</p>
-<div align=center>
-<img src="../../assets/screenshot-20230923-205733.png">
-</div>
+<p><img src="../../assets/screenshot-20230923-205733.png" alt=""></p>
 <p>我们需要安装一个 Blender 插件：<a href="https://github.com/jayanam/jremesh-tools">jremesh-tools</a>，直接在 github 选择下载 ZIP 压缩包。</p>
 <p>参照提供的部署流程，我们再去下载 <a href="https://github.com/wjakob/instant-meshes">instant-meshes</a>，可以直接下载编译好的二进制文件-<a href="https://instant-meshes.s3.eu-central-1.amazonaws.com/Release/instant-meshes-windows.zip">Pre-compiled binaries(windows)</a>。</p>
 <p>然后，将 jremesh-tools 插件导入到 blender 中：</p>
 <ul>
 <li>插件安装流程：Blender-编辑-偏好设置-插件-安装-选择下载好的zip压缩包-安装插件-勾选单选框</li>
 </ul>
-<div align=center>
-<img src="../../assets/screenshot-20230923-210523.png">
-</div>
+<p><img src="../../assets/screenshot-20230923-210523.png" alt=""></p>
 <p>之后，点开单选框左边的箭头，在偏好设置中，将之前下载好的 instant-meshes 的二进制文件 <code>Instant Meshes.exe</code> 添加到路径中。</p>
-<div align=center>
-<img src="../../assets/screenshot-20230923-210946.png">
-</div>
+<p><img src="../../assets/screenshot-20230923-210946.png" alt=""></p>
 <p>添加完路径后，在 Blender 主界面按 <code>N</code> 键，出现选项卡，选择 JRemesh</p>
-<div align=center>
-<img src="../../assets/screenshot-20230923-210740.png">
-</div>
+<p><img src="../../assets/screenshot-20230923-210740.png" alt=""></p>
 <p>之后，导入并选中我们的 mesh 模型，点击重构网格，即可生成由四边形面片构成的 mesh。</p>
-<div align=center>
-<img src="../../assets/screenshot-20230923-211405.png">
-</div>
+<p><img src="../../assets/screenshot-20230923-211405.png" alt=""></p>
 <p>如果报错 <code>JRemesh: Path to Instant Meshes is missing</code> ，参考 <a href="https://github.com/jayanam/jremesh-tools/issues/9">JRemesh: Path to Instant Meshes is missing. #9</a>，是 instant-meshes 的路径没有正确索引到。</p>
 
 </article>
