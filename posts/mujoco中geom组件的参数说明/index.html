@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>使用Blender将三角形mesh转为四边形 | 海豚的个人站</title>
+<title>mujoco-geom组件参数说明 | 海豚的个人站</title>
 
 <meta name="generator" content="Hugo Eureka 0.9.3" />
 <link rel="stylesheet" href="/css/eureka.min.9cec6350e37e534b0338fa9a085bf06855de3b0f2dcf857e792e5e97b07ea905d4d5513db554cbc26a9c3da622bae92d.css">
@@ -75,7 +75,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar_hu4e2f271179866d8453bc1b6f54b41d59_47656_180x180_fill_q75_box_center.jpg">
 
 <meta name="description"
-  content="使用Blender将三角形mesh转为四边形">
+  content="mujoco中geom组件的参数说明">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -87,8 +87,8 @@
       "item":"/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"使用Blender将三角形mesh转为四边形",
-      "item":"/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/"}]
+      "name":"mujoco-geom组件参数说明",
+      "item":"/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/"}]
 }
 </script>
 
@@ -100,11 +100,11 @@
     "@type": "Article",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/"
+        "@id": "/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/"
     },
-    "headline": "使用Blender将三角形mesh转为四边形 | 海豚的个人站","datePublished": "2023-09-23T13:11:22+08:00",
+    "headline": "mujoco-geom组件参数说明 | 海豚的个人站","datePublished": "2023-09-23T13:11:22+08:00",
     "dateModified": "2023-09-23T13:11:22+08:00",
-    "wordCount":  392 ,
+    "wordCount":  338 ,
     "author": {
         "@type": "Person",
         "name": ["Haoran Zhou"]
@@ -117,20 +117,20 @@
             "url": "/images/avatar.jpg"
         }
         },
-    "description": "使用Blender将三角形mesh转为四边形"
+    "description": "mujoco中geom组件的参数说明"
 }
-</script><meta property="og:title" content="使用Blender将三角形mesh转为四边形 | 海豚的个人站" />
+</script><meta property="og:title" content="mujoco-geom组件参数说明 | 海豚的个人站" />
 <meta property="og:type" content="article" />
 
 
 <meta property="og:image" content="/images/avatar.jpg">
 
 
-<meta property="og:url" content="/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/" />
+<meta property="og:url" content="/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/" />
 
 
 
-<meta property="og:description" content="使用Blender将三角形mesh转为四边形" />
+<meta property="og:description" content="mujoco中geom组件的参数说明" />
 
 
 
@@ -237,7 +237,7 @@
       class=" bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
     >
       <article class="prose">
-  <h1 class="mb-4">使用Blender将三角形mesh转为四边形</h1>
+  <h1 class="mb-4">mujoco-geom组件参数说明</h1>
 
   <div
   class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
@@ -262,23 +262,40 @@
   
   
 
-  <h2 id="介绍">介绍</h2>
-<p>使用三维软件建模后，发现导出的mesh文件是由三角形组成的面，那么如何将该 mesh 转成由四边形组成的面呢？可以使用 Blender 来完成这一操作。</p>
-<p><img src="/assets/screenshot-20230923-205733.png" alt=""></p>
-<p>我们需要安装一个 Blender 插件：<a href="https://github.com/jayanam/jremesh-tools">jremesh-tools</a>，直接在 github 选择下载 ZIP 压缩包。</p>
-<p>参照提供的部署流程，我们再去下载 <a href="https://github.com/wjakob/instant-meshes">instant-meshes</a>，可以直接下载编译好的二进制文件-<a href="https://instant-meshes.s3.eu-central-1.amazonaws.com/Release/instant-meshes-windows.zip">Pre-compiled binaries(windows)</a>。</p>
-<p>然后，将 jremesh-tools 插件导入到 blender 中：</p>
-<ul>
-<li>插件安装流程：Blender-编辑-偏好设置-插件-安装-选择下载好的zip压缩包-安装插件-勾选单选框</li>
-</ul>
-<p><img src="/assets/screenshot-20230923-210523.png" alt=""></p>
-<p>之后，点开单选框左边的箭头，在偏好设置中，将之前下载好的 instant-meshes 的二进制文件 <code>Instant Meshes.exe</code> 添加到路径中。</p>
-<p><img src="/assets/screenshot-20230923-210946.png" alt=""></p>
-<p>添加完路径后，在 Blender 主界面按 <code>N</code> 键，出现选项卡，选择 JRemesh</p>
-<p><img src="/assets/screenshot-20230923-210740.png" alt=""></p>
-<p>之后，导入并选中我们的 mesh 模型，点击重构网格，即可生成由四边形面片构成的 mesh。</p>
-<p><img src="/assets/screenshot-20230923-211405.png" alt=""></p>
-<p>如果报错 <code>JRemesh: Path to Instant Meshes is missing</code> ，参考 <a href="https://github.com/jayanam/jremesh-tools/issues/9">JRemesh: Path to Instant Meshes is missing. #9</a>，是 instant-meshes 的路径没有正确索引到。</p>
+  <h2 id="contype-int-1--conaffinity-int-1">contype: int, “1” / conaffinity: int, “1”</h2>
+<p><code>contype</code> 和 <code>conaffinity</code> 指定用于动态生成接触对的32位整数位掩码（请参见 Computation 章节中的<a href="https://mujoco.readthedocs.io/en/latest/computation/index.html#collision">碰撞检测</a>）。如果一个geom的contype与另一个geom的conaffinity 是 &ldquo;<strong>compatible</strong>&rdquo; 的，则两个geom可以发生碰撞。</p>
+<p>&ldquo;<strong>compatible</strong>&ldquo;意味着两个位掩码具有一个公共位设置为1。即：
+<code>(contype1 &amp; conaffinity2) || (contype2 &amp; conaffinity1)</code> 的结果布尔值为 True。</p>
+<p>由于默认值 <code>contype = conaffinity = 1</code>，因此平时可以忽略该参数的设置。</p>
+<h2 id="condim-int-3">condim: int, “3”</h2>
+<p>对于动态生成的接触对的接触空间的维度，设置为两个 geoms 中最大 <code>condim</code> 的值 （参考 Computation 章节中的 <a href="https://mujoco.readthedocs.io/en/latest/computation/index.html#cocontact">Contact</a>）。</p>
+<p>下面是可用的值和对应的含义:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">condim</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Frictionless contact.</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">Regular frictional contact, opposing slip in the tangent plane.</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">Frictional contact, opposing slip in the tangent plane and rotation around the contact normal. This is useful for modeling soft contacts (independent of contact penetration).</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">Frictional contact, opposing slip in the tangent plane, rotation around the contact normal and rotation around the two axes of the tangent plane. The latter frictional effects are useful for preventing objects from indefinite rolling.</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 
@@ -321,16 +338,11 @@
   >
     <div>
       
-        <span class="text-primary-text block font-bold"
-          >Previous</span
-        >
-        <a href="/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/" class="block">mujoco-geom组件参数说明</a>
-      
     </div>
     <div class="mt-4 md:mt-0 md:text-right">
       
         <span class="text-primary-text block font-bold">Next</span>
-        <a href="/posts/pypi/" class="block">打包自己的 Python 包并上传 PyPi</a>
+        <a href="/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/" class="block">使用Blender将三角形mesh转为四边形</a>
       
     </div>
   </div>
@@ -357,7 +369,8 @@
 >
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#介绍">介绍</a></li>
+    <li><a href="#contype-int-1--conaffinity-int-1">contype: int, “1” / conaffinity: int, “1”</a></li>
+    <li><a href="#condim-int-3">condim: int, “3”</a></li>
   </ul>
 </nav>
 </div>
