@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>mujoco-geom组件参数说明 | 海豚的个人站</title>
+<title>DDPG心得 | 海豚的个人站</title>
 
 <meta name="generator" content="Hugo Eureka 0.9.3" />
 <link rel="stylesheet" href="/css/eureka.min.9cec6350e37e534b0338fa9a085bf06855de3b0f2dcf857e792e5e97b07ea905d4d5513db554cbc26a9c3da622bae92d.css">
@@ -75,7 +75,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar_hu4e2f271179866d8453bc1b6f54b41d59_47656_180x180_fill_q75_box_center.jpg">
 
 <meta name="description"
-  content="mujoco中geom组件的参数说明">
+  content="DDPG心得">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -87,8 +87,8 @@
       "item":"/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"mujoco-geom组件参数说明",
-      "item":"/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/"}]
+      "name":"DDPG心得",
+      "item":"/posts/ddpg%E5%BF%83%E5%BE%97/"}]
 }
 </script>
 
@@ -100,11 +100,11 @@
     "@type": "Article",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/"
+        "@id": "/posts/ddpg%E5%BF%83%E5%BE%97/"
     },
-    "headline": "mujoco-geom组件参数说明 | 海豚的个人站","datePublished": "2023-09-23T13:11:22+08:00",
-    "dateModified": "2023-09-23T13:11:22+08:00",
-    "wordCount":  338 ,
+    "headline": "DDPG心得 | 海豚的个人站","datePublished": "2023-10-24T13:11:22+08:00",
+    "dateModified": "2023-10-24T13:11:22+08:00",
+    "wordCount":  1067 ,
     "author": {
         "@type": "Person",
         "name": ["Haoran Zhou"]
@@ -117,20 +117,20 @@
             "url": "/images/avatar.jpg"
         }
         },
-    "description": "mujoco中geom组件的参数说明"
+    "description": "DDPG心得"
 }
-</script><meta property="og:title" content="mujoco-geom组件参数说明 | 海豚的个人站" />
+</script><meta property="og:title" content="DDPG心得 | 海豚的个人站" />
 <meta property="og:type" content="article" />
 
 
 <meta property="og:image" content="/images/avatar.jpg">
 
 
-<meta property="og:url" content="/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/" />
+<meta property="og:url" content="/posts/ddpg%E5%BF%83%E5%BE%97/" />
 
 
 
-<meta property="og:description" content="mujoco中geom组件的参数说明" />
+<meta property="og:description" content="DDPG心得" />
 
 
 
@@ -146,10 +146,10 @@
 
 
 
-<meta property="article:published_time" content="2023-09-23T13:11:22&#43;08:00" />
+<meta property="article:published_time" content="2023-10-24T13:11:22&#43;08:00" />
 
 
-<meta property="article:modified_time" content="2023-09-23T13:11:22&#43;08:00" />
+<meta property="article:modified_time" content="2023-10-24T13:11:22&#43;08:00" />
 
 
 
@@ -237,7 +237,7 @@
       class=" bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
     >
       <article class="prose">
-  <h1 class="mb-4">mujoco-geom组件参数说明</h1>
+  <h1 class="mb-4">DDPG心得</h1>
 
   <div
   class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
@@ -245,12 +245,12 @@
   <div class="me-6 my-2">
     <i class="fas fa-calendar me-1"></i>
     <span
-      >2023-09-23</span
+      >2023-10-24</span
     >
   </div>
   <div class="me-6 my-2">
     <i class="fas fa-clock me-1"></i>
-    <span>1 min read</span>
+    <span>3 min read</span>
   </div>
 
   
@@ -262,40 +262,57 @@
   
   
 
-  <h2 id="contype-int-1--conaffinity-int-1">contype: int, “1” / conaffinity: int, “1”</h2>
-<p><code>contype</code> 和 <code>conaffinity</code> 指定用于动态生成接触对的32位整数位掩码（请参见 Computation 章节中的<a href="https://mujoco.readthedocs.io/en/latest/computation/index.html#collision">碰撞检测</a>）。如果一个geom的contype与另一个geom的conaffinity 是 &ldquo;<strong>compatible</strong>&rdquo; 的，则两个geom可以发生碰撞。</p>
-<p>&ldquo;<strong>compatible</strong>&ldquo;意味着两个位掩码具有一个公共位设置为1。即：
-<code>(contype1 &amp; conaffinity2) || (contype2 &amp; conaffinity1)</code> 的结果布尔值为 True。</p>
-<p>由于默认值 <code>contype = conaffinity = 1</code>，因此平时可以忽略该参数的设置。</p>
-<h2 id="condim-int-3">condim: int, “3”</h2>
-<p>对于动态生成的接触对的接触空间的维度，设置为两个 geoms 中最大 <code>condim</code> 的值 （参考 Computation 章节中的 <a href="https://mujoco.readthedocs.io/en/latest/computation/index.html#cocontact">Contact</a>）。</p>
-<p>下面是可用的值和对应的含义:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">condim</th>
-<th style="text-align:center">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">Frictionless contact.</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">Regular frictional contact, opposing slip in the tangent plane.</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">Frictional contact, opposing slip in the tangent plane and rotation around the contact normal. This is useful for modeling soft contacts (independent of contact penetration).</td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">Frictional contact, opposing slip in the tangent plane, rotation around the contact normal and rotation around the two axes of the tangent plane. The latter frictional effects are useful for preventing objects from indefinite rolling.</td>
-</tr>
-</tbody>
-</table>
+  <h2 id="前言">前言</h2>
+<p>最近花了一些阅读和复现 Relay Hindsight Experience Replay（RHER） 算法，这篇文章写的非常扎实，但作者开源的代码是基于 tensorflow 的 baselines 框架编写的。我在使用 pytorch 重写的过程中有了一些心得体会，在这分享出来。</p>
+<p>原文传送门：<a href="https://arxiv.org/abs/2208.00843">Relay Hindsight Experience Replay: Self-Guided Continual Reinforcement Learning for Sequential Object Manipulation Tasks with Sparse Rewards</a></p>
+<p>RHER 的 GITHUB 链接：<a href="https://github.com/kaixindelele/RHER">https://github.com/kaixindelele/RHER</a></p>
+<p>我自己使用 pytorch 复现的 GITHUB 链接：<a href="https://github.com/NoneJou072/rl-notebook">https://github.com/NoneJou072/rl-notebook</a></p>
+<p>非常感谢作者的工作。</p>
+<h2 id="复现过程">复现过程</h2>
+<h3 id="issue-1">issue-1</h3>
+<p>作者在 baselines 中的更新策略的方法是，按顺序分别训练 push 子任务和 reach 子任务。在 <a href="https://github.com/kaixindelele/RHER/issues/5">issue-5</a> 中也提到了 <strong>每次更新当前的，以及下一个任务的策略函数</strong>。但在我的复现过程中发现，这样会出现 <strong>灾难性遗忘</strong>，当更新下一个任务的策略时，上一次被更新的任务会被遗忘掉。</p>
+<p>但是作者又在 issue 中回答到：</p>
+<blockquote>
+<p>不能存轨迹，而是每次交互后，先目标重标记，再把所有的子任务的数据，分别存到对应的经验池中。</p>
+</blockquote>
+<p>论文中也提到：</p>
+<blockquote>
+<p>对于三物体任务，需要更新先前的部署细节：1）使用基于PyTorch的双延迟DDPG（TD3）方法[47]，而不是基于TensorFlow的DDPG方法。</p>
+</blockquote>
+<blockquote>
+<p>对于基于PyTorch框架的多物体操作任务，在每收集一次轨迹后需要立即重新标记，并将多个子任务的transition，分别存储在不同的经验池中。在每次更新时，样本独立收集，然后组合成一个完整的批次。</p>
+</blockquote>
+<p>一个令我比较疑惑的点是，为什么三物体不接着延续基于 tensorflow 的 baselines 框架，为什么使用 baselines 框架时按顺序更新策略函数不会出现遗忘问题。</p>
+<h3 id="reproduction-1">reproduction-1</h3>
+<p>于是，我使用 pytorch 的 DDPG 方法，按照上述的描述进行了修改，并加入了一些我自己的调整，大概的伪代码为</p>
+<ol start="0">
+<li>分别为 push 和 reach 子任务创建两个经验池</li>
+<li>与环境交互，得到一个 episode 的 transitions</li>
+<li>回合结束后，分割出当前 episode 属于 reach 子任务的 transitions。之后分别将轨迹存到对应的经验池中。</li>
+<li>策略更新时，分别从两个经验池中采样，然后组合成一个完整的批次。</li>
+</ol>
+<h3 id="issue-2">issue-2</h3>
+<p>使用基于 pytorch 编写的 DDPG 方法进行训练时，发现奖励函数的值会先抵达 0.8 左右的成功率，之后便会降低到 0.4 左右。</p>
+<center class="half">
+<img src="../../assets/actor_loss_ddpg.png" width=200/>
+<img src="../../assets/critic_loss_ddpg.png" width=200/>
+</center>
+<p>在 DDPG 中，actor loss 表示负的 Q 值，actor loss 越小，Q 值越大。此时 actor loss 呈现出很大的下降趋势，critic loss 呈现很大的震荡。明显是出现 Q 值被高估的情况了。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/86297106">为什么会有Q值高估问题出现？-&gt; 曾伊言: 强化学习算法TD3论文的翻译与解读</a>。</p>
+<p>由于 Q 值过大，会导致时序差分目标 q_targets 过大</p>
+<p>参考自 <a href="https://blog.csdn.net/weixin_43145941/article/details/115342794">Y. F. Zhang: 一个AC类算法策略loss引出的思考</a></p>
+<center class="half">
+<img src="../../assets/actor_loss_td3.png" width=240/>
+<img src="../../assets/critic_loss_td3.png" width=240/>
+</center>
+<h2 id="结果对比">结果对比</h2>
+<p>下面是作者在 FetchPush-v1 环境下的结果：</p>
+<p><img src="/assets/rher_fetchpush_result.png" alt="Alt text"></p>
+<p>下面是我在 FetchPush-v2 环境下的复现结果：</p>
+<center class="half">
+<img src="../../assets/rher_fetch_push_success_mine.png" width=400/>
+</center>
+<p>可以看到，在训练时间 56min 左右时，成功率稳定在了 95% 左右，与作者的结果相差不大。</p>
 
 </article>
 
@@ -338,16 +355,11 @@
   >
     <div>
       
-        <span class="text-primary-text block font-bold"
-          >Previous</span
-        >
-        <a href="/posts/mistral-7b-%E9%83%A8%E7%BD%B2/" class="block">Mistral-7B 部署</a>
-      
     </div>
     <div class="mt-4 md:mt-0 md:text-right">
       
         <span class="text-primary-text block font-bold">Next</span>
-        <a href="/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/" class="block">使用Blender将三角形mesh转为四边形</a>
+        <a href="/posts/mistral-7b-%E9%83%A8%E7%BD%B2/" class="block">Mistral-7B 部署</a>
       
     </div>
   </div>
@@ -374,8 +386,15 @@
 >
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#contype-int-1--conaffinity-int-1">contype: int, “1” / conaffinity: int, “1”</a></li>
-    <li><a href="#condim-int-3">condim: int, “3”</a></li>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#复现过程">复现过程</a>
+      <ul>
+        <li><a href="#issue-1">issue-1</a></li>
+        <li><a href="#reproduction-1">reproduction-1</a></li>
+        <li><a href="#issue-2">issue-2</a></li>
+      </ul>
+    </li>
+    <li><a href="#结果对比">结果对比</a></li>
   </ul>
 </nav>
 </div>
