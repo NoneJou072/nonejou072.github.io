@@ -1,84 +1,101 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>帖子 on 海豚的个人站</title>
-    <link>/posts/</link>
-    <description>Recent content in 帖子 on 海豚的个人站</description>
+    <title>Posts on 海豚的博客</title>
+    <link>https://nonejou072.github.io/posts/</link>
+    <description>Recent content in Posts on 海豚的博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;WANG Chucheng&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;MA Ruiqi&lt;/a&gt;
-</copyright>
-    <lastBuildDate>Tue, 24 Oct 2023 13:11:22 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <copyright>© 2023 圆润的海豚</copyright>
+    <lastBuildDate>Mon, 13 Jun 2022 20:55:37 +0100</lastBuildDate><atom:link href="https://nonejou072.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>DDPG心得</title>
-      <link>/posts/ddpg%E5%BF%83%E5%BE%97/</link>
+      <title>关于 Goal-Conditioned RL 中子目标选择的问题</title>
+      <link>https://nonejou072.github.io/posts/gcrl%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 21 Nov 2023 13:11:22 +0800</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/gcrl%E7%AC%94%E8%AE%B0/</guid>
+      <description>GCRL with Sub-goal Selection / Generation # 本文翻译与参考自: Goal-Conditioned Reinforcement Learning: Problems and Solutions</description>
+      
+    </item>
+    
+    <item>
+      <title>Relayed HER复现结果与分析</title>
+      <link>https://nonejou072.github.io/posts/rher%E5%A4%8D%E7%8E%B0/</link>
       <pubDate>Tue, 24 Oct 2023 13:11:22 +0800</pubDate>
       
-      <guid>/posts/ddpg%E5%BF%83%E5%BE%97/</guid>
-      <description>前言 最近花了一些阅读和复现 Relay Hindsight Experience Replay（RHER） 算法，这篇文章写的非常扎实，但作者开源的代码是基于 tensorflow 的 baselines 框架编写的。我在使用 pytorch 重写的过程中有了</description>
+      <guid>https://nonejou072.github.io/posts/rher%E5%A4%8D%E7%8E%B0/</guid>
+      <description>前言 # 最近花了一些阅读和复现 Relay Hindsight Experience Replay（RHER） 算法，这篇文章写的非常扎实，但作者开源的代码是基于 tensorflow 的 baselines 框架编写的。我在使用 pytorch 重写的过程中有了一些心得体会，在这分享出来。</description>
+      
     </item>
     
     <item>
       <title>Mistral-7B 部署</title>
-      <link>/posts/mistral-7b-%E9%83%A8%E7%BD%B2/</link>
+      <link>https://nonejou072.github.io/posts/mistral-7b-%E9%83%A8%E7%BD%B2/</link>
       <pubDate>Wed, 18 Oct 2023 13:11:22 +0800</pubDate>
       
-      <guid>/posts/mistral-7b-%E9%83%A8%E7%BD%B2/</guid>
-      <description>前言 意外发现 Mistral AI 开源的 Mistral 7B，声称在所有基准测试中的表现均优于 Llama2-13B，迫不及待的在公司服务器上进行了部署。测试后，发现效果真的很好： 使用</description>
+      <guid>https://nonejou072.github.io/posts/mistral-7b-%E9%83%A8%E7%BD%B2/</guid>
+      <description>前言 # 意外发现 Mistral AI 开源的 Mistral 7B，声称在所有基准测试中的表现均优于 Llama2-13B，迫不及待的在公司服务器上进行了部署。测试后，发现效果真的很好：</description>
+      
     </item>
     
     <item>
       <title>mujoco-geom组件参数说明</title>
-      <link>/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/</link>
+      <link>https://nonejou072.github.io/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/</link>
       <pubDate>Sat, 23 Sep 2023 13:11:22 +0800</pubDate>
       
-      <guid>/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/</guid>
-      <description>contype: int, “1” / conaffinity: int, “1” contype 和 conaffinity 指定用于动态生成接触对的32位整数位掩码（请参见 Computation 章节中的碰撞检测）。如果一个geom的contype与另一个geom的c</description>
+      <guid>https://nonejou072.github.io/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/</guid>
+      <description>contype: int, “1” / conaffinity: int, “1” # contype 和 conaffinity 指定用于动态生成接触对的32位整数位掩码（请参见 Computation 章节中的 碰撞检测）。如果一个geom的contype与另一个geom的conaffinity 是 &amp;ldquo;compatible&amp;rdquo; 的，则两个geom可以发生碰撞。</description>
+      
     </item>
     
     <item>
       <title>使用Blender将三角形mesh转为四边形</title>
-      <link>/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/</link>
+      <link>https://nonejou072.github.io/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/</link>
       <pubDate>Sat, 23 Sep 2023 13:11:22 +0800</pubDate>
       
-      <guid>/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/</guid>
-      <description>介绍 使用三维软件建模后，发现导出的mesh文件是由三角形组成的面，那么如何将该 mesh 转成由四边形组成的面呢？可以使用 Blender 来完成这一操作。 我们需要安装一个 Blender 插</description>
+      <guid>https://nonejou072.github.io/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/</guid>
+      <description>介绍 # 使用三维软件建模后，发现导出的mesh文件是由三角形组成的面，那么如何将该 mesh 转成由四边形组成的面呢？可以使用 Blender 来完成这一操作。</description>
+      
     </item>
     
     <item>
       <title>打包自己的 Python 包并上传 PyPi</title>
-      <link>/posts/pypi/</link>
+      <link>https://nonejou072.github.io/posts/pypi/</link>
       <pubDate>Thu, 07 Sep 2023 13:11:22 +0800</pubDate>
       
-      <guid>/posts/pypi/</guid>
-      <description>1. 注册 PyPi 账户并验证 1.为了上传到 PyPi，我们需要在 pypi 网站中注册一个账户，注册完会给你的邮箱发送邮件，要点开邮件中的链接来验证身份。 之后，会跳转到二次</description>
+      <guid>https://nonejou072.github.io/posts/pypi/</guid>
+      <description>1.</description>
+      
     </item>
     
     <item>
       <title>Marching Cubes -1 原理介绍</title>
-      <link>/posts/marching-cubes-1/</link>
+      <link>https://nonejou072.github.io/posts/marching-cubes-1/</link>
       <pubDate>Sun, 29 Jan 2023 22:07:25 +0800</pubDate>
       
-      <guid>/posts/marching-cubes-1/</guid>
-      <description>Marching Cubes 详解与实现 等值面是空间中的一张曲面，在该曲面上函数F(x，y，z)的值等于某一给定值。准确地讲，是指在某一网格空间中，假若每一结点保存着三变量函数</description>
+      <guid>https://nonejou072.github.io/posts/marching-cubes-1/</guid>
+      <description>Marching Cubes 详解与实现 # 等值面是空间中的一张曲面，在该曲面上函数F(x，y，z)的值等于某一给定值。准确地讲，是指在某一网格空间中，假若每一结点保存着三变量函数F(x，y，z)，而且网格单元在x，y，z方向上的连续采样值为F(x，y，z)，则对于某一给定值Fi，等值面是由所有满足</description>
+      
     </item>
     
     <item>
       <title>探讨-协作双臂的动作模仿</title>
-      <link>/posts/irl-in-double-arm/</link>
+      <link>https://nonejou072.github.io/posts/irl-in-double-arm/</link>
       <pubDate>Sun, 29 Jan 2023 13:11:22 +0800</pubDate>
       
-      <guid>/posts/irl-in-double-arm/</guid>
-      <description>1. 前言 对于人类来说，最初的动作都是在婴儿时期模仿大人的行为习得的。而对机器人来说，想要让它学习人类动作，也需要从模仿开始。其实，平常的机器人示教操作，</description>
+      <guid>https://nonejou072.github.io/posts/irl-in-double-arm/</guid>
+      <description>1.</description>
+      
     </item>
     
     <item>
       <title>使用 pyelastic 对悬臂梁进行仿真</title>
-      <link>/posts/timoshenko-beam/</link>
+      <link>https://nonejou072.github.io/posts/timoshenko-beam/</link>
       <pubDate>Sat, 28 Jan 2023 13:11:22 +0800</pubDate>
       
-      <guid>/posts/timoshenko-beam/</guid>
-      <description>Timoshenko Beam ​elastica.modules​用于构建不同的仿真系统 import numpy as np # Import modules from elastica.modules import BaseSystemCollection, Constraints, Forcing, Damping # Import Cosserat Rod Class from elastica.rod.cosserat_rod import CosseratRod # Import Damping Class from elastica.dissipation import AnalyticalLinearDamper # Import Boundary Condition Classes from elastica.boundary_conditions import OneEndFixedRod, FreeRod from elastica.external_forces import</description>
+      <guid>https://nonejou072.github.io/posts/timoshenko-beam/</guid>
+      <description>Timoshenko Beam # ​elastica.</description>
+      
     </item>
     
   </channel>

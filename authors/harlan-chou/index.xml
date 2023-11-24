@@ -1,48 +1,41 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>海豚 on 海豚的个人站</title>
-    <link>/authors/harlan-chou/</link>
-    <description>Recent content in 海豚 on 海豚的个人站</description>
+    <title>Harlan-Chou on 海豚的博客</title>
+    <link>https://nonejou072.github.io/authors/harlan-chou/</link>
+    <description>Recent content in Harlan-Chou on 海豚的博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;WANG Chucheng&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;MA Ruiqi&lt;/a&gt;
-</copyright>
-    <lastBuildDate>Sun, 29 Jan 2023 22:07:25 +0800</lastBuildDate><atom:link href="/authors/harlan-chou/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <copyright>© 2023 圆润的海豚</copyright>
+    <lastBuildDate>Sun, 29 Jan 2023 22:07:25 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/authors/harlan-chou/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Marching Cubes -1 原理介绍</title>
-      <link>/posts/marching-cubes-1/</link>
+      <link>https://nonejou072.github.io/posts/marching-cubes-1/</link>
       <pubDate>Sun, 29 Jan 2023 22:07:25 +0800</pubDate>
       
-      <guid>/posts/marching-cubes-1/</guid>
-      <description>Marching Cubes 详解与实现 等值面是空间中的一张曲面，在该曲面上函数F(x，y，z)的值等于某一给定值。准确地讲，是指在某一网格空间中，假若每一结点保存着三变量函数</description>
+      <guid>https://nonejou072.github.io/posts/marching-cubes-1/</guid>
+      <description>Marching Cubes 详解与实现 # 等值面是空间中的一张曲面，在该曲面上函数F(x，y，z)的值等于某一给定值。准确地讲，是指在某一网格空间中，假若每一结点保存着三变量函数F(x，y，z)，而且网格单元在x，y，z方向上的连续采样值为F(x，y，z)，则对于某一给定值Fi，等值面是由所有满足</description>
+      
     </item>
     
     <item>
       <title>探讨-协作双臂的动作模仿</title>
-      <link>/posts/irl-in-double-arm/</link>
+      <link>https://nonejou072.github.io/posts/irl-in-double-arm/</link>
       <pubDate>Sun, 29 Jan 2023 13:11:22 +0800</pubDate>
       
-      <guid>/posts/irl-in-double-arm/</guid>
-      <description>1. 前言 对于人类来说，最初的动作都是在婴儿时期模仿大人的行为习得的。而对机器人来说，想要让它学习人类动作，也需要从模仿开始。其实，平常的机器人示教操作，</description>
+      <guid>https://nonejou072.github.io/posts/irl-in-double-arm/</guid>
+      <description>1.</description>
+      
     </item>
     
     <item>
       <title>使用 pyelastic 对悬臂梁进行仿真</title>
-      <link>/posts/timoshenko-beam/</link>
+      <link>https://nonejou072.github.io/posts/timoshenko-beam/</link>
       <pubDate>Sat, 28 Jan 2023 13:11:22 +0800</pubDate>
       
-      <guid>/posts/timoshenko-beam/</guid>
-      <description>Timoshenko Beam ​elastica.modules​用于构建不同的仿真系统 import numpy as np # Import modules from elastica.modules import BaseSystemCollection, Constraints, Forcing, Damping # Import Cosserat Rod Class from elastica.rod.cosserat_rod import CosseratRod # Import Damping Class from elastica.dissipation import AnalyticalLinearDamper # Import Boundary Condition Classes from elastica.boundary_conditions import OneEndFixedRod, FreeRod from elastica.external_forces import</description>
-    </item>
-    
-    <item>
-      <title>Math Support</title>
-      <link>/math-support/</link>
-      <pubDate>Fri, 20 Nov 2020 22:52:56 +0800</pubDate>
+      <guid>https://nonejou072.github.io/posts/timoshenko-beam/</guid>
+      <description>Timoshenko Beam # ​elastica.</description>
       
-      <guid>/math-support/</guid>
-      <description>&lt;p&gt;Eureka supports the rendering of mathematical formulas by using KaTeX.&lt;/p&gt;</description>
     </item>
     
   </channel>

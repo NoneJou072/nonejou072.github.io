@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>使用Blender将三角形mesh转为四边形 &middot; 海豚的博客</title>
-  <meta name="title" content="使用Blender将三角形mesh转为四边形 &middot; 海豚的博客" />
+  <title>Relayed HER复现结果与分析 &middot; 海豚的博客</title>
+  <meta name="title" content="Relayed HER复现结果与分析 &middot; 海豚的博客" />
   
-  <meta name="description" content="使用Blender将三角形mesh转为四边形" />
+  <meta name="description" content="RHER复现结果与分析" />
   
   
   
-  <link rel="canonical" href="https://nonejou072.github.io/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/" />
+  <link rel="canonical" href="https://nonejou072.github.io/posts/rher%E5%A4%8D%E7%8E%B0/" />
   
   
   
@@ -61,17 +61,17 @@
   
   
   
-  <meta property="og:title" content="使用Blender将三角形mesh转为四边形" />
-<meta property="og:description" content="使用Blender将三角形mesh转为四边形" />
+  <meta property="og:title" content="Relayed HER复现结果与分析" />
+<meta property="og:description" content="RHER复现结果与分析" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://nonejou072.github.io/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-09-23T13:11:22+08:00" />
-<meta property="article:modified_time" content="2023-09-23T13:11:22+08:00" />
+<meta property="og:url" content="https://nonejou072.github.io/posts/rher%E5%A4%8D%E7%8E%B0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-24T13:11:22+08:00" />
+<meta property="article:modified_time" content="2023-10-24T13:11:22+08:00" />
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="使用Blender将三角形mesh转为四边形"/>
-<meta name="twitter:description" content="使用Blender将三角形mesh转为四边形"/>
+<meta name="twitter:title" content="Relayed HER复现结果与分析"/>
+<meta name="twitter:description" content="RHER复现结果与分析"/>
 
   
   <script type="application/ld+json">
@@ -79,26 +79,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "使用Blender将三角形mesh转为四边形",
-    "headline": "使用Blender将三角形mesh转为四边形",
-    "description": "使用Blender将三角形mesh转为四边形",
-    "abstract": "介绍 # 使用三维软件建模后，发现导出的mesh文件是由三角形组成的面，那么如何将该 mesh 转成由四边形组成的面呢？可以使用 Blender 来完成这一操作。",
+    "name": "Relayed HER复现结果与分析",
+    "headline": "Relayed HER复现结果与分析",
+    "description": "RHER复现结果与分析",
+    "abstract": "前言 # 最近花了一些阅读和复现 Relay Hindsight Experience Replay（RHER） 算法，这篇文章写的非常扎实，但作者开源的代码是基于 tensorflow 的 baselines 框架编写的。我在使用 pytorch 重写的过程中有了一些心得体会，在这分享出来。",
     "inLanguage": "zh-cn",
-    "url" : "https:\/\/nonejou072.github.io\/posts\/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2\/",
+    "url" : "https:\/\/nonejou072.github.io\/posts\/rher%E5%A4%8D%E7%8E%B0\/",
     "author" : {
       "@type": "Person",
       "name": "圆润的海豚"
     },
     "copyrightYear": "2023",
-    "dateCreated": "2023-09-23T13:11:22\u002b08:00",
-    "datePublished": "2023-09-23T13:11:22\u002b08:00",
+    "dateCreated": "2023-10-24T13:11:22\u002b08:00",
+    "datePublished": "2023-10-24T13:11:22\u002b08:00",
     
-    "dateModified": "2023-09-23T13:11:22\u002b08:00",
+    "dateModified": "2023-10-24T13:11:22\u002b08:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "60"
+    "wordCount": "149"
   }]
   </script>
 
@@ -403,7 +403,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      使用Blender将三角形mesh转为四边形
+      Relayed HER复现结果与分析
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -446,7 +446,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-09-23 13:11:22 &#43;0800 CST">23 September 2023</time><span class="px-2 text-primary-500">&middot;</span><span>60 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2023-10-24 13:11:22 &#43;0800 CST">24 October 2023</time><span class="px-2 text-primary-500">&middot;</span><span>149 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -629,15 +629,99 @@
 
 
         <div class="max-w-prose mb-20">
-          <div id="介绍" class="anchor"></div>
-<h2 class="relative group">介绍 
+          <div id="前言" class="anchor"></div>
+<h2 class="relative group">前言 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e4%bb%8b%e7%bb%8d" aria-label="锚点">#</a></span>        
+            style="text-decoration-line: none !important;" href="#%e5%89%8d%e8%a8%80" aria-label="锚点">#</a></span>        
     
 </h2>
-<p>使用三维软件建模后，发现导出的mesh文件是由三角形组成的面，那么如何将该 mesh 转成由四边形组成的面呢？可以使用 Blender 来完成这一操作。</p>
+<p>最近花了一些阅读和复现 Relay Hindsight Experience Replay（RHER） 算法，这篇文章写的非常扎实，但作者开源的代码是基于 tensorflow 的 baselines 框架编写的。我在使用 pytorch 重写的过程中有了一些心得体会，在这分享出来。</p>
+<p>原文传送门：<a href="https://arxiv.org/abs/2208.00843"   target="_blank">
+    Relay Hindsight Experience Replay: Self-Guided Continual Reinforcement Learning for Sequential Object Manipulation Tasks with Sparse Rewards</a></p>
+<p>RHER 的 GITHUB 链接：<a href="https://github.com/kaixindelele/RHER"   target="_blank">
+    https://github.com/kaixindelele/RHER</a></p>
+<p>我自己使用 pytorch 复现的 GITHUB 链接：<a href="https://github.com/NoneJou072/rl-notebook"   target="_blank">
+    https://github.com/NoneJou072/rl-notebook</a></p>
+<p>非常感谢作者的工作。</p>
+<div id="复现过程" class="anchor"></div>
+<h2 class="relative group">复现过程 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%a4%8d%e7%8e%b0%e8%bf%87%e7%a8%8b" aria-label="锚点">#</a></span>        
+    
+</h2>
+<div id="issue-1" class="anchor"></div>
+<h3 class="relative group">issue-1 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#issue-1" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>作者在 baselines 中的更新策略的方法是，按顺序分别训练 push 子任务和 reach 子任务。在 <a href="https://github.com/kaixindelele/RHER/issues/5"   target="_blank">
+    issue-5</a> 中也提到了 <strong>每次更新当前的，以及下一个任务的策略函数</strong>。但在我的复现过程中发现，这样会出现 <strong>灾难性遗忘</strong>，当更新下一个任务的策略时，上一次被更新的任务会被遗忘掉。</p>
+<p>但是作者又在 issue 中回答到：</p>
+<blockquote>
+<p>不能存轨迹，而是每次交互后，先目标重标记，再把所有的子任务的数据，分别存到对应的经验池中。</p>
+</blockquote>
+<p>论文中也提到：</p>
+<blockquote>
+<p>对于三物体任务，需要更新先前的部署细节：1）使用基于PyTorch的双延迟DDPG（TD3）方法[47]，而不是基于TensorFlow的DDPG方法。</p>
+</blockquote>
+<blockquote>
+<p>对于基于PyTorch框架的多物体操作任务，在每收集一次轨迹后需要立即重新标记，并将多个子任务的transition，分别存储在不同的经验池中。在每次更新时，样本独立收集，然后组合成一个完整的批次。</p>
+</blockquote>
+<p>一个令我比较疑惑的点是，为什么三物体不接着延续基于 tensorflow 的 baselines 框架，为什么使用 baselines 框架时按顺序更新策略函数不会出现遗忘问题。</p>
+<div id="reproduction-1" class="anchor"></div>
+<h3 class="relative group">reproduction-1 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#reproduction-1" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>于是，我使用 pytorch 的 DDPG 方法，按照上述的描述进行了修改，并加入了一些我自己的调整，大概的伪代码为</p>
+<ol start="0">
+<li>分别为 push 和 reach 子任务创建两个经验池</li>
+<li>与环境交互，得到一个 episode 的 transitions</li>
+<li>回合结束后，分割出当前 episode 属于 reach 子任务的 transitions。之后分别将轨迹存到对应的经验池中。</li>
+<li>策略更新时，分别从两个经验池中采样，然后组合成一个完整的批次。</li>
+</ol>
+<div id="issue-2" class="anchor"></div>
+<h3 class="relative group">issue-2 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#issue-2" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>使用基于 pytorch 编写的 DDPG 方法进行训练时，发现奖励函数的值会先抵达 0.8 左右的成功率，之后便会降低到 0.4 左右。</p>
+<center class="half">
+<img src="../../assets/actor_loss_ddpg.png" width=400/>
+<img src="../../assets/critic_loss_ddpg.png" width=400/>
+</center>
+<p>在 DDPG 中，actor loss 表示负的 Q 值，actor loss 越小，Q 值越大。此时 actor loss 呈现出很大的下降趋势，critic loss 呈现很大的震荡。明显是出现 Q 值被高估的情况了。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/86297106"   target="_blank">
+    为什么会有Q值高估问题出现？-&gt; 曾伊言: 强化学习算法TD3论文的翻译与解读</a>。</p>
+<p>由于 Q 值过大，会导致时序差分目标 q_targets 过大</p>
+<p>参考自 <a href="https://blog.csdn.net/weixin_43145941/article/details/115342794"   target="_blank">
+    Y. F. Zhang: 一个AC类算法策略loss引出的思考</a></p>
+<center class="half">
+<img src="../../assets/actor_loss_td3.png" width=400/>
+<img src="../../assets/critic_loss_td3.png" width=400/>
+</center>
+<div id="结果对比" class="anchor"></div>
+<h2 class="relative group">结果对比 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%bb%93%e6%9e%9c%e5%af%b9%e6%af%94" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>下面是作者在 FetchPush-v1 环境下的结果：</p>
 <p>
 
 
@@ -647,86 +731,17 @@
   
   
     <figure>
-      <img class="my-0 rounded-md" src="/assets/screenshot-20230923-205733.png" alt="" />
+      <img class="my-0 rounded-md" src="/assets/rher_fetchpush_result.png" alt="Alt text" />
       
     </figure>
   
 
 </p>
-<p>我们需要安装一个 Blender 插件：<a href="https://github.com/jayanam/jremesh-tools"   target="_blank">
-    jremesh-tools</a>，直接在 github 选择下载 ZIP 压缩包。</p>
-<p>参照提供的部署流程，我们再去下载 <a href="https://github.com/wjakob/instant-meshes"   target="_blank">
-    instant-meshes</a>，可以直接下载编译好的二进制文件-<a href="https://instant-meshes.s3.eu-central-1.amazonaws.com/Release/instant-meshes-windows.zip"   target="_blank">
-    Pre-compiled binaries(windows)</a>。</p>
-<p>然后，将 jremesh-tools 插件导入到 blender 中：</p>
-<ul>
-<li>插件安装流程：Blender-编辑-偏好设置-插件-安装-选择下载好的zip压缩包-安装插件-勾选单选框</li>
-</ul>
-<p>
-
-
-
-
-  
-  
-  
-    <figure>
-      <img class="my-0 rounded-md" src="/assets/screenshot-20230923-210523.png" alt="" />
-      
-    </figure>
-  
-
-</p>
-<p>之后，点开单选框左边的箭头，在偏好设置中，将之前下载好的 instant-meshes 的二进制文件 <code>Instant Meshes.exe</code> 添加到路径中。</p>
-<p>
-
-
-
-
-  
-  
-  
-    <figure>
-      <img class="my-0 rounded-md" src="/assets/screenshot-20230923-210946.png" alt="" />
-      
-    </figure>
-  
-
-</p>
-<p>添加完路径后，在 Blender 主界面按 <code>N</code> 键，出现选项卡，选择 JRemesh</p>
-<p>
-
-
-
-
-  
-  
-  
-    <figure>
-      <img class="my-0 rounded-md" src="/assets/screenshot-20230923-210740.png" alt="" />
-      
-    </figure>
-  
-
-</p>
-<p>之后，导入并选中我们的 mesh 模型，点击重构网格，即可生成由四边形面片构成的 mesh。</p>
-<p>
-
-
-
-
-  
-  
-  
-    <figure>
-      <img class="my-0 rounded-md" src="/assets/screenshot-20230923-211405.png" alt="" />
-      
-    </figure>
-  
-
-</p>
-<p>如果报错 <code>JRemesh: Path to Instant Meshes is missing</code> ，参考 <a href="https://github.com/jayanam/jremesh-tools/issues/9"   target="_blank">
-    JRemesh: Path to Instant Meshes is missing. #9</a>，是 instant-meshes 的路径没有正确索引到。</p>
+<p>下面是我在 FetchPush-v2 环境下的复现结果：</p>
+<center class="half">
+<img src="../../assets/rher_fetch_push_success_mine.png" width=400/>
+</center>
+<p>可以看到，在训练时间 56min 左右时，成功率稳定在了 95% 左右，与作者的结果相差不大。</p>
 
         </div>
                 
@@ -738,8 +753,8 @@
       </div>
      
      <script>
-        var oid = "views_posts\/使用Blender将三角形mesh转为四边形.md"
-        var oid_likes = "likes_posts\/使用Blender将三角形mesh转为四边形.md"
+        var oid = "views_posts\/RHER复现.md"
+        var oid_likes = "likes_posts\/RHER复现.md"
       </script>
       
       
@@ -758,7 +773,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/posts/pypi/">
+            <a class="flex group mr-3" href="/posts/mistral-7b-%E9%83%A8%E7%BD%B2/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -770,11 +785,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >打包自己的 Python 包并上传 PyPi</span
+                  >Mistral-7B 部署</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2023-09-07 13:11:22 &#43;0800 CST">7 September 2023</time>
+                    <time datetime="2023-10-18 13:11:22 &#43;0800 CST">18 October 2023</time>
                   
                 </span>
               </span>
@@ -783,15 +798,15 @@
         </span>
         <span>
           
-            <a class="flex text-right group ml-3" href="/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/">
+            <a class="flex text-right group ml-3" href="/posts/gcrl%E7%AC%94%E8%AE%B0/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >mujoco-geom组件参数说明</span
+                  >关于 Goal-Conditioned RL 中子目标选择的问题</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2023-09-23 13:11:22 &#43;0800 CST">23 September 2023</time>
+                    <time datetime="2023-11-21 13:11:22 &#43;0800 CST">21 November 2023</time>
                   
                 </span>
               </span>

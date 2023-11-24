@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>使用Blender将三角形mesh转为四边形 &middot; 海豚的博客</title>
-  <meta name="title" content="使用Blender将三角形mesh转为四边形 &middot; 海豚的博客" />
+  <title>关于 Goal-Conditioned RL 中子目标选择的问题 &middot; 海豚的博客</title>
+  <meta name="title" content="关于 Goal-Conditioned RL 中子目标选择的问题 &middot; 海豚的博客" />
   
-  <meta name="description" content="使用Blender将三角形mesh转为四边形" />
+  <meta name="description" content="关于 Goal-Conditioned RL 中子目标选择的问题" />
   
   
   
-  <link rel="canonical" href="https://nonejou072.github.io/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/" />
+  <link rel="canonical" href="https://nonejou072.github.io/posts/gcrl%E7%AC%94%E8%AE%B0/" />
   
   
   
@@ -61,17 +61,17 @@
   
   
   
-  <meta property="og:title" content="使用Blender将三角形mesh转为四边形" />
-<meta property="og:description" content="使用Blender将三角形mesh转为四边形" />
+  <meta property="og:title" content="关于 Goal-Conditioned RL 中子目标选择的问题" />
+<meta property="og:description" content="关于 Goal-Conditioned RL 中子目标选择的问题" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://nonejou072.github.io/posts/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-09-23T13:11:22+08:00" />
-<meta property="article:modified_time" content="2023-09-23T13:11:22+08:00" />
+<meta property="og:url" content="https://nonejou072.github.io/posts/gcrl%E7%AC%94%E8%AE%B0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-21T13:11:22+08:00" />
+<meta property="article:modified_time" content="2023-11-23T13:11:22+08:00" />
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="使用Blender将三角形mesh转为四边形"/>
-<meta name="twitter:description" content="使用Blender将三角形mesh转为四边形"/>
+<meta name="twitter:title" content="关于 Goal-Conditioned RL 中子目标选择的问题"/>
+<meta name="twitter:description" content="关于 Goal-Conditioned RL 中子目标选择的问题"/>
 
   
   <script type="application/ld+json">
@@ -79,26 +79,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "使用Blender将三角形mesh转为四边形",
-    "headline": "使用Blender将三角形mesh转为四边形",
-    "description": "使用Blender将三角形mesh转为四边形",
-    "abstract": "介绍 # 使用三维软件建模后，发现导出的mesh文件是由三角形组成的面，那么如何将该 mesh 转成由四边形组成的面呢？可以使用 Blender 来完成这一操作。",
+    "name": "关于 Goal-Conditioned RL 中子目标选择的问题",
+    "headline": "关于 Goal-Conditioned RL 中子目标选择的问题",
+    "description": "关于 Goal-Conditioned RL 中子目标选择的问题",
+    "abstract": "GCRL with Sub-goal Selection \/ Generation # 本文翻译与参考自: Goal-Conditioned Reinforcement Learning: Problems and Solutions",
     "inLanguage": "zh-cn",
-    "url" : "https:\/\/nonejou072.github.io\/posts\/%E4%BD%BF%E7%94%A8blender%E5%B0%86%E4%B8%89%E8%A7%92%E5%BD%A2mesh%E8%BD%AC%E4%B8%BA%E5%9B%9B%E8%BE%B9%E5%BD%A2\/",
+    "url" : "https:\/\/nonejou072.github.io\/posts\/gcrl%E7%AC%94%E8%AE%B0\/",
     "author" : {
       "@type": "Person",
       "name": "圆润的海豚"
     },
     "copyrightYear": "2023",
-    "dateCreated": "2023-09-23T13:11:22\u002b08:00",
-    "datePublished": "2023-09-23T13:11:22\u002b08:00",
+    "dateCreated": "2023-11-21T13:11:22\u002b08:00",
+    "datePublished": "2023-11-21T13:11:22\u002b08:00",
     
-    "dateModified": "2023-09-23T13:11:22\u002b08:00",
+    "dateModified": "2023-11-23T13:11:22\u002b08:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "60"
+    "wordCount": "246"
   }]
   </script>
 
@@ -403,7 +403,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      使用Blender将三角形mesh转为四边形
+      关于 Goal-Conditioned RL 中子目标选择的问题
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -446,7 +446,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-09-23 13:11:22 &#43;0800 CST">23 September 2023</time><span class="px-2 text-primary-500">&middot;</span><span>60 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2023-11-21 13:11:22 &#43;0800 CST">21 November 2023</time><span class="px-2 text-primary-500">&middot;</span><span>246 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
   
 
   
@@ -629,104 +629,138 @@
 
 
         <div class="max-w-prose mb-20">
-          <div id="介绍" class="anchor"></div>
-<h2 class="relative group">介绍 
+          <div id="gcrl-with-sub-goal-selection--generation" class="anchor"></div>
+<h2 class="relative group">GCRL with Sub-goal Selection / Generation 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e4%bb%8b%e7%bb%8d" aria-label="锚点">#</a></span>        
+            style="text-decoration-line: none !important;" href="#gcrl-with-sub-goal-selection--generation" aria-label="锚点">#</a></span>        
     
 </h2>
-<p>使用三维软件建模后，发现导出的mesh文件是由三角形组成的面，那么如何将该 mesh 转成由四边形组成的面呢？可以使用 Blender 来完成这一操作。</p>
-<p>
-
-
-
-
-  
-  
-  
-    <figure>
-      <img class="my-0 rounded-md" src="/assets/screenshot-20230923-205733.png" alt="" />
-      
-    </figure>
-  
-
-</p>
-<p>我们需要安装一个 Blender 插件：<a href="https://github.com/jayanam/jremesh-tools"   target="_blank">
-    jremesh-tools</a>，直接在 github 选择下载 ZIP 压缩包。</p>
-<p>参照提供的部署流程，我们再去下载 <a href="https://github.com/wjakob/instant-meshes"   target="_blank">
-    instant-meshes</a>，可以直接下载编译好的二进制文件-<a href="https://instant-meshes.s3.eu-central-1.amazonaws.com/Release/instant-meshes-windows.zip"   target="_blank">
-    Pre-compiled binaries(windows)</a>。</p>
-<p>然后，将 jremesh-tools 插件导入到 blender 中：</p>
+<blockquote>
+<p>本文翻译与参考自: <a href="https://arxiv.org/pdf/2201.08299.pdf"   target="_blank">
+    Goal-Conditioned Reinforcement Learning: Problems and Solutions</a></p>
+</blockquote>
+<p>由于难以实现长期目标，可以把目标分割成许多短期目标来帮助智能体到达长期目标。
+在期望目标被替换后收集经验，就是将环境的目标分布从$f$改成$p_g$，目标函数变成
+$$
+J(\pi)=\mathbb{E}<em>{\textstyle{s</em>{t+1}\sim \mathcal{T}(\cdot\mid s_t,a_t),\atop a_{t} \sim \pi(\cdot\mid s_{t},g),g\sim f}}\left[\sum_t \gamma^tr(s_t,a_t,g)\right]
+$$
+$f$可以是一个规则，能够从过去的经验中选择$g$，或者是根据某种准则学习出的一个函数。</p>
+<p>下面介绍几种选择子目标的方法。</p>
+<div id="1-中间难度-intermediate-difficulty" class="anchor"></div>
+<h3 class="relative group">1. 中间难度 Intermediate difficulty 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%e4%b8%ad%e9%97%b4%e9%9a%be%e5%ba%a6-intermediate-difficulty" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p><em>准确评估到达目标的难度有助于确定在智能体的能力范围内学习什么，一个合理的目标应该超出智能体的范围（why？）</em></p>
 <ul>
-<li>插件安装流程：Blender-编辑-偏好设置-插件-安装-选择下载好的zip压缩包-安装插件-勾选单选框</li>
+<li><em>Automatic goal generation for reinforcement learning agents.</em> 根据奖励给难度打分，用来把目标标记成正/负采样，然后训练一个GAN模型来生成具有合理难度分数的目标。</li>
+<li><em>Learning with amigo: Adversarially motivated intrinsic goals.</em> 提出了一种 teacher-student 框架。teacher充当目标提供者，尝试提供难度递增的目标。teacher从student在提供的目标上的表现中学习，student从环境中得到的外部奖励和teacher中得到的内部奖励学习。</li>
+<li><em>Automatic curriculum learning through value disagreement.</em> 把Q函数认知的不确定性看成是实现目标难度的衡量，用于构建一个分布来采样目标。当不确定性过高时，目标应该处于策略的知识边界，以一个合理的难度来学习。</li>
 </ul>
-<p>
-
-
-
-
-  
-  
-  
-    <figure>
-      <img class="my-0 rounded-md" src="/assets/screenshot-20230923-210523.png" alt="" />
-      
-    </figure>
-  
-
-</p>
-<p>之后，点开单选框左边的箭头，在偏好设置中，将之前下载好的 instant-meshes 的二进制文件 <code>Instant Meshes.exe</code> 添加到路径中。</p>
-<p>
-
-
-
-
-  
-  
-  
-    <figure>
-      <img class="my-0 rounded-md" src="/assets/screenshot-20230923-210946.png" alt="" />
-      
-    </figure>
-  
-
-</p>
-<p>添加完路径后，在 Blender 主界面按 <code>N</code> 键，出现选项卡，选择 JRemesh</p>
-<p>
-
-
-
-
-  
-  
-  
-    <figure>
-      <img class="my-0 rounded-md" src="/assets/screenshot-20230923-210740.png" alt="" />
-      
-    </figure>
-  
-
-</p>
-<p>之后，导入并选中我们的 mesh 模型，点击重构网格，即可生成由四边形面片构成的 mesh。</p>
-<p>
-
-
-
-
-  
-  
-  
-    <figure>
-      <img class="my-0 rounded-md" src="/assets/screenshot-20230923-211405.png" alt="" />
-      
-    </figure>
-  
-
-</p>
-<p>如果报错 <code>JRemesh: Path to Instant Meshes is missing</code> ，参考 <a href="https://github.com/jayanam/jremesh-tools/issues/9"   target="_blank">
-    JRemesh: Path to Instant Meshes is missing. #9</a>，是 instant-meshes 的路径没有正确索引到。</p>
+<div id="2-探索意识-exploration-awareness" class="anchor"></div>
+<h3 class="relative group">2. 探索意识 Exploration awareness 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%e6%8e%a2%e7%b4%a2%e6%84%8f%e8%af%86-exploration-awareness" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>由于稀疏奖励限制了策略的学习效率，我们应该提高策略的探索能力，尽可能覆盖没有遇到的目标和状态。
+在GCRL，许多研究者们提议使用子目标采样来得到一个更好的探索能力。</p>
+<ul>
+<li><em>Maximum entropy gain exploration for long horizon multi-goal reinforcement learning.</em> 提出采样使过去<strong>已实现目标</strong>的熵最大化的目标，以提高目标空间（goal space）的覆盖范围。（这一点和SAC的目的很像）</li>
+<li><em>State-covering self-supervised reinforcement learning.</em> 训练一个自监督的生成式模型来生成行为目标，该目标在过去的经验中对已实现目标进行了近似均匀的倾斜，表现为最大化<strong>期望目标</strong>分布的熵。</li>
+<li><em>Unsupervised controlthrough non-parametric discriminative rewards.</em> 选择从不同的replay buffer中均匀地采样过去已实现的目标作为行为目标，这些储存的目标间的距离要尽可能地远。</li>
+<li><em>Visual reinforcement learning with imagined goals.</em> 选择从经验回放中均匀地采样过去已实现的目标，用这些历史目标拟合生成式模型来生成行为目标。</li>
+<li><em>Exploration via hindsight goal generation</em> 通过 Wasserstein Barycenter 问题，生成了一组事后目标以进行探索。把生成的目标作为隐性课程，可以有效地使用当前值函数来学习。</li>
+<li><em>Dynamical distance learning for semi-supervised and unsupervised skill discovery</em> 学习一个距离函数，并从replay buffer中选择距离初始状态最远的目标来提高探索效率。</li>
+</ul>
+<div id="3-从经验中搜索-searching-from-experience" class="anchor"></div>
+<h3 class="relative group">3. 从经验中搜索 Searching from experience. 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%e4%bb%8e%e7%bb%8f%e9%aa%8c%e4%b8%ad%e6%90%9c%e7%b4%a2-searching-from-experience" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>历史经验包含导向实现某些目标的路径点，可以使人类或智能体获益。</p>
+<ul>
+<li><em>Hindsight planner.</em> 从一个采样的回合中选择 $k$ 个关键的中间路径点，并训练一个RNN网络，根据给定的起始和终止点来生成序列。再应用这些中间点作为期望目标的序列来与环境交互。</li>
+<li><em>Search on the replay buffer: Bridging planning and reinforcement learning.</em> 在 replay buffer 上建立图，把状态作为节点，从起始状态到目标状态的距离作为边的权重。该工作利用了二值奖励下的状态值可以近似成到目标的距离这一直觉，使用图搜索去寻找路径点序列来实现目标，并不断通过在路径点上学习的策略来采取动作。</li>
+</ul>
+<div id="4-model-based-planning-和-learn-from-experts" class="anchor"></div>
+<h3 class="relative group">4. Model-based planning 和 Learn from experts. 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4-model-based-planning-%e5%92%8c-learn-from-experts" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>model-based RL 与 learning from demonstrations 不在笔者的考虑范围内，故不在此翻译。</p>
+<div id="relabeling-in-gcrl" class="anchor"></div>
+<h2 class="relative group">Relabeling in GCRL 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#relabeling-in-gcrl" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>与子目标选择类似，relabeling也替换了初始的期望目标以提高学习效率。二者的区别是：</p>
+<ul>
+<li>Relabeling 关注于在训练前替换经验容器中的历史数据；</li>
+<li>Sub-goal Selection 关注于改变采样经验的分布。
+为了实现重标记操作，理论上需要一个重标记函数 $h$ 去替换从 replay buffer 采样出的 transition 中的目标，并重新计算奖励
+$$
+(s_t, a_t, g_t, r_t) \gets (s_t, a_t, h(·), r(s_t, a_t, h(·)))
+$$</li>
+</ul>
+<div id="1-事后回放-hindsight-relabeling" class="anchor"></div>
+<h3 class="relative group">1. 事后回放 Hindsight relabeling. 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%e4%ba%8b%e5%90%8e%e5%9b%9e%e6%94%be-hindsight-relabeling" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>该方法可以追溯到最著名的 Hindsight experience replay(HER)，想法源自于人类从失败的经验中来学习。HER 使用replay buffer相同轨迹中已实现目标来替换期望目标，同时减轻稀疏奖励的问题。</p>
+<ul>
+<li>
+<p><em>Curriculum-guided hindsight experience replay.</em> 提出 CHER，使用课程重标记方法自适应地从失败经验中选择重标记目标。课程的评价标准是与期望目标的相似度和目标的多样性。</p>
+</li>
+<li>
+<p><em>Goal densitybased hindsight experience prioritization for multi-goal
+robot manipulation reinforcement learning.</em> 为已实现目标学习了一个稠密模型，用于优先标记少见的目标。以实现在少见经验中探索来提高采样效率。</p>
+</li>
+</ul>
+<div id="2-relabeling-by-learning" class="anchor"></div>
+<h3 class="relative group">2. Relabeling by learning. 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-relabeling-by-learning" aria-label="锚点">#</a></span>        
+    
+</h3>
+<ul>
+<li><em>Guided goal generation for hindsight multigoal reinforcement learning</em>
+从过去的经验选择重标记目标限制了重标记目标的多样性，为了减轻该问题并能够重标记未见过的目标，这篇文章通过隐式地建模策略表现和已实现目标之间的关系来训练一个条件生成式RNN网络，用于根据当前策略的平均返回值生成重标记目标。</li>
+</ul>
+<div id="3-先见之明-foresight" class="anchor"></div>
+<h3 class="relative group">3. 先见之明 Foresight. 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%e5%85%88%e8%a7%81%e4%b9%8b%e6%98%8e-foresight" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>人类不仅可以从失败中学习，还可以基于当前状态对未来作出规划。</p>
+<ul>
+<li><em>Mapgo: Modelassisted policy optimization for goal-oriented tasks.</em>  学习一个动态模型用来生成用于重标记的虚拟轨迹。先见目标重标记可以防止标记局限于历史数据的同质目标，规划出当前策略可以实现的新目标。</li>
+</ul>
 
         </div>
                 
@@ -738,8 +772,8 @@
       </div>
      
      <script>
-        var oid = "views_posts\/使用Blender将三角形mesh转为四边形.md"
-        var oid_likes = "likes_posts\/使用Blender将三角形mesh转为四边形.md"
+        var oid = "views_posts\/GCRL笔记.md"
+        var oid_likes = "likes_posts\/GCRL笔记.md"
       </script>
       
       
@@ -758,7 +792,7 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/posts/pypi/">
+            <a class="flex group mr-3" href="/posts/rher%E5%A4%8D%E7%8E%B0/">
               <span
                 class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
                 >&larr;</span
@@ -770,11 +804,11 @@
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >打包自己的 Python 包并上传 PyPi</span
+                  >Relayed HER复现结果与分析</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2023-09-07 13:11:22 &#43;0800 CST">7 September 2023</time>
+                    <time datetime="2023-10-24 13:11:22 &#43;0800 CST">24 October 2023</time>
                   
                 </span>
               </span>
@@ -782,28 +816,6 @@
           
         </span>
         <span>
-          
-            <a class="flex text-right group ml-3" href="/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >mujoco-geom组件参数说明</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2023-09-23 13:11:22 &#43;0800 CST">23 September 2023</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
           
         </span>
       </div>
