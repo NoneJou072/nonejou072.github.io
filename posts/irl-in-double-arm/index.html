@@ -98,7 +98,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "118"
+    "wordCount": "131"
   }]
   </script>
 
@@ -201,7 +201,7 @@
   <a href=""  class="flex items-center">
     
     <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
-        Parent
+        Resume
     </p>
 </a>
 
@@ -359,7 +359,7 @@
     <a href=""  class="flex items-center">
         
         <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="">
-            Parent
+            Resume
         </p>
     </a>
 </li>
@@ -398,6 +398,40 @@
 
 
 <article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/img/xingtong.jpg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
   
 
   <header id="single_header" class="mt-5 max-w-prose">
@@ -446,7 +480,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-01-29 13:11:22 &#43;0800 CST">29 January 2023</time><span class="px-2 text-primary-500">&middot;</span><span>118 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2023-01-29 13:11:22 &#43;0800 CST">29 January 2023</time><span class="px-2 text-primary-500">&middot;</span><span>131 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -489,7 +523,7 @@
     </div>
     
     
-    <div class="text-sm text-neutral-700 dark:text-neutral-400">A little bit about you</div>
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">海阔凭鱼跃</div>
     
     <div class="text-2xl sm:text-lg">
   <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
@@ -662,9 +696,17 @@
 
   
   
+    
+  
   
     <figure>
-      <img class="my-0 rounded-md" src="/assets/image-20230121204535-wucm1xo.png#pic_center" alt="image" />
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/image-20230121204535-wucm1xo.png"
+        alt="image"
+      />
+      
       
     </figure>
   
@@ -672,10 +714,30 @@
 ​
 <strong>行为克隆（Behavior Clone，BC）</strong>：指专家做什么，智能体就做一模一样的事，与监督学习较为相似。但问题是，不管专家的行为是否合理或有用，智能体都会完全模仿专家的行为。</p>
 <p><strong>逆强化学习（Inverse RL，IRL）</strong>：IRL 与 RL 相比，它没有奖励函数，只有环境和专家示范。在训练的时候，智能体可以与环境交互，但它得不到奖励，它的奖励函数必须从专家示范中反推出来（这也是 IRL 要解决的关键问题）。接下来，再使用 RL 的方法学习出最优演员。</p>
-<div  align="center">    
-    <img src="/assets/image-20230127142153-a73q6nn.png" width = "400" height = "300" align=center />
-</div>
-逆强化学习总体上可以归结为两类：**基于最大边际的逆强化学习**和**基于概率模型的逆强化学习**。
+<p>​
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/image-20230127142153-a73q6nn.png"
+        alt="image"
+      />
+      
+      
+    </figure>
+  
+
+​</p>
+<p>逆强化学习总体上可以归结为两类：<strong>基于最大边际的逆强化学习</strong>和<strong>基于概率模型的逆强化学习</strong>。</p>
 <p><strong>最大边际逆强化学习（Maximum Margin IRL）</strong>：在早期，IRL 使用最大边际形式化的思想来反推奖励函数。其缺点是经常有很多不同的奖励函数导致相同的专家策略，在这种情况下，所学到的奖励函数往往具有随机的偏好。所以该方法无法解决歧义的问题，这里就不对该方法进行过多讨论。</p>
 <p>参考文章：</p>
 <ul>
@@ -698,10 +760,30 @@
 </ul>
 <p><strong>生成对抗模仿学习（Generative Adversarial Imitation Learning，GAIL）</strong>：该算法类似于 GAN 与 IRL 的结合，以 Maximum Causal Entropy IRL 作为研究的基础框架，解决了逆强化学习计算成本⾼，学习效率低下的问题。</p>
 <p>我们可以比较一下逆强化学习与生成对抗网络。如下图所示，在生成对抗网络里，我们有一些很好的图、一个生成器和一个判别器。一开始，生成器不知道要产生什么样的图，它就会乱画。判别器的工作是给画的图打分，专家画的图得高分，生成器画的图得低分。生成器会想办法让判别器也给它画的图打高分。整个过程与逆强化学习是一模一样的。专家画的图就是专家示范，生成器就是演员，演员与环境交互产生的轨迹其实就等价于生成器画的这些图。然后我们需要学习的奖励函数就相当于判别器。奖励函数要给专家示范打高分，给演员与环境交互的轨迹打低分。接下来，演员会想办法，从已经学习出的奖励函数中得到高分，然后迭代地循环下去。</p>
-<div  align="center">    
-    <img src="/assets/image-20230101235431-9p1evp9.png"  align=center />
-</div>
-参考文章：
+<p>​
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/image-20230101235431-9p1evp9.png"
+        alt="image"
+      />
+      
+      
+    </figure>
+  
+
+​</p>
+<p>参考文章：</p>
 <ul>
 <li>原文地址：<a href="https://papers.nips.cc/paper/6391-generative-adversarial-imitation-learning.pdf"   target="_blank">
     https://papers.nips.cc/paper/6391-generative-adversarial-imitation-learning.pdf</a></li>
@@ -730,24 +812,128 @@
     
 </h1>
 <p>从第一节中，我们总结了视频演示示教是机器模仿领域未来的主要发展方向。由于它属于间接示教，并且我们的专家数据通常来自于第三人称视角，而对于机器人来说，任务是在第一视角下进行的。所以，我们如何把第三人称的专家数据泛化到第一人称，以及对 2D 视频流中 3D 信息的实时特征提取，成为目前研究的主要问题。</p>
-<p>对于第三人称视角模仿学习，我们可以引入**领域对抗训练（domain adversarial training）**的概念。领域对抗训练也是一种生成对抗网络的技术。如图所示，我们希望有一个特征提取器，使两幅不同领域（即不同视角）的图像通过特征提取器后，无法分辨出图像来自哪一个领域（即使智能体在第三人称的时候与它在第一人称时的视角是一样的），就是把最重要的特征提取出来。</p>
-<div  align="center">    
-    <img src="/assets/image-20230127165340-4s6ic0l.png" width = "800" height = "600" align=center />
-</div>
+<p>对于第三人称视角模仿学习，我们可以引入<strong>领域对抗训练</strong>（domain adversarial training）的概念。领域对抗训练也是一种生成对抗网络的技术。如图所示，我们希望有一个特征提取器，使两幅不同领域（即不同视角）的图像通过特征提取器后，无法分辨出图像来自哪一个领域（即使智能体在第三人称的时候与它在第一人称时的视角是一样的），就是把最重要的特征提取出来。</p>
+<p>​
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/image-20230127165340-4s6ic0l.png"
+        alt="image"
+      />
+      
+      
+    </figure>
+  
+
+​</p>
 <p>无论使用哪种方法去处理，其实都是基于分层的思想去做的。首先是一个<strong>表征学习</strong>的过程，我们把视频流中的环境信息通过特征提取器提取出来。之后，再使用提取出的特征信息作为专家示范去学习。</p>
 <p>对于双臂机器人的<strong>轨迹规划</strong>问题，在这里提出了两个场景。</p>
 <p>场景一：<strong>动作捕捉</strong>。近年来，元宇宙的概念逐渐被炒得火热，虚拟主播（vtuber）这一行业也正在加速发展，实时动作捕捉技术自然成为虚拟现实领域当下的研究热点之一。其中，实时动捕主要分为两个研究方向：面部动捕与全身动捕，然而我们主要关注全身动捕的一部分——双臂动捕。</p>
 <p>实际上，我们所拍摄的人体动作视频数据，提取出的是人体的关节信息，如何把人体关节信息及其运动轨迹泛化到机器人身上，使机器人在模仿人类动作的同时，保持轨迹的平滑，是一个值得思考的问题。一种方法是，使用学习的方法去优化轨迹。</p>
-<div  align="center">    
-    <img src="/assets/image-20230129152230-3r0ehep.png" width = "400" height = "300" align=center />
-    <img src="/assets/image-20230129152334-3moqrnp.png" width = "400" height = "300" align=center />
-</div>
+<p>​
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/image-20230129152230-3r0ehep.png"
+        alt="image"
+      />
+      
+      
+    </figure>
+  
+
+​
+​
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/image-20230129152334-3moqrnp.png"
+        alt="image"
+      />
+      
+      
+    </figure>
+  
+
+​</p>
 <p>场景二：<strong>物体交互</strong>。物体交互技术是基于动作捕捉的进一步发展，我把它分为三个方面：虚拟交互、现实交互和虚拟现实交互。虚拟交互是完全在虚拟场景中的交互，例如游戏或仿真软件内的人机交互等。现实交互是在真实场景中的交互，如机器人与真实物体的交互。虚拟现实交互是现实的人与虚拟的物品的交互，如 VR 中的力反馈效果。</p>
 <p>当然，这里只讨论双臂与物体的交互。在现实交互中，双臂相较于单臂，有更多的对象参与到交互中，因此具有更高维的动作-状态空间、更高范围的解。目前多数的双臂问题都使用经典的控制方法来解决，但很难用于泛化的环境中。因为在交互中，两臂与物体间会产生摩擦、粘附和变形，这些变化很难明确且精准地表示出来。那么一种有效的方法就是<strong>模仿学习</strong>，我们为机器人提供人类行为的演示，让机器人学习一个策略去模仿人类动作。</p>
-<div  align="center">    
-    <img src="/assets/image-20230129152651-78vjvzi.png" width = "400" height = "300" align=center />
-    <img src="/assets/image-20230129152757-gk77zj5.png" width = "400" height = "300" align=center />
-</div>
+<p>​
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/image-20230129152651-78vjvzi.png"
+        alt="image"
+      />
+      
+      
+    </figure>
+  
+
+
+​
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/image-20230129152757-gk77zj5.png"
+        alt="image"
+      />
+      
+      
+    </figure>
+  
+
+​</p>
 <div id="4-展望" class="anchor"></div>
 <h1 class="relative group">4. 展望 
     <span
@@ -764,6 +950,124 @@
         
 
         
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://nonejou072.github.io/posts/irl-in-double-arm/&amp;title=%e6%8e%a2%e8%ae%a8-%e5%8d%8f%e4%bd%9c%e5%8f%8c%e8%87%82%e7%9a%84%e5%8a%a8%e4%bd%9c%e6%a8%a1%e4%bb%bf"
+      title="分享到 LinkedIn"
+      aria-label="分享到 LinkedIn"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=https://nonejou072.github.io/posts/irl-in-double-arm/&amp;text=%e6%8e%a2%e8%ae%a8-%e5%8d%8f%e4%bd%9c%e5%8f%8c%e8%87%82%e7%9a%84%e5%8a%a8%e4%bd%9c%e6%a8%a1%e4%bb%bf"
+      title="分享到 Twitter"
+      aria-label="分享到 Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://reddit.com/submit/?url=https://nonejou072.github.io/posts/irl-in-double-arm/&amp;resubmit=true&amp;title=%e6%8e%a2%e8%ae%a8-%e5%8d%8f%e4%bd%9c%e5%8f%8c%e8%87%82%e7%9a%84%e5%8a%a8%e4%bd%9c%e6%a8%a1%e4%bb%bf"
+      title="提交到 Reddit"
+      aria-label="提交到 Reddit"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://nonejou072.github.io/posts/irl-in-double-arm/&amp;quote=%e6%8e%a2%e8%ae%a8-%e5%8d%8f%e4%bd%9c%e5%8f%8c%e8%87%82%e7%9a%84%e5%8a%a8%e4%bd%9c%e6%a8%a1%e4%bb%bf"
+      title="分享到 Facebook"
+      aria-label="分享到 Facebook"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=https://nonejou072.github.io/posts/irl-in-double-arm/&amp;subject=%e6%8e%a2%e8%ae%a8-%e5%8d%8f%e4%bd%9c%e5%8f%8c%e8%87%82%e7%9a%84%e5%8a%a8%e4%bd%9c%e6%a8%a1%e4%bb%bf"
+      title="通过电子邮件发送"
+      aria-label="通过电子邮件发送"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://t.me/share/url?url=https://nonejou072.github.io/posts/irl-in-double-arm/&amp;resubmit=true&amp;title=%e6%8e%a2%e8%ae%a8-%e5%8d%8f%e4%bd%9c%e5%8f%8c%e8%87%82%e7%9a%84%e5%8a%a8%e4%bd%9c%e6%a8%a1%e4%bb%bf"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
 
           
       </div>
@@ -950,5 +1254,9 @@
 
   </div>
 </body>
+
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+  data-id="" data-description="Support me on Buy me a coffee!" data-message="Hello"
+  data-color="#FFDD00" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
 </html>
