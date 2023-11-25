@@ -98,5 +98,15 @@
       
     </item>
     
+    <item>
+      <title>resume</title>
+      <link>https://nonejou072.github.io/resume/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nonejou072.github.io/resume/</guid>
+      <description>你好！我目前是一名二年级的学术型研究生，就读于 上海理工大学，机械电子工程专业, 在团队内主要负责机器人相关的软件开发，个人的研究方向是深度强化学习、大语言模型 for 协作机械臂。</description>
+      
+    </item>
+    
   </channel>
 </rss>
