@@ -3,8 +3,14 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://nonejou072.github.io/posts/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E6%9E%9A%E4%B8%BE/</loc>
+    <lastmod>2023-12-12T13:11:22+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://nonejou072.github.io/</loc>
-    <lastmod>2023-11-23T13:11:22+08:00</lastmod>
+    <lastmod>2023-12-12T13:11:22+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -65,6 +71,21 @@
   <url>
     <loc>https://nonejou072.github.io/posts/</loc>
     <lastmod>2022-06-13T20:55:37+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/c&#43;&#43;%E5%AF%B9%E8%B1%A1/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/latex%E7%AC%94%E8%AE%B0/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

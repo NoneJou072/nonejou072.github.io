@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2023 圆润的海豚</copyright>
-    <lastBuildDate>Tue, 21 Nov 2023 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Dec 2023 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Datawhale数据结构基础课程笔记-(Day1-2)枚举</title>
+      <link>https://nonejou072.github.io/posts/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E6%9E%9A%E4%B8%BE/</link>
+      <pubDate>Tue, 12 Dec 2023 13:11:22 +0800</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E6%9E%9A%E4%B8%BE/</guid>
+      <description>枚举算法（Enumeration Algorithm）：也称为穷举算法，指的是按照问题本身的性质，一一列举出该问题所有可能的解，并在逐一列举的过程中，将它们逐一与目标状态进行比较以得出满足问题要求的解。在列举的过程中，既不能遗漏也不能重复。</description>
+      
+    </item>
+    
     <item>
       <title>关于 Goal-Conditioned RL 中子目标选择的问题</title>
       <link>https://nonejou072.github.io/posts/gcrl%E7%AC%94%E8%AE%B0/</link>
@@ -95,6 +105,36 @@
       
       <guid>https://nonejou072.github.io/posts/timoshenko-beam/</guid>
       <description>Timoshenko Beam # ​elastica.</description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://nonejou072.github.io/posts/c&#43;&#43;%E5%AF%B9%E8%B1%A1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/c&#43;&#43;%E5%AF%B9%E8%B1%A1/</guid>
+      <description>1.</description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/</guid>
+      <description>折扣因子 discount factor - gamma # Reference: 曾伊言-深度强化学习调参技巧：以D3QN、TD3、PPO、SAC算法为例</description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://nonejou072.github.io/posts/latex%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/latex%E7%AC%94%E8%AE%B0/</guid>
+      <description>调整caption图表标题行间距、字体大小、左对齐 # refer: latex调整caption图表标题行间距、字体大小、左对齐</description>
       
     </item>
     

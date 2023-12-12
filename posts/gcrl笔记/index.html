@@ -818,7 +818,7 @@ $$</p>
     
 </h3>
 <p>由于稀疏奖励限制了策略的学习效率，我们应该提高策略的探索能力，尽可能覆盖没有遇到的目标和状态。
-在GCRL，许多研究者们提议使用子目标采样来得到一个更好的探索能力。</p>
+在GCRL，许多研究者们提议<strong>使用子目标采样</strong>来得到一个更好的探索能力。</p>
 <ul>
 <li><em>Maximum entropy gain exploration for long horizon multi-goal reinforcement learning.</em> 提出采样使过去<strong>已实现目标</strong>的熵最大化的目标，以提高目标空间（goal space）的覆盖范围。（这一点和SAC的目的很像）</li>
 <li><em>State-covering self-supervised reinforcement learning.</em> 训练一个自监督的生成式模型来生成行为目标，该目标在过去的经验中对已实现目标进行了近似均匀的倾斜，表现为最大化<strong>期望目标</strong>分布的熵。</li>
@@ -1081,6 +1081,28 @@ robot manipulation reinforcement learning.</em> 为已实现目标学习了一�
           
         </span>
         <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E6%9E%9A%E4%B8%BE/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Datawhale数据结构基础课程笔记-(Day1-2)枚举</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-12-12 13:11:22 &#43;0800 CST">12 December 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
           
         </span>
       </div>
