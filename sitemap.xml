@@ -3,13 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://nonejou072.github.io/posts/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E6%9E%9A%E4%B8%BE/</loc>
-    <lastmod>2023-12-12T13:11:22+08:00</lastmod>
+    <loc>https://nonejou072.github.io/posts/leetcode/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E5%88%86%E6%B2%BB/</loc>
+    <lastmod>2023-12-18T13:11:22+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/leetcode/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E5%9B%9E%E6%BA%AF/</loc>
+    <lastmod>2023-12-18T13:11:22+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://nonejou072.github.io/</loc>
+    <lastmod>2023-12-18T13:11:22+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/leetcode/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E9%80%92%E5%BD%92/</loc>
+    <lastmod>2023-12-14T13:11:22+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/linux/linux%E7%AB%AF%E5%8F%A3%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2023-12-14T13:11:22+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/linux/linux%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</loc>
+    <lastmod>2023-12-14T13:11:22+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/leetcode/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E6%9E%9A%E4%B8%BE/</loc>
     <lastmod>2023-12-12T13:11:22+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -33,7 +63,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://nonejou072.github.io/posts/mujoco%E4%B8%ADgeom%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/</loc>
+    <loc>https://nonejou072.github.io/posts/mujoco%E9%83%A8%E5%88%86%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/</loc>
     <lastmod>2023-09-23T13:11:22+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -47,6 +77,18 @@
   <url>
     <loc>https://nonejou072.github.io/posts/pypi/</loc>
     <lastmod>2023-09-07T13:11:22+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/leetcode/</loc>
+    <lastmod>2023-06-13T20:55:37+01:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/linux/</loc>
+    <lastmod>2023-06-13T20:55:37+01:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -86,6 +128,11 @@
   </url>
   <url>
     <loc>https://nonejou072.github.io/posts/latex%E7%AC%94%E8%AE%B0/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nonejou072.github.io/posts/%E5%8F%8C%E8%87%82%E5%8D%8F%E4%BD%9C%E8%B0%83%E7%A0%94/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
