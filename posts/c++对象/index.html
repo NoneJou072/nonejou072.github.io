@@ -98,7 +98,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "101"
+    "wordCount": "351"
   }]
   </script>
 
@@ -563,7 +563,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span>101 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span>351 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
   
 
   
@@ -774,12 +774,12 @@
 <p>标准库类型vector（<strong>容器</strong>）表示对象的集合，其中需要所有的对象类型都相同。集合中的每个对象都有一个与之对应的索引，用于访问对象。
 vector是一个<strong>类模板</strong>，编译器根据模板创建类或函数的过程为<strong>实例化</strong>，使用模板时，需要指出编译器应把类或函数实例化成何种类型，即在<strong>模板名字后跟一对尖括号</strong>，在括号中放上信息。</p>
 <p>则<code>vector&lt;int&gt; preorderTraversal</code>表示，在pre中保存int类型的对象。</p>
-<div id="21定义和初始化vector对象" class="anchor"></div>
-<h2 class="relative group">2.1定义和初始化vector对象 
+<div id="21-定义和初始化vector对象" class="anchor"></div>
+<h2 class="relative group">2.1 定义和初始化vector对象 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#21%e5%ae%9a%e4%b9%89%e5%92%8c%e5%88%9d%e5%a7%8b%e5%8c%96vector%e5%af%b9%e8%b1%a1" aria-label="锚点">#</a></span>        
+            style="text-decoration-line: none !important;" href="#21-%e5%ae%9a%e4%b9%89%e5%92%8c%e5%88%9d%e5%a7%8b%e5%8c%96vector%e5%af%b9%e8%b1%a1" aria-label="锚点">#</a></span>        
     
 </h2>
 <table>
@@ -820,23 +820,23 @@ vector是一个<strong>类模板</strong>，编译器根据模板创建类或函
 </tr>
 </tbody>
 </table>
-<div id="22向vector对象中添加元素" class="anchor"></div>
-<h2 class="relative group">2.2向vector对象中添加元素 
+<div id="22-向vector对象中添加元素" class="anchor"></div>
+<h2 class="relative group">2.2 向vector对象中添加元素 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#22%e5%90%91vector%e5%af%b9%e8%b1%a1%e4%b8%ad%e6%b7%bb%e5%8a%a0%e5%85%83%e7%b4%a0" aria-label="锚点">#</a></span>        
+            style="text-decoration-line: none !important;" href="#22-%e5%90%91vector%e5%af%b9%e8%b1%a1%e4%b8%ad%e6%b7%bb%e5%8a%a0%e5%85%83%e7%b4%a0" aria-label="锚点">#</a></span>        
     
 </h2>
 <p>vector的成员函数<strong>push_back</strong>能够把一个值当成vector对象的尾元素push到vector对象的尾端。
 例如<code>ret.push_back(root-&gt;val);</code>
 注：如果在循环体内部包含有向vector对象添加元素的语句，不能使用范围for循环。</p>
-<div id="23其它vector操作" class="anchor"></div>
-<h2 class="relative group">2.3其它vector操作 
+<div id="23-其它vector操作" class="anchor"></div>
+<h2 class="relative group">2.3 其它vector操作 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#23%e5%85%b6%e5%ae%83vector%e6%93%8d%e4%bd%9c" aria-label="锚点">#</a></span>        
+            style="text-decoration-line: none !important;" href="#23-%e5%85%b6%e5%ae%83vector%e6%93%8d%e4%bd%9c" aria-label="锚点">#</a></span>        
     
 </h2>
 <table>
@@ -886,16 +886,413 @@ vector是一个<strong>类模板</strong>，编译器根据模板创建类或函
 </tbody>
 </table>
 <p>注：不能用下标形式添加元素。</p>
-<div id="3nullptr" class="anchor"></div>
-<h1 class="relative group">3.nullptr 
+<div id="24-迭代器" class="anchor"></div>
+<h2 class="relative group">2.4 迭代器 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#3nullptr" aria-label="锚点">#</a></span>        
+            style="text-decoration-line: none !important;" href="#24-%e8%bf%ad%e4%bb%a3%e5%99%a8" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>所有标准库容器都可以使用迭代器，它的对象是容器中的元素或string对象中的字符，有迭代器的类型同时拥有返回迭代器的成员，使用迭代器可以访问某个元素或对其进行操作，迭代器和指针类似，有有效与无效之分。
+其中，
+<strong>begin</strong>成员返回指向容器第一个元素的迭代器；
+<strong>end</strong>成员返回指向容器尾元素的下一位置的迭代器；
+例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">e</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+</span></span></code></pre></div><p>b表示v的首元素，e表示v尾元素的下一位置，它们的类型与begin和end的返回值类型相同</p>
+<p><strong>标准容器迭代器的运算符：</strong></p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*iter</td>
+<td>返回迭代器所指元素的引用</td>
+</tr>
+<tr>
+<td>iter-&gt;mem</td>
+<td>解引用iter并获取该元素的名为mem的成员，等价于(*iter).mem</td>
+</tr>
+<tr>
+<td>++iter</td>
+<td>令iter指向容器中的下一个元素</td>
+</tr>
+<tr>
+<td>&ndash;iter</td>
+<td>令iter指向容器中的上一个元素</td>
+</tr>
+<tr>
+<td>iter1 == iter2</td>
+<td>判断两个迭代器是否相等，如果两个迭代器指向同一元素或是同一个容器的尾后迭代器则相等</td>
+</tr>
+<tr>
+<td>iter1 != iter2</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>注：凡是使用了迭代器的循环体，都不要向迭代器所属的容器添加元素。</p>
+<p>vector和string提供了更多的运算符：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iter + n</td>
+<td>迭代器指向的位置向前移动n个位置</td>
+</tr>
+<tr>
+<td>iter - n</td>
+<td>迭代器指向的位置向后移动n个位置</td>
+</tr>
+<tr>
+<td>iter += n</td>
+<td>将iter加n的结果赋给iter</td>
+</tr>
+<tr>
+<td>iter -= n</td>
+<td>将iter减n的结果赋给iter</td>
+</tr>
+<tr>
+<td>iter1 - iter2</td>
+<td>计算两个迭代器之间的距离</td>
+</tr>
+<tr>
+<td>&gt;、&gt;=、&lt;、&lt;=</td>
+<td>关系运算， 比较两迭代器指向元素位置的前后关系</td>
+</tr>
+</tbody>
+</table>
+<div id="1顺序容器" class="anchor"></div>
+<h1 class="relative group">1.顺序容器 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1%e9%a1%ba%e5%ba%8f%e5%ae%b9%e5%99%a8" aria-label="锚点">#</a></span>        
     
 </h1>
+<div id="11-顺序容器类型" class="anchor"></div>
+<h2 class="relative group">1.1 顺序容器类型 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#11-%e9%a1%ba%e5%ba%8f%e5%ae%b9%e5%99%a8%e7%b1%bb%e5%9e%8b" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>类型详情见最上方思维导图，在此不过多赘述。</p>
+<ol>
+<li>string和vector将元素保存在连续的内存空间中，能够使用下标进行快速的随机访问，但是在中间添加或删除元素非常耗时。</li>
+<li>list和forward_list与上述互补，即令任何位置的添加和删除操作变得快速，但是不支持元素的随机访问。且forward_list没有size操作。</li>
+<li>deque与vector类似，但是它在两端的添加或删除操作很快。</li>
+<li>array的大小是固定的，不支持添加和删除操作。</li>
+</ol>
+<div id="12-容器操作" class="anchor"></div>
+<h2 class="relative group">1.2 容器操作 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#12-%e5%ae%b9%e5%99%a8%e6%93%8d%e4%bd%9c" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>常见操作详见<a href="https://blog.csdn.net/qq_43557907/article/details/124131576"   target="_blank">
+    DAY1</a>，下面进行一些补充</p>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c.back()</td>
+<td>返回c中尾元素的引用</td>
+</tr>
+<tr>
+<td>c.front()</td>
+<td>返回c中首元素的引用</td>
+</tr>
+<tr>
+<td>a.swap(b) 等价于 swap(a, b)</td>
+<td>交换a和b的元素</td>
+</tr>
+<tr>
+<td>c.emplace(inits)</td>
+<td>使用inits构造c中的一个元素</td>
+</tr>
+<tr>
+<td>c.erase(args)</td>
+<td>删除args指定的元素</td>
+</tr>
+<tr>
+<td>c.clear()</td>
+<td>删除c中的所有元素，返回void</td>
+</tr>
+<tr>
+<td>c.pop_back()</td>
+<td>删除c中尾元素 c++11</td>
+</tr>
+<tr>
+<td>c.pop_front()</td>
+<td>删除c中首元素 c++11</td>
+</tr>
+<tr>
+<td>c.erase(p)</td>
+<td>删除迭代器p所指定的元素，返回一个指向被删元素之后元素的迭代器</td>
+</tr>
+<tr>
+<td>c.erase(b, e)</td>
+<td>删除迭代器b和e范围内的元素，返回一个指向最后一个被删元素之后元素的迭代器</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>插入操作</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c.push_front(t)</td>
+<td>在c的头部创建一个值为t或由args创建的元素</td>
+</tr>
+<tr>
+<td>c.emplace_front(args)</td>
+<td></td>
+</tr>
+<tr>
+<td>c.insert(args)</td>
+<td>将args中的元素拷贝进c</td>
+</tr>
+<tr>
+<td>c.insert(p, t)</td>
+<td>在迭代器p指向的元素之前创建一个值为t或由args创建的元素，返回指向新添加元素的迭代器</td>
+</tr>
+<tr>
+<td>c.emplace(args)</td>
+<td></td>
+</tr>
+<tr>
+<td>c.insert(p, n, t)</td>
+<td>在迭代器p指向的元素之前插入n个值为t的元素，返回指向新添加的第一个元素的迭代器，若范围为空，则返回p</td>
+</tr>
+<tr>
+<td>c.insert(p, b, e)</td>
+<td>将迭代器b和e指定的范围内的元素插入到迭代器p指向的元素之前，b和e不能指向c中的元素，返回指向新添加的第一个元素的迭代器，若范围为空，则返回p</td>
+</tr>
+<tr>
+<td>c.insert(p, il)</td>
+<td>il是一个花括号包围的元素值列表，将这些定值插入到迭代器p指向的元素之前，返回指向新添加的第一个元素的迭代器，若范围为空，则返回p</td>
+</tr>
+<tr>
+<td>注：</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>所有容器都支持相等或不等运算符；</li>
+<li>vector和string不支持push_front和emplace_front</li>
+<li>forward_list不支持push_back和emplace_back</li>
+<li>array不支持这些操作</li>
+<li>向一个vector、string和deque插入元素会使所有指向容器的迭代器、引用和指针失效。</li>
+</ul>
+<p><strong>迭代器</strong>：详见<a href="https://blog.csdn.net/qq_43557907/article/details/124150391"   target="_blank">
+    DAY2</a>,其中，forward_list迭代器不支持递减运算符，并且DAY1中所列举的算术运算只能应用于string、vector、deque和array的迭代器。
+<strong>迭代器范围</strong>：由一对迭代器表示，通常称为begin和end，迭代器范围中的元素包含begin所表示的元素以及begin和end之间所有的元素（end指向尾元素之后的位置），这种元素范围称为左闭合区间。
+因此可以用如下的代码用循环来处理一个元素范围：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">begin</span> <span class="o">!=</span> <span class="n">end</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">begin</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">++</span><span class="n">begin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>关于list和forward_list的操作，可以看这篇博客<a href="https://blog.csdn.net/u013006553/article/details/78158717"   target="_blank">
+    https://blog.csdn.net/u013006553/article/details/78158717</a></p>
+<div id="13-容量" class="anchor"></div>
+<h2 class="relative group">1.3 容量 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#13-%e5%ae%b9%e9%87%8f" aria-label="锚点">#</a></span>        
+    
+</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c.resize(n)</td>
+<td>调整c的大小为n个元素</td>
+</tr>
+<tr>
+<td>c.resize(n, t)</td>
+<td>调整c的大小为n个元素， 任何新添加的元素都初始化为值t</td>
+</tr>
+<tr>
+<td>c.capacity()</td>
+<td>不重新分配内存空间的话，c可以保存多少元素</td>
+</tr>
+<tr>
+<td>c.reserve(n)</td>
+<td>分配至少能容纳n个元素的内存空间</td>
+</tr>
+</tbody>
+</table>
+<div id="2容器适配器" class="anchor"></div>
+<h1 class="relative group">2.容器适配器 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2%e5%ae%b9%e5%99%a8%e9%80%82%e9%85%8d%e5%99%a8" aria-label="锚点">#</a></span>        
+    
+</h1>
+<p>除了顺序容器，标准库还定义了三个顺序容器适配器：栈适配器stack、队列适配器queue和priority_queue。</p>
+<table>
+<thead>
+<tr>
+<th>栈适配器新操作</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s.pop()</td>
+<td>删除栈顶元素</td>
+</tr>
+<tr>
+<td>s.push(item)</td>
+<td>压栈</td>
+</tr>
+<tr>
+<td>s.top()</td>
+<td>返回栈顶元素</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>队列适配器新操作</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q.pop()</td>
+<td>返回queue的首元素或priority_queue的最高优先级的元素</td>
+</tr>
+<tr>
+<td>q.front()</td>
+<td>返回首元素或尾元素</td>
+</tr>
+<tr>
+<td>q.back()</td>
+<td>只适用于queue</td>
+</tr>
+<tr>
+<td>q.top()</td>
+<td>返回最高优先级元素，只适用于priority_queue</td>
+</tr>
+<tr>
+<td>q.push(item)</td>
+<td>在queue末尾或priority_queue中恰当的位置创建一个元素</td>
+</tr>
+</tbody>
+</table>
+<div id="3关联容器" class="anchor"></div>
+<h1 class="relative group">3.关联容器 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3%e5%85%b3%e8%81%94%e5%ae%b9%e5%99%a8" aria-label="锚点">#</a></span>        
+    
+</h1>
+<p>联容器中的元素是根据关键字储存的，支持普通容器操作，但是不支持顺序容器位置相关的操作。
+具体内容将在DAY4中更新。</p>
+<div id="4intersect求交集" class="anchor"></div>
+<h1 class="relative group">4.intersect()求交集 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4intersect%e6%b1%82%e4%ba%a4%e9%9b%86" aria-label="锚点">#</a></span>        
+    
+</h1>
+<p><code>c=intersect(a,b)</code>找出向量a与b的相同元素，并按升序返回到c中。</p>
+<div id="3-其他" class="anchor"></div>
+<h1 class="relative group">3. 其他 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%e5%85%b6%e4%bb%96" aria-label="锚点">#</a></span>        
+    
+</h1>
+<div id="31-nullptr" class="anchor"></div>
+<h2 class="relative group">3.1 nullptr 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#31-nullptr" aria-label="锚点">#</a></span>        
+    
+</h2>
 <p>在c语言中，NULL实际上是一个空指针，在使用中被隐式转换成其它类型；
 而c++是强类型语言，不能进行隐式类型转换，NULL直接定义为0，定义nullptr为空指针。</p>
+<div id="32-输入输出" class="anchor"></div>
+<h2 class="relative group">3.2 输入输出 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#32-%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>在初入C++时，会发现和C的头文件引用有了区别，我们用了<code>#include&lt;iostream&gt;</code>
+<strong>iostream</strong>库包含两个基础类型<strong>istream</strong>和<strong>ostream</strong>，分别表示<strong>输入流</strong>和<strong>输出流</strong>，流的意思是字符是顺序生成或消耗的。
+标准库定义了四个IO对象：</p>
+<ul>
+<li>输入，使用名为<strong>cin</strong>的istream类型的对象；</li>
+<li>输出，使用名为<strong>cout</strong>的ostream类型的对象；</li>
+<li>输出警告和错误信息，使用名为<strong>cerr</strong>的ostream类型的对象；</li>
+<li>输出程序运行时的一般性信息，使用名为<strong>clog</strong>的ostream类型的对象。</li>
+</ul>
+<p>1.结合<strong>输出运算符&laquo;</strong>，可以完成以下操作：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;hello world&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span></code></pre></div><p>第一个&laquo;运算符将右侧给定的值(&ldquo;hello world&rdquo;)写到左侧给定的ostream对象(cout)中，下一个&laquo;运算符又将endl写到左侧的新对象中。其中<strong>endl</strong>是一个被称为操纵符的特殊值，写入它的效果是结束当前行并将缓冲区中的内容刷到设备中。</p>
+<p>2.结合<strong>输入运算符&raquo;</strong>，可以完成以下操作：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">v1</span> <span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="n">v2</span><span class="p">;</span>
+</span></span></code></pre></div><p>同理，&raquo;从左侧给定的istream(cin)读入数据，并存给右侧的给定对象(v1)，返回左侧的对象作为计算结果，第二个&raquo;又重复了一遍上述操作，即从cin中读入两个值，分别存入v1和v2中。</p>
+<div id="33-命名空间namespace" class="anchor"></div>
+<h2 class="relative group">3.3 命名空间namespace 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#33-%e5%91%bd%e5%90%8d%e7%a9%ba%e9%97%b4namespace" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>我们可以发现程序中使用std::cout而不是cout，因为前缀std::指出名字cout是定义在名为<strong>std</strong>的<strong>命名空间</strong>中的。命名空间可以帮助我们避免名字定义冲突，以及使用库中相同名字导致的冲突，标准库定义的所有名字都在std中。
+其中::是作用域运算符，它指出我们想使用定义在命名空间std中的名字cout。</p>
+<p>每次都使用std::cout太过于麻烦，我们可以对命名空间进行using声明，声明后就无需前缀也能使用所需的名字了。
+using声明的格式：<code>using namespace::name;</code>
+例如，</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span></code></pre></div><p>于是，我们就可以愉快地直接使用cin, cout, endl了。</p>
+<p>注：头文件中不应包含using声明。</p>
 
         </div>
                 
@@ -1120,7 +1517,7 @@ vector是一个<strong>类模板</strong>，编译器根据模板创建类或函
     
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
       &copy;
-      2023
+      2024
       圆润的海豚
     </p>
     

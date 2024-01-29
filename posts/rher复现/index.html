@@ -797,20 +797,104 @@
     
 </h3>
 <p>使用基于 pytorch 编写的 DDPG 方法进行训练时，发现奖励函数的值会先抵达 0.8 左右的成功率，之后便会降低到 0.4 左右。</p>
-<center class="half">
-<img src="../../post_imgs/actor_loss_ddpg.png" width=400/>
-<img src="../../post_imgs/critic_loss_ddpg.png" width=400/>
-</center>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/actor_loss_ddpg.png"
+        alt=""
+      />
+      
+      
+    </figure>
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/critic_loss_ddpg.png"
+        alt=""
+      />
+      
+      
+    </figure>
+  
+
+</p>
 <p>在 DDPG 中，actor loss 表示负的 Q 值，actor loss 越小，Q 值越大。此时 actor loss 呈现出很大的下降趋势，critic loss 呈现很大的震荡。明显是出现 Q 值被高估的情况了。</p>
 <p><a href="https://zhuanlan.zhihu.com/p/86297106"   target="_blank">
     为什么会有Q值高估问题出现？-&gt; 曾伊言: 强化学习算法TD3论文的翻译与解读</a>。</p>
 <p>由于 Q 值过大，会导致时序差分目标 q_targets 过大</p>
 <p>参考自 <a href="https://blog.csdn.net/weixin_43145941/article/details/115342794"   target="_blank">
     Y. F. Zhang: 一个AC类算法策略loss引出的思考</a></p>
-<center class="half">
-<img src="../../post_imgs/actor_loss_td3.png" width=400/>
-<img src="../../post_imgs/critic_loss_td3.png" width=400/>
-</center>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/actor_loss_td3.png"
+        alt=""
+      />
+      
+      
+    </figure>
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/critic_loss_td3.png"
+        alt=""
+      />
+      
+      
+    </figure>
+  
+
+</p>
 <div id="结果对比" class="anchor"></div>
 <h2 class="relative group">结果对比 
     <span
@@ -835,7 +919,7 @@
       <img
         class="my-0 rounded-md"
         src="/post_imgs/rher_fetchpush_result.png"
-        alt="Alt text"
+        alt=""
       />
       
       
@@ -844,9 +928,29 @@
 
 </p>
 <p>下面是我在 FetchPush-v2 环境下的复现结果：</p>
-<center class="half">
-<img src="../../post_imgs/rher_fetch_push_success_mine.png" width=400/>
-</center>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/rher_fetch_push_success_mine.png"
+        alt=""
+      />
+      
+      
+    </figure>
+  
+
+</p>
 <p>可以看到，在训练时间 56min 左右时，成功率稳定在了 95% 左右，与作者的结果相差不大。</p>
 
         </div>
@@ -1072,7 +1176,7 @@
     
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
       &copy;
-      2023
+      2024
       圆润的海豚
     </p>
     

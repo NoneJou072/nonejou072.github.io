@@ -6,7 +6,7 @@
     <description>Recent content in Haoran Zhou on 海豚的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>© 2023 圆润的海豚</copyright>
+    <copyright>© 2024 圆润的海豚</copyright>
     <lastBuildDate>Mon, 18 Dec 2023 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/authors/haoran-zhou/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Datawhale数据结构基础课程笔记-(Day3-6)分治</title>
@@ -14,7 +14,7 @@
       <pubDate>Mon, 18 Dec 2023 13:11:22 +0800</pubDate>
       
       <guid>https://nonejou072.github.io/posts/leetcode/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E5%88%86%E6%B2%BB/</guid>
-      <description>递归（Recursion）：指的是一种通过重复将原问题分解为同类的子问题而解决的方法。在绝大数编程语言中，可以通过在函数中再次调用函数自身的方式来实现递归。</description>
+      <description>分治算法（Divide and Conquer）：字面上的解释是「分而治之」，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。</description>
       
     </item>
     
