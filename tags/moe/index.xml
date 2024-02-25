@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>moe on 海豚的博客</title>
+    <link>https://nonejou072.github.io/tags/moe/</link>
+    <description>Recent content in moe on 海豚的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 圆润的海豚</copyright>
+    <lastBuildDate>Wed, 21 Feb 2024 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/tags/moe/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mixture-of-Experts in RL for Robotics</title>
+      <link>https://nonejou072.github.io/posts/11-moe/</link>
+      <pubDate>Wed, 21 Feb 2024 13:11:22 +0800</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/11-moe/</guid>
+      <description>Outrageously large neural networks: The sparsely-gated mixture-of-experts layer.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

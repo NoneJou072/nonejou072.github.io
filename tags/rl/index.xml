@@ -10,10 +10,10 @@
     <lastBuildDate>Tue, 21 Nov 2023 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/tags/rl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于 Goal-Conditioned RL 中子目标选择的问题</title>
-      <link>https://nonejou072.github.io/posts/gcrl%E7%AC%94%E8%AE%B0/</link>
+      <link>https://nonejou072.github.io/posts/9-gcrl%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Tue, 21 Nov 2023 13:11:22 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/posts/gcrl%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://nonejou072.github.io/posts/9-gcrl%E7%AC%94%E8%AE%B0/</guid>
       <description>GCRL with Sub-goal Selection / Generation # 本文翻译与参考自: Goal-Conditioned Reinforcement Learning: Problems and Solutions</description>
       
     </item>
