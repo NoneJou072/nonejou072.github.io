@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on 海豚的博客</title>
+    <link>https://nonejou072.github.io/tags/git/</link>
+    <description>Recent content in git on 海豚的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 圆润的海豚</copyright>
+    <lastBuildDate>Thu, 21 Dec 2023 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常用 git 命令</title>
+      <link>https://nonejou072.github.io/posts/10-git/</link>
+      <pubDate>Thu, 21 Dec 2023 13:11:22 +0800</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/10-git/</guid>
+      <description>配置 github 的 ssh 公钥 # 在新的主机上使用 github 时为了避免输入用户名和密码，可以在 github 账号下配置 ssh 的公钥。 具体步骤如下：</description>
+      
+    </item>
+    
+  </channel>
+</rss>

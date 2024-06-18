@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Tree-structured Parzen Estimator（TPE） &middot; 海豚的博客</title>
+  <meta name="title" content="Tree-structured Parzen Estimator（TPE） &middot; 海豚的博客" />
+  
+  <meta name="description" content="Tree-structured Parzen Estimator" />
+  <meta name="keywords" content="ml, " />
+  
+  
+  <link rel="canonical" href="https://nonejou072.github.io/posts/13-tpe/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.13b1ee88b0d1f7e71cbf0e74ee92a3707f41ec8cea4d82c6e92d2b4de4364cb3e8196cef25ef109f58347cb8595e11c39b0e796fb4afd9bd5dcc360ae8ea3302.css"
+    integrity="sha512-E7HuiLDR9&#43;ccvw507pKjcH9B7IzqTYLG6S0rTeQ2TLPoGWzvJe8Qn1g0fLhZXhHDmw55b7Sv2b1dzDYK6OozAg==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.f0ecd26160d4c29256b0f2b96ebe0be0f1c839488a839c5190ed198437fe5a1bd0ede0c86f0108806fd0ea43c987923aa4a63fe7ed09813eb9e8ad531ca58ae4.js"
+    integrity="sha512-8OzSYWDUwpJWsPK5br4L4PHIOUiKg5xRkO0ZhDf&#43;WhvQ7eDIbwEIgG/Q6kPJh5I6pKY/5&#43;0JgT656K1THKWK5A==" data-copy="" data-copied=""></script>
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Tree-structured Parzen Estimator（TPE）" />
+<meta property="og:description" content="Tree-structured Parzen Estimator" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nonejou072.github.io/posts/13-tpe/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-29T13:11:22+08:00" />
+<meta property="article:modified_time" content="2024-02-27T13:11:22+08:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tree-structured Parzen Estimator（TPE）"/>
+<meta name="twitter:description" content="Tree-structured Parzen Estimator"/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Tree-structured Parzen Estimator（TPE）",
+    "headline": "Tree-structured Parzen Estimator（TPE）",
+    "description": "Tree-structured Parzen Estimator",
+    "abstract": "Brief Introduction # TPE（Tree-structured Parzen Estimator），是一种基于树结构的贝叶斯优化算法，用于解决黑盒函数的全局最优化问题。",
+    "inLanguage": "zh-cn",
+    "url" : "https:\/\/nonejou072.github.io\/posts\/13-tpe\/",
+    "author" : {
+      "@type": "Person",
+      "name": "圆润的海豚"
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-03-29T13:11:22\u002b08:00",
+    "datePublished": "2023-03-29T13:11:22\u002b08:00",
+    
+    "dateModified": "2024-02-27T13:11:22\u002b08:00",
+    
+    "keywords": ["ml"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "313"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="圆润的海豚" />
+  
+  
+  
+  <link href="mailto:jou072@126.com" rel="me" />
+  
+  
+  <link href="https://github.com/username" rel="me" />
+  
+  
+  <link href="https://instagram.com/username" rel="me" />
+  
+  
+  <link href="https://twitter.com/username" rel="me" />
+  
+  
+  <link href="https://space.bilibili.com/19446641" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span></a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">海豚的博客</a>
+
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-gray-900" title="Posts">
+      Blog
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/posts/leetcode/"  class="flex items-center">
+          
+          <p class="text-sm font-sm text-gray-500 hover:text-gray-900" title="leetcode">
+            leetcode
+          </p>
+        </a>
+        
+        <a href="/posts/linux/"  class="flex items-center">
+          
+          <p class="text-sm font-sm text-gray-500 hover:text-gray-900" title="linux">
+            linux
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/resume/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="resume">
+        Resume
+    </p>
+</a>
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button">
+                    <div class="flex items-center justify-center h-12 dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden h-12 dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" style="margin-right:5px">
+                <div class="flex items-center justify-center h-12 dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden h-12 dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Posts">
+            Blog
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/leetcode/"  class="flex items-center">
+        
+        <p class="text-sm font-small text-gray-500 hover:text-gray-900" title="leetcode">
+            leetcode
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/linux/"  class="flex items-center">
+        
+        <p class="text-sm font-small text-gray-500 hover:text-gray-900" title="linux">
+            linux
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/resume/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="resume">
+            Resume
+        </p>
+    </a>
+</li>
+
+
+
+                    
+                    
+
+                </ul>
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/img/xingtong.jpg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      Tree-structured Parzen Estimator（TPE）
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-03-29 13:11:22 &#43;0800 CST">29 March 2023</time><span class="px-2 text-primary-500">&middot;</span><span>313 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+<div class="flex">
+  
+  
+  
+  
+  <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+    alt="圆润的海豚" src="/img/logo.jpg" />
+  
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      圆润的海豚
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">海阔凭鱼跃</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:jou072@126.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/username"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://instagram.com/username"
+          target="_blank"
+          aria-label="Instagram"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://twitter.com/username"
+          target="_blank"
+          aria-label="Sina-Weibo"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1700901561784" class="icon" viewBox="0 0 1138 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3193" xmlns:xlink="http://www.w3.org/1999/xlink" width="222.265625" height="200"><path d="M914.432 518.144q27.648 21.504 38.912 51.712t9.216 62.976-14.336 65.536-31.744 59.392q-34.816 48.128-78.848 81.92t-91.136 56.32-94.72 35.328-89.6 18.944-75.264 7.68-51.712 1.536-49.152-2.56-68.096-10.24-78.336-21.504-79.872-36.352-74.24-55.296-59.904-78.848q-16.384-29.696-22.016-63.488t-5.632-86.016q0-22.528 7.68-51.2t27.136-63.488 53.248-75.776 86.016-90.112q51.2-48.128 105.984-85.504t117.248-57.856q28.672-10.24 63.488-11.264t57.344 11.264q10.24 11.264 19.456 23.04t12.288 29.184q3.072 14.336 0.512 27.648t-5.632 26.624-5.12 25.6 2.048 22.528q17.408 2.048 33.792-1.536t31.744-9.216 31.232-11.776 33.28-9.216q27.648-5.12 54.784-4.608t49.152 7.68 36.352 22.016 17.408 38.4q2.048 14.336-2.048 26.624t-8.704 23.04-7.168 22.016 1.536 23.552q3.072 7.168 14.848 13.312t27.136 12.288 32.256 13.312 29.184 16.384zM656.384 836.608q26.624-16.384 53.76-45.056t44.032-64 18.944-75.776-20.48-81.408q-19.456-33.792-47.616-57.344t-62.976-37.376-74.24-19.968-80.384-6.144q-78.848 0-139.776 16.384t-105.472 43.008-72.192 60.416-38.912 68.608q-11.264 33.792-6.656 67.072t20.992 62.976 42.496 53.248 57.856 37.888q58.368 25.6 119.296 32.256t116.224 0.512 100.864-21.504 74.24-33.792zM522.24 513.024q20.48 8.192 38.912 18.432t32.768 27.648q10.24 12.288 17.92 30.72t10.752 39.424 1.536 42.496-9.728 38.912q-8.192 18.432-19.968 37.376t-28.672 35.328-40.448 29.184-57.344 18.944q-61.44 11.264-117.76-11.264t-88.064-74.752q-12.288-39.936-13.312-70.656t16.384-66.56q13.312-27.648 40.448-51.712t62.464-38.912 75.264-17.408 78.848 12.8zM359.424 764.928q37.888 3.072 57.856-18.432t21.504-48.128-15.36-47.616-52.736-16.896q-27.648 3.072-43.008 23.552t-17.408 43.52 9.728 42.496 39.424 21.504zM778.24 6.144q74.752 0 139.776 19.968t113.664 57.856 76.288 92.16 27.648 122.88q0 33.792-16.384 50.688t-35.328 17.408-35.328-14.336-16.384-45.568q0-40.96-22.528-77.824t-59.392-64.512-84.48-43.52-96.768-15.872q-31.744 0-47.104-15.36t-14.336-34.304 18.944-34.304 51.712-15.36zM778.24 169.984q95.232 0 144.384 48.64t49.152 146.944q0 30.72-10.24 43.52t-22.528 11.264-22.528-14.848-10.24-35.84q0-60.416-34.816-96.256t-93.184-35.84q-19.456 0-28.672-10.752t-9.216-23.04 9.728-23.04 28.16-10.752z" p-id="3194" fill="#ffffff"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://space.bilibili.com/19446641"
+          target="_blank"
+          aria-label="Bilibili-Fill"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1700898935346" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4052" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M777.514667 131.669333a53.333333 53.333333 0 0 1 0 75.434667L728.746667 255.829333h49.92A160 160 0 0 1 938.666667 415.872v320a160 160 0 0 1-160 160H245.333333A160 160 0 0 1 85.333333 735.872v-320a160 160 0 0 1 160-160h49.749334L246.4 207.146667a53.333333 53.333333 0 1 1 75.392-75.434667l113.152 113.152c3.370667 3.370667 6.186667 7.04 8.448 10.965333h137.088c2.261333-3.925333 5.12-7.68 8.490667-11.008l113.109333-113.152a53.333333 53.333333 0 0 1 75.434667 0z m1.152 231.253334H245.333333a53.333333 53.333333 0 0 0-53.205333 49.365333l-0.128 4.010667v320c0 28.117333 21.76 51.157333 49.365333 53.162666l3.968 0.170667h533.333334a53.333333 53.333333 0 0 0 53.205333-49.365333l0.128-3.968v-320c0-29.44-23.893333-53.333333-53.333333-53.333334z m-426.666667 106.666666c29.44 0 53.333333 23.893333 53.333333 53.333334v53.333333a53.333333 53.333333 0 1 1-106.666666 0v-53.333333c0-29.44 23.893333-53.333333 53.333333-53.333334z m320 0c29.44 0 53.333333 23.893333 53.333333 53.333334v53.333333a53.333333 53.333333 0 1 1-106.666666 0v-53.333333c0-29.44 23.893333-53.333333 53.333333-53.333334z" p-id="4053" fill="#ffffff"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+    
+
+    
+
+    
+    
+
+    
+    <div class="mb-5"></div>
+    
+  
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+    
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="max-w-prose mb-20">
+          <div id="brief-introduction" class="anchor"></div>
+<h1 class="relative group">Brief Introduction 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#brief-introduction" aria-label="锚点">#</a></span>        
+    
+</h1>
+<p>TPE（Tree-structured Parzen Estimator），是一种基于树结构的贝叶斯优化算法，用于解决黑盒函数的全局最优化问题。</p>
+<p>在每次试验中，对于每个超参，TPE 为与最佳目标值相关的超参维护一个高斯混合模型 l(x)，为剩余的超参维护另一个高斯混合模型 g(x)，选择 l(x)/g(x)最大化时对应的超参作为下一组搜索值。通过这种方式，<strong>TPE 算法能够自适应地调整参数搜索空间的大小，并且能够在尽可能少的迭代次数内找到全局最优解。</strong></p>
+<p>主要适用的情景：</p>
+<ul>
+<li>x 的维度不是太大，一般会限制在 d&lt;20，x 可以理解为一个超参数序列</li>
+<li>f(x) 是一个计算起来很消耗时间的函数，例如损失函数</li>
+<li>对 f(x) 很难求导</li>
+</ul>
+<div id="与基于-gp-方法的区别" class="anchor"></div>
+<h2 class="relative group">与基于 GP 方法的区别 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e4%b8%8e%e5%9f%ba%e4%ba%8e-gp-%e6%96%b9%e6%b3%95%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>GP 直接对给定输入 x 与输出 y 的后验概率分布 $p(y|x)$ 进行建模。在这种方法中，通过计算训练数据集中的数据点之间的协方差矩阵来定义一个高斯分布，从而建立起输入与输出之间的联合概率分布。<u>这种方法的优点在于可以自适应地学习输入与输出之间的复杂关系，并且可以提供不确定性估计。</u></p>
+<p>TPE 分别对条件概率分布 $p(x|y)$ 和边缘概率分布 $p(y)$ 进行建模，然后通过贝叶斯公式来计算后验概率分布 $p(y|x)$。<u>这种方法的优点在于可以更灵活地对不同的因素进行建模，并且可以更好地处理缺失数据和噪声。</u></p>
+<div id="tree-structured" class="anchor"></div>
+<h2 class="relative group">Tree-structured 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#tree-structured" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>超参数优化问题可以理解为在图结构的参数空间上不断寻找 objective function 最优解的问题。所谓 tree，是提出 TPE 的作者将该优化问题限制在了树状结构上，例如：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/Tree-structured.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>一些超参数只有在其它的超参数确定后才能够进行确认，例如网络的层数与每一层的节点数量，当然这不意味着这两个超参数是相关的。<strong>实际上在 TPE 中，要求所估计的超参数必须是相互独立的</strong>。</p>
+<p>‍</p>
+<div id="optimizing-ei-in-the-tpe-algorithm" class="anchor"></div>
+<h1 class="relative group">Optimizing EI in the TPE algorithm 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#optimizing-ei-in-the-tpe-algorithm" aria-label="锚点">#</a></span>        
+    
+</h1>
+<p>TPE 使用两个密度函数来定义 $p(x|y)$：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/equation1.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>$l(x)$ 是使用观测空间 ${x ^{(i)}}$ 来建立的，该观测空间对应的损失 $f(x ^{(i)})$ 小于 $y^*$，使用剩下的观测来建立 $g(x)$。</p>
+<p>基于 GP 的方法偏向更大的 $y^<em>$，基于 TPE 的方法取决于比当前所观测到最好的 $f(x)$ 更大的 $y^</em>$，这样一些点就可以用于建立 $l(x)$。</p>
+<p>TPE 选择<strong>期望改进（expected improvement，EI）<strong>作为</strong>采集函数</strong>，由于无法得到 $p(y|x)$，我们使用贝叶斯公式进行如下转换：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/equation2.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>其中，$y^*$ 代表阈值，我们令 $γ = p(y &lt; y^∗ )$，表示 TPE 算法的一定分位数，用于划分 $l(x)$ 和 $g(x)$，范围在(0,1)之间。</p>
+<blockquote>
+<p><strong>采集函数</strong>用于确定在何处采集下一个样本点。</p>
+</blockquote>
+<p>为了简化上式，我们首先对分母进行构造：</p>
+<p>$p(x)=∫p(x∣y)p(y)dy=γl(x)+(1−γ)g(x)$</p>
+<blockquote>
+<p>假设我们有 100 个观测值，$\gamma$ 设置为 0.2，意味着我们将使用 20 个最佳观测值来构建好的分布，其余的 80 个用于构建坏的分布。</p>
+</blockquote>
+<p>其次，对于分子，我们可以得到</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/equation3.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>最后，EI 可以化简为</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/equation4.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>最后一个表达式表明，为了最大化 EI，我们希望在点 x 下 $l(x)$ 概率高的同时 $g(x)$ 概率低。在每次迭代中，算法返回具有最大 EI 的候选 $x^*$:</p>
+<p>$x^<em>=argmax\ EI_{y^</em>}(x)$</p>
+<div id="optimizing-ei-例子" class="anchor"></div>
+<h2 class="relative group">Optimizing EI 例子 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#optimizing-ei-%e4%be%8b%e5%ad%90" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>下面是一个例子，解释了上述迭代过程。来自 <a href="https://www.youtube.com/watch?v=bcy6A57jAwI"   target="_blank">
+    https://www.youtube.com/watch?v=bcy6A57jAwI</a>，这个视频对 TPE 讲述得非常透彻，推荐观看。</p>
+<p>假设 f （蓝线）是我们要估计的黑盒函数（例如神经网络中的损失函数），我们的目的是要找出最小的损失函数值所对应的超参数。首先根据设定好的一定分位数 $\gamma$，将我们事先采样到的一些观测分类。如下图所示，高于阈值的值意味着我们的损失过大，因此对应的点被划分到 bad group，剩下的就被划分为 good group。</p>
+<p>然后，分别计算 good group 和 bad group 的概率密度函数 $l(x),g(x)$。具体的计算方法在下一节会进行解释。之后，将 $l(x),g(x)$ 代入之前提到的 EI 公式，我们得到了 EI 函数的表达式。求该函数极大值所对应的参数，即期望改进最大处的超参数，将其作为新采样点进入下一次迭代，然后将这个新采样点加入 good group 或 bad group，如此反复迭代。</p>
+<p>（下面这个图的虚线标注有一些错误，应该和 EI 的极值点重合）</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/fig1.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/fig2.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/fig3.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>‍</p>
+<div id="parzen-window" class="anchor"></div>
+<h1 class="relative group">Parzen Window 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#parzen-window" aria-label="锚点">#</a></span>        
+    
+</h1>
+<p>如何使用核密度估计器来分别建模黑盒函数中较差和较好参数的概率分布（即如何得到 $l(x),g(x)$），TPE 算法使用 Parzen Window 来实现。</p>
+<p><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FKernel_density_estimation"   target="_blank">
+    Parzen–Rosenblatt window</a> (<a href="https://zh.wikipedia.org/w/index.php?title=Parzen%E7%AA%97&amp;action=edit&amp;redlink=1"  title="Parzen窗（页面不存在）"  target="_blank">
+    Parzen 窗</a>)是在核密度估计问题(Kernel density estimation)中，由 Emanuel Parzen 和 Murray Rosenblatt 提出的能够根据当前的观察值和先验分布类型，估计估计值的概率密度。</p>
+<p>Parzen window 的概率密度估计公式为：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/equation5.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>计数函数 $\phi(\frac{x_i-x}{h})$ 也被称作窗函数，也可以使用高斯函数作为窗函数，即距离 $x_i$ 越近则计数权重越大：</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/equation6.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>且满足 $\int p(x)dx=1$。明显看出，上式与高斯混合模型（GMM）类似。因此，在有关 TPE 的大部分文章中，都将 Parzen window 当作 GMM 来解释。</p>
+<p>‍</p>
+<blockquote>
+<p><strong>Gaussian Mixture Model 和 使用高斯函数作为窗函数的 Parzen window 有什么联系？</strong></p>
+<p>Gaussian Mixture Model（GMM）和使用高斯函数作为窗函数的 Parzen window 是两种不同的概率密度估计方法，但它们都可以被看作是在数据集上使用一些基函数（如高斯函数）进行加权求和来估计未知概率密度函数。</p>
+<p>具体来说，GMM 是一种将多个高斯分布加权组合成一个更复杂分布的方法。在 GMM 中，我们假设数据是由若干个高斯分布的加权和组成的，每个高斯分布对应一个聚类中心（也称为“高斯混合成分”）。这些聚类中心的均值和协方差可以通过最大似然估计来确定。通过这种方式，GMM 可以很好地建模复杂的数据分布，因为它可以适应不同的聚类和变异度。</p>
+<p>与此相反，使用高斯函数作为窗函数的 Parzen window 方法是一种非参数密度估计方法。在这种方法中，我们首先选择一个核函数（如高斯函数），然后将它放在每个数据点上，计算每个数据点周围的核函数的加权和来估计该点的密度。具体来说，窗口的大小可以通过调整核函数的带宽来控制。这种方法的优点是可以适应不同的数据分布，但是由于它需要计算每个数据点周围的核函数的加权和，因此计算复杂度较高。</p>
+<p>需要注意的是，当高斯函数作为 Parzen 窗口的核函数时，它与 GMM 中的高斯分布非常相似。在这种情况下，高斯函数的带宽可以看作是 GMM 中高斯分布的协方差矩阵的平方根。因此，<strong>可以将 GMM 视为一种具有固定带宽的 Parzen 窗口方法</strong>。</p>
+<p>（回答来自 ChatGPT）</p>
+</blockquote>
+<p>‍</p>
+<p><strong>在超参数优化中，对于不同类型的超参数，应该使用什么分布?</strong></p>
+<ol>
+<li>
+<p>类别——<strong>类别分布</strong>（Categorical Distribution）</p>
+</li>
+<li>
+<p>实数/整数——</p>
+<ol>
+<li>在原始空间采样——截断高斯混合模型 Mixture of Truncated Gaussian</li>
+<li>在对数空间采样——对数空间的截断高斯混合模型</li>
+</ol>
+</li>
+</ol>
+<p>‍</p>
+<p><strong>为什么使用截断高斯混合模型？</strong></p>
+<p>因为在随机搜索中，我们实际上指定了搜索值的范围。我们想在 TPE 中也实现这样的操作，因此将超过范围的值强制设置为 0。并且我们认为，每个点（超参数）对应一个高斯分布，所以使用截断高斯混合模型。</p>
+<blockquote>
+<p>**Mixture of Truncated Gaussian（截断高斯混合模型）**是一种概率分布模型，它由多个截断高斯分布组成，每个分布的参数可能不同。在这个模型中，每个高斯分布都是被截断的，也就是说，它们的密度函数在某些范围之外为零。这个范围通常是指定为一个有限的区间，超出该区间的值的概率被定义为零。截断高斯混合模型通常用于对数据集建模，特别是当数据集包含多个不同的子集，每个子集都服从不同的高斯分布时。在这种情况下，截断高斯混合模型可以有效地对数据集进行建模，并且能够捕获多个高斯分布的特征。这个模型可以应用于许多领域，例如模式识别，数据挖掘和机器学习。</p>
+</blockquote>
+<p>‍</p>
+<div id="parzen-window-例子" class="anchor"></div>
+<h2 class="relative group">Parzen Window 例子 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#parzen-window-%e4%be%8b%e5%ad%90" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>假设现在有三个观测值，每个观测值对应一个高斯分布（红色虚线）</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/fig4.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>现在按顺序将这些高斯分布的标准差设为左右邻居间的最大距离，有了不同的高斯分布，然后将这些分布混合成 single distribution（蓝色曲线）。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/fig5.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>在混合高斯分布中，如何计算某个点的概率密度？</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/13-tpe/fig6.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>对于上述的例子，该点的概率为每个分布上概率之和除以分布数量。</p>
+<p>‍</p>
+<div id="参考文献" class="anchor"></div>
+<h2 class="relative group">参考文献 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" aria-label="锚点">#</a></span>        
+    
+</h2>
+<ol>
+<li><a href="https://www.jianshu.com/p/d73649b83722"   target="_blank">
+    贝叶斯超参数优化</a></li>
+<li><a href="https://proceedings.neurips.cc/paper_files/paper/2011/file/86e8f7ab32cfd12577bc2619bc635690-Paper.pdf"   target="_blank">
+    Bergstra, James, et al. &quot;Algorithms for hyper-parameter optimization.&quot; </a>​<a href="https://proceedings.neurips.cc/paper_files/paper/2011/file/86e8f7ab32cfd12577bc2619bc635690-Paper.pdf"   target="_blank">
+    Advances in neural information processing systems</a><a href="https://proceedings.neurips.cc/paper_files/paper/2011/file/86e8f7ab32cfd12577bc2619bc635690-Paper.pdf"   target="_blank">
+     24 (2011).</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kernel_density_estimation"   target="_blank">
+    https://en.wikipedia.org/wiki/Kernel_density_estimation</a></li>
+<li><a href="https://www.youtube.com/watch?v=bcy6A57jAwI"   target="_blank">
+    Automated Machine Learning - Tree Parzen Estimator (TPE)</a></li>
+<li><a href="https://blog.csdn.net/lly1122334/article/details/88345256#t7"   target="_blank">
+    https://blog.csdn.net/lly1122334/article/details/88345256#t7</a></li>
+<li><a href="https://blog.csdn.net/jose_M/article/details/106214842"   target="_blank">
+    https://blog.csdn.net/jose_M/article/details/106214842</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/348358774"   target="_blank">
+    Parzen window 密度估计——一种非参数概率密度函数估计方法</a></li>
+</ol>
+<p>‍</p>
+
+        </div>
+                
+        
+
+        
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://nonejou072.github.io/posts/13-tpe/&amp;title=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
+      title="分享到 LinkedIn"
+      aria-label="分享到 LinkedIn"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=https://nonejou072.github.io/posts/13-tpe/&amp;text=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
+      title="分享到 Twitter"
+      aria-label="分享到 Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://reddit.com/submit/?url=https://nonejou072.github.io/posts/13-tpe/&amp;resubmit=true&amp;title=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
+      title="提交到 Reddit"
+      aria-label="提交到 Reddit"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://nonejou072.github.io/posts/13-tpe/&amp;quote=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
+      title="分享到 Facebook"
+      aria-label="分享到 Facebook"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=https://nonejou072.github.io/posts/13-tpe/&amp;subject=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
+      title="通过电子邮件发送"
+      aria-label="通过电子邮件发送"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://t.me/share/url?url=https://nonejou072.github.io/posts/13-tpe/&amp;resubmit=true&amp;title=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
+
+          
+      </div>
+     
+     <script>
+        var oid = "views_posts\\13-tpe.md"
+        var oid_likes = "likes_posts\\13-tpe.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.0e49973b4ad0a382c7c6012d8bff8226316642daabc4f8a20477bd08674f3da6e2fa993bc20ad4f51e7c5bb68e6f913a207a7c4fe37ea0e7b806894afce0a64e.js" integrity="sha512-DkmXO0rQo4LHxgEti/&#43;CJjFmQtqrxPiiBHe9CGdPPabi&#43;pk7wgrU9R58W7aOb5E6IHp8T&#43;N&#43;oOe4BolK/OCmTg=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/3-marching-cubes-1/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Marching Cubes -1 原理介绍</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-01-29 22:07:25 &#43;0800 CST">29 January 2023</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/4-python%E6%89%93%E5%8C%85/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >打包自己的 Python 包并上传 PyPi</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-09-07 13:11:22 &#43;0800 CST">7 September 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="" title="">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      圆润的海豚
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.35c1113bcc16c5a59bf031082f9e63822aa95280423881a7847a7ff33a16e6299ce6a840d9ef4e10d947e030a18f3f20359afb2ec0f35967484b9a9360ac3145.js" integrity="sha512-NcERO8wWxaWb8DEIL55jgiqpUoBCOIGnhHp/8zoW5imc5qhA2e9OENlH4DChjz8gNZr7LsDzWWdIS5qTYKwxRQ=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://nonejou072.github.io/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder=""
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title=""
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+  data-id="jou072" data-description="Support me on Buy me a coffee!" data-message="Buy me a coffee?"
+  data-color="#FFDD00" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+</html>

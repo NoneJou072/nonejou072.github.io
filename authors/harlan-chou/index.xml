@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Harlan-Chou on 海豚的博客</title>
+    <link>https://nonejou072.github.io/authors/harlan-chou/</link>
+    <description>Recent content in Harlan-Chou on 海豚的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 圆润的海豚</copyright>
+    <lastBuildDate>Sun, 29 Jan 2023 22:07:25 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/authors/harlan-chou/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Marching Cubes -1 原理介绍</title>
+      <link>https://nonejou072.github.io/posts/3-marching-cubes-1/</link>
+      <pubDate>Sun, 29 Jan 2023 22:07:25 +0800</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/3-marching-cubes-1/</guid>
+      <description>Marching Cubes 详解与实现 # 等值面是空间中的一张曲面，在该曲面上函数F(x，y，z)的值等于某一给定值。准确地讲，是指在某一网格空间中，假若每一结点保存着三变量函数F(x，y，z)，而且网格单元在x，y，z方向上的连续采样值为F(x，y，z)，则对于某一给定值Fi，等值面是由所有满足</description>
+      
+    </item>
+    
+    <item>
+      <title>探讨-协作双臂的动作模仿</title>
+      <link>https://nonejou072.github.io/posts/2-overview-of-imitation-learning/</link>
+      <pubDate>Sun, 29 Jan 2023 13:11:22 +0800</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/2-overview-of-imitation-learning/</guid>
+      <description>1.</description>
+      
+    </item>
+    
+    <item>
+      <title>使用 pyelastic 对悬臂梁进行仿真</title>
+      <link>https://nonejou072.github.io/posts/1-timoshenko-beam/</link>
+      <pubDate>Sat, 28 Jan 2023 13:11:22 +0800</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/1-timoshenko-beam/</guid>
+      <description>Timoshenko Beam # ​elastica.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

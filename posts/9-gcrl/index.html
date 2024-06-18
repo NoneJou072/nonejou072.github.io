@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Goal-Conditioned RL &middot; 海豚的博客</title>
+  <meta name="title" content="Goal-Conditioned RL &middot; 海豚的博客" />
+  
+  <meta name="description" content="Goal-Conditioned RL" />
+  <meta name="keywords" content="rl, " />
+  
+  
+  <link rel="canonical" href="https://nonejou072.github.io/posts/9-gcrl/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.13b1ee88b0d1f7e71cbf0e74ee92a3707f41ec8cea4d82c6e92d2b4de4364cb3e8196cef25ef109f58347cb8595e11c39b0e796fb4afd9bd5dcc360ae8ea3302.css"
+    integrity="sha512-E7HuiLDR9&#43;ccvw507pKjcH9B7IzqTYLG6S0rTeQ2TLPoGWzvJe8Qn1g0fLhZXhHDmw55b7Sv2b1dzDYK6OozAg==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.f0ecd26160d4c29256b0f2b96ebe0be0f1c839488a839c5190ed198437fe5a1bd0ede0c86f0108806fd0ea43c987923aa4a63fe7ed09813eb9e8ad531ca58ae4.js"
+    integrity="sha512-8OzSYWDUwpJWsPK5br4L4PHIOUiKg5xRkO0ZhDf&#43;WhvQ7eDIbwEIgG/Q6kPJh5I6pKY/5&#43;0JgT656K1THKWK5A==" data-copy="" data-copied=""></script>
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Goal-Conditioned RL" />
+<meta property="og:description" content="Goal-Conditioned RL" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nonejou072.github.io/posts/9-gcrl/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-21T13:11:22+08:00" />
+<meta property="article:modified_time" content="2023-11-23T13:11:22+08:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Goal-Conditioned RL"/>
+<meta name="twitter:description" content="Goal-Conditioned RL"/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Goal-Conditioned RL",
+    "headline": "Goal-Conditioned RL",
+    "description": "Goal-Conditioned RL",
+    "abstract": "传统的强化学习算法都局限在单个目标上，训练好的算法难以完成这个目标外的其他目标。以机械臂操作为例，采用单一策略只能训练抓取同一个位置的物体。对于不同的目标位置，要训练多个策略。另外这类环境通常依赖于人工进行奖励塑形，而设计一个好的奖励函数通常很困难。因此最近的研究更希望使用稀疏的奖励，只有当成功完成任务后才能够获得奖励，在其他的时刻将不会得到奖励。然而智能体在探索过程中，大部分时间内都无法完成任务，导致有价值的样本数目非常少，智能体需要更多的时间进行探索，导致指数级的样本复杂度。",
+    "inLanguage": "zh-cn",
+    "url" : "https:\/\/nonejou072.github.io\/posts\/9-gcrl\/",
+    "author" : {
+      "@type": "Person",
+      "name": "圆润的海豚"
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-11-21T13:11:22\u002b08:00",
+    "datePublished": "2023-11-21T13:11:22\u002b08:00",
+    
+    "dateModified": "2023-11-23T13:11:22\u002b08:00",
+    
+    "keywords": ["rl"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "545"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="圆润的海豚" />
+  
+  
+  
+  <link href="mailto:jou072@126.com" rel="me" />
+  
+  
+  <link href="https://github.com/username" rel="me" />
+  
+  
+  <link href="https://instagram.com/username" rel="me" />
+  
+  
+  <link href="https://twitter.com/username" rel="me" />
+  
+  
+  <link href="https://space.bilibili.com/19446641" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/lib/katex/katex.min.d96282b3b01c4e05f496a14237f504dbf1f1cd18bfe7babf9b12f3674e342b0f54f6aafb0905903d40c2ef016cdf14805482fb70e6e674e0e07cc7cfe1723e61.css" integrity="sha512-2WKCs7AcTgX0lqFCN/UE2/HxzRi/57q/mxLzZ040Kw9U9qr7CQWQPUDC7wFs3xSAVIL7cObmdODgfMfP4XI&#43;YQ==" />
+
+
+<script defer src="/lib/katex/katex.min.2d037120c479ad7bfba3e6f597cf8dd4464c7e11bb88567d1e19db2644e9e338cdaf95afb2def902a51e143c5e4546bb979bc40f2522022a7ffebf8414b2c2c8.js" integrity="sha512-LQNxIMR5rXv7o&#43;b1l8&#43;N1EZMfhG7iFZ9HhnbJkTp4zjNr5Wvst75AqUeFDxeRUa7l5vEDyUiAip//r&#43;EFLLCyA=="></script>
+
+
+<script defer src="/lib/katex/auto-render.min.53e6cbd1cf3c1f15e3479f4920e25c5f6adbdc0b83a865af9f1b0a412aa1505efc58cf9f2f7d0cb5dc9d5e4c1b148df95b6e8697c3295e527dfadbc07ac856b8.js" integrity="sha512-U&#43;bL0c88HxXjR59JIOJcX2rb3AuDqGWvnxsKQSqhUF78WM&#43;fL30MtdydXkwbFI35W26Gl8MpXlJ9&#43;tvAeshWuA=="
+  onload="renderMathInElement(document.body);"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span></a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">海豚的博客</a>
+
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-gray-900" title="Posts">
+      Blog
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/posts/leetcode/"  class="flex items-center">
+          
+          <p class="text-sm font-sm text-gray-500 hover:text-gray-900" title="leetcode">
+            leetcode
+          </p>
+        </a>
+        
+        <a href="/posts/linux/"  class="flex items-center">
+          
+          <p class="text-sm font-sm text-gray-500 hover:text-gray-900" title="linux">
+            linux
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/resume/"  class="flex items-center">
+    
+    <p class="text-base font-medium text-gray-500 hover:text-gray-900" title="resume">
+        Resume
+    </p>
+</a>
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400 h-12"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button">
+                    <div class="flex items-center justify-center h-12 dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden h-12 dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" style="margin-right:5px">
+                <div class="flex items-center justify-center h-12 dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden h-12 dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="Posts">
+            Blog
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/leetcode/"  class="flex items-center">
+        
+        <p class="text-sm font-small text-gray-500 hover:text-gray-900" title="leetcode">
+            leetcode
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/linux/"  class="flex items-center">
+        
+        <p class="text-sm font-small text-gray-500 hover:text-gray-900" title="linux">
+            linux
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/resume/"  class="flex items-center">
+        
+        <p class="text-bg font-bg text-gray-500 hover:text-gray-900" title="resume">
+            Resume
+        </p>
+    </a>
+</li>
+
+
+
+                    
+                    
+
+                </ul>
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/img/xingtong.jpg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      Goal-Conditioned RL
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-11-21 13:11:22 &#43;0800 CST">21 November 2023</time><span class="px-2 text-primary-500">&middot;</span><span>545 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+<div class="flex">
+  
+  
+  
+  
+  <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+    alt="圆润的海豚" src="/img/logo.jpg" />
+  
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      圆润的海豚
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">海阔凭鱼跃</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:jou072@126.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/username"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://instagram.com/username"
+          target="_blank"
+          aria-label="Instagram"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://twitter.com/username"
+          target="_blank"
+          aria-label="Sina-Weibo"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1700901561784" class="icon" viewBox="0 0 1138 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3193" xmlns:xlink="http://www.w3.org/1999/xlink" width="222.265625" height="200"><path d="M914.432 518.144q27.648 21.504 38.912 51.712t9.216 62.976-14.336 65.536-31.744 59.392q-34.816 48.128-78.848 81.92t-91.136 56.32-94.72 35.328-89.6 18.944-75.264 7.68-51.712 1.536-49.152-2.56-68.096-10.24-78.336-21.504-79.872-36.352-74.24-55.296-59.904-78.848q-16.384-29.696-22.016-63.488t-5.632-86.016q0-22.528 7.68-51.2t27.136-63.488 53.248-75.776 86.016-90.112q51.2-48.128 105.984-85.504t117.248-57.856q28.672-10.24 63.488-11.264t57.344 11.264q10.24 11.264 19.456 23.04t12.288 29.184q3.072 14.336 0.512 27.648t-5.632 26.624-5.12 25.6 2.048 22.528q17.408 2.048 33.792-1.536t31.744-9.216 31.232-11.776 33.28-9.216q27.648-5.12 54.784-4.608t49.152 7.68 36.352 22.016 17.408 38.4q2.048 14.336-2.048 26.624t-8.704 23.04-7.168 22.016 1.536 23.552q3.072 7.168 14.848 13.312t27.136 12.288 32.256 13.312 29.184 16.384zM656.384 836.608q26.624-16.384 53.76-45.056t44.032-64 18.944-75.776-20.48-81.408q-19.456-33.792-47.616-57.344t-62.976-37.376-74.24-19.968-80.384-6.144q-78.848 0-139.776 16.384t-105.472 43.008-72.192 60.416-38.912 68.608q-11.264 33.792-6.656 67.072t20.992 62.976 42.496 53.248 57.856 37.888q58.368 25.6 119.296 32.256t116.224 0.512 100.864-21.504 74.24-33.792zM522.24 513.024q20.48 8.192 38.912 18.432t32.768 27.648q10.24 12.288 17.92 30.72t10.752 39.424 1.536 42.496-9.728 38.912q-8.192 18.432-19.968 37.376t-28.672 35.328-40.448 29.184-57.344 18.944q-61.44 11.264-117.76-11.264t-88.064-74.752q-12.288-39.936-13.312-70.656t16.384-66.56q13.312-27.648 40.448-51.712t62.464-38.912 75.264-17.408 78.848 12.8zM359.424 764.928q37.888 3.072 57.856-18.432t21.504-48.128-15.36-47.616-52.736-16.896q-27.648 3.072-43.008 23.552t-17.408 43.52 9.728 42.496 39.424 21.504zM778.24 6.144q74.752 0 139.776 19.968t113.664 57.856 76.288 92.16 27.648 122.88q0 33.792-16.384 50.688t-35.328 17.408-35.328-14.336-16.384-45.568q0-40.96-22.528-77.824t-59.392-64.512-84.48-43.52-96.768-15.872q-31.744 0-47.104-15.36t-14.336-34.304 18.944-34.304 51.712-15.36zM778.24 169.984q95.232 0 144.384 48.64t49.152 146.944q0 30.72-10.24 43.52t-22.528 11.264-22.528-14.848-10.24-35.84q0-60.416-34.816-96.256t-93.184-35.84q-19.456 0-28.672-10.752t-9.216-23.04 9.728-23.04 28.16-10.752z" p-id="3194" fill="#ffffff"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://space.bilibili.com/19446641"
+          target="_blank"
+          aria-label="Bilibili-Fill"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1700898935346" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4052" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M777.514667 131.669333a53.333333 53.333333 0 0 1 0 75.434667L728.746667 255.829333h49.92A160 160 0 0 1 938.666667 415.872v320a160 160 0 0 1-160 160H245.333333A160 160 0 0 1 85.333333 735.872v-320a160 160 0 0 1 160-160h49.749334L246.4 207.146667a53.333333 53.333333 0 1 1 75.392-75.434667l113.152 113.152c3.370667 3.370667 6.186667 7.04 8.448 10.965333h137.088c2.261333-3.925333 5.12-7.68 8.490667-11.008l113.109333-113.152a53.333333 53.333333 0 0 1 75.434667 0z m1.152 231.253334H245.333333a53.333333 53.333333 0 0 0-53.205333 49.365333l-0.128 4.010667v320c0 28.117333 21.76 51.157333 49.365333 53.162666l3.968 0.170667h533.333334a53.333333 53.333333 0 0 0 53.205333-49.365333l0.128-3.968v-320c0-29.44-23.893333-53.333333-53.333333-53.333334z m-426.666667 106.666666c29.44 0 53.333333 23.893333 53.333333 53.333334v53.333333a53.333333 53.333333 0 1 1-106.666666 0v-53.333333c0-29.44 23.893333-53.333333 53.333333-53.333334z m320 0c29.44 0 53.333333 23.893333 53.333333 53.333334v53.333333a53.333333 53.333333 0 1 1-106.666666 0v-53.333333c0-29.44 23.893333-53.333333 53.333333-53.333334z" p-id="4053" fill="#ffffff"></path></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+    
+
+    
+
+    
+    
+
+    
+    <div class="mb-5"></div>
+    
+  
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+    
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="max-w-prose mb-20">
+          
+
+<blockquote>
+<p>传统的强化学习算法都局限在单个目标上，训练好的算法难以完成这个目标外的其他目标。以机械臂操作为例，采用单一策略只能训练抓取同一个位置的物体。对于不同的目标位置，要训练多个策略。另外这类环境通常依赖于人工进行奖励塑形，而设计一个好的奖励函数通常很困难。因此最近的研究更希望使用稀疏的奖励，只有当成功完成任务后才能够获得奖励，在其他的时刻将不会得到奖励。然而智能体在探索过程中，大部分时间内都无法完成任务，导致有价值的样本数目非常少，智能体需要更多的时间进行探索，导致指数级的样本复杂度。</p>
+</blockquote>
+<div id="universal-value-function-approximatorshttpslinkzhihucomtargethttp3aproceedingsmlrpressv37schaul15pdf" class="anchor"></div>
+<h2 class="relative group"><a href="https://link.zhihu.com/?target=http%3A//proceedings.mlr.press/v37/schaul15.pdf"   target="_blank">
+    Universal Value Function Approximators</a> 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#universal-value-function-approximatorshttpslinkzhihucomtargethttp3aproceedingsmlrpressv37schaul15pdf" aria-label="锚点">#</a></span>        
+    
+</h2>
+<blockquote>
+<p><strong>值函数 $V(s)$</strong> 用于表示状态 s 在实现 agent 总体目标或奖励函数时的效果。从定义来说，值函数量化了某个策略积累某种报酬的能力。从另一个角度思考，值函数量化了一个agent完成某个任务的能力。（摘录自<a href="https://zhuanlan.zhihu.com/p/110468145"   target="_blank">
+    UVFA, HER and Inverse RL</a>）</p>
+</blockquote>
+<p><strong>在一个环境中，任务（目标）可能是不同的，这需要不同的最优值函数去量化完成不同任务的方案</strong>。本文提出了一种单个、一致的值函数逼近器 <strong>UVFA</strong>，在原始的值函数 $V(s)$、$Q(s,a)$ 的基础上增加 goal 作为输入，变成 $V(s,g)$、$Q(s,a,g)$，这样值函数就变成在某一状态（或状态-动作）某一目标下的价值。</p>
+<p>另外，本文将目标定义成了最简单的一种情况：<strong>$\mathcal{G} ⊆ \mathcal{S}$</strong>，当状态达到目标时获得一个二进制的奖励 1。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/9-GCRL/methods.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>一般来说，智能体只会看到状态和目标（s，g）的可能组合的一小部分。为了使智能体能够概括到其余组合，上图给出了两种实现 UVFA 的网络结构。</p>
+<ol>
+<li><strong>Concatenated 结构</strong>. 直接连接 state 和 goal 作为联合输入，可以用 MLP 实现输出到回归目标的映射；</li>
+<li><strong>Two-Stream 结构</strong>. 分别将状态 s 和目标 g 输入到各自的网络，映射到 n 维嵌入向量空间，得到对应的两个 embedding vectors，通过某种函数 h 映射成一个标量作为回归输出，文中采用的方法是向量内积。</li>
+</ol>
+<div id="监督学习" class="anchor"></div>
+<h3 class="relative group">监督学习 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e7%9b%91%e7%9d%a3%e5%ad%a6%e4%b9%a0" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>对于 <strong>Two-Stream</strong> 结构，UVFA的训练包括两个步骤：</p>
+<ol>
+<li>、通过某种方法获取各个状态目标对应的价值（<strong>文中直接给定</strong>），然后引入了一种新的因子分解方法——<a href="https://zhuanlan.zhihu.com/p/677987614"   target="_blank">
+    低秩矩阵分解</a>，将回归分解为两个阶段:
+<ul>
+<li>第一阶段，我们将数据视为一个稀疏的值表，每个观察到的状态 s 对应一行，每个观察到的目标 g 对应一列，并将表分解为状态嵌入 $φ(s)$ 和目标嵌入 $φ(g)$ ，将 $φ(s)$ 表示为 $s$ 行的目标嵌入向量，将 $φ(g)$ 表示为 $g$ 列的目标嵌入向量。</li>
+<li>第二阶段，分别使用标准回归技术（例如梯度下降）学习从状态 $s$ 到状态嵌入 $φ(s)$ 以及从目标 $g$ 到目标嵌入 $φ(g)$ 的非线性映射。</li>
+</ul>
+</li>
+<li>将两个嵌入向量通过向量内积整合成一个状态目标值。</li>
+</ol>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/9-GCRL/low-rank.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<div id="强化学习" class="anchor"></div>
+<h3 class="relative group">强化学习 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%bc%ba%e5%8c%96%e5%ad%a6%e4%b9%a0" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>对于强化学习，文中提供了两种直接从奖励中学习 UVFA 的算法。</p>
+<p>第一种算法使用一种 <a href="https://www.ifaamas.org/Proceedings/aamas2011/papers/A6_R70.pdf"   target="_blank">
+    Horde of demons</a> 的方式，可以产生不同目标对应的状态目标值，并使用这些值来 seed the table，然后通过低秩分解的方式将其分解为状态对应的嵌入变量和目标对应的嵌入隐变量，从而学习 UVFA $V(s，g; θ)$，该 $V(s，g; θ)$ 能够概括到以前看不见的目标。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/9-GCRL/pseudocode.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>第二种算法采用了<strong>自举</strong>（bootstrapping）的思想，直接从后续状态的 UVFA 值进行更新：
+$$
+Q(s_t, a_t, g) ← α(rg + γ_g \underset{a&rsquo;}{max} Q(s_{t+1}, a&rsquo;, g))+(1 − α)Q(s_t, a_t, g)
+$$</p>
+<div id="总结" class="anchor"></div>
+<h3 class="relative group">总结 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e6%80%bb%e7%bb%93" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>(摘录自<a href="https://zhuanlan.zhihu.com/p/267524544"   target="_blank">
+    分层强化学习survey</a>)</p>
+<p>本文提出的统一值函数概念具有迁移意义，同时属于goal-reach范畴，但局限是文中提到比较困难的仍是goal如何选取，但本文并不打算讨论这个问题，因为本文的重点是提供这种考虑目标在内的广义值函数的概念，于是只是简单地选择某些state作为goal，可见goal如何合理选取将是这类分层问题的最大困难。</p>
+<p>另一篇写的非常详细的博客：<a href="https://zhuanlan.zhihu.com/p/32309396"   target="_blank">
+    对Reinforcement Learning中的小无相功和九阳神功的一些参悟</a></p>
+<div id="hindsight-explerience-replayherhttpslinkzhihucomtargethttps3aarxivorgabs170701495" class="anchor"></div>
+<h2 class="relative group"><a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1707.01495"   target="_blank">
+    Hindsight Explerience Replay（HER)</a> 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#hindsight-explerience-replayherhttpslinkzhihucomtargethttps3aarxivorgabs170701495" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>HER 是建立在 UVFA 基础上的，原理是回放每个具有任意目标的轨迹。当智能体在一个回合中没有达成目标时，可以使用另外的目标来替代原来的目标，之后根据这个新的目标重新计算奖励，来为智能体提供经验。HER 改善了稀疏奖励下 DRL 的采样效率，可以将该方法与任意的 off-policy 算法结合。</p>
+<p>具体地，在 HER 方法下的马尔可夫决策过程表述为一个五元组，其中的状态 $S$ 不仅包含观测 $S_o$，还包括一个期望目标 $S_{dg}$， 且 $S_{dg} \in S_o$。</p>
+<div id="实现过程" class="anchor"></div>
+<h3 class="relative group">实现过程 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%ae%9e%e7%8e%b0%e8%bf%87%e7%a8%8b" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>实现 HER 算法的关键是构建 replay buffer，包含以下两步：</p>
+<ol>
+<li>初始化一个固定长度的队列，每次进入一个五元组 $(s_t,a_t,r_t,s_{t+1},g)$，定义初始状态 $s_0$ 和目标 $g$, 智能体根据当前状态 $s_t$ 和目标 $g$ 来采取动作。
+奖励的计算如下：</li>
+</ol>
+<p>$$
+r_t \gets r(a_t,s_t||g)
+$$</p>
+<p>采样出的 $(s_t,a_t,r_t,s_{t+1},g)$ 将被存放到 replay buffer 中。之后，每次都会基于实际目标 $g$ 采样一段完整的智能体经验序列。
+2. 使用新的目标 $g&rsquo;$ 重新计算奖励：</p>
+<p>$$
+r&rsquo; \gets r(a_t,s_t||g&rsquo;)
+$$</p>
+<p>我们构建新的 transitions $(s_t, a_t, r′, s_{t+1}, g′)$ ，也存放到 replay buffer 中。</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/9-GCRL/her.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<p>文章给出了四种方法去重新获得新的目标 g':</p>
+<ul>
+<li>final: 将每个回合最后的状态作为新目标</li>
+<li><strong>future（效果最好）</strong>: 随机选择 k 个在这个轨迹上并且在当前transition之后的状态作为新目标</li>
+<li>episode: 每次选择 k 个在这个轨迹上的状态作为新目标</li>
+<li>random: 每次在所有出现过的状态里面选择 k 个状态作为新目标</li>
+</ul>
+<p>一般我们使用 future 方法，因为它能够更好地利用经验。</p>
+<div id="局限性-innr问题" class="anchor"></div>
+<h3 class="relative group">局限性-INNR问题 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%e5%b1%80%e9%99%90%e6%80%a7-innr%e9%97%ae%e9%a2%98" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p><em>（这里引用[4]中的文字）</em>。</p>
+<p>HER 方法可以通过目标重标记策略，产生足够数量的非负奖励样本，即使智能体实际上没有完成任务。然而，在具有稀疏奖励的复杂顺序物体操作任务中(智能体必须按顺序成功完成每个子任务，以达到期望的最终目标)，由于隐含的 <strong>一致非负奖励（Identical Non-Negative Reward，INNR）</strong> 问题，智能体仍然会受到样本效率低下的困扰。当智能体在探索过程中无法影响已实现目标时，就会出现INNR问题。在这种情况下，智能体无法从相同负奖励的原始样本，或一致非负的虚拟样本中，区分哪个动作更好。换句话说，实际探索的样本都是负样本，目标重标记的虚拟样本都是正样本，因此并不能从这些样本中区分好坏。因此，来自HER的INNR对于策略改进几乎没有帮助，甚至会降低策略的探索能力。这个隐含的INNR问题是HER在标准操作任务中样本效率低下的原因。</p>
+<p>例如，在 Push 任务中，智能体必须先接近物体，然后将其推到期望的位置。当智能体在一个episode中未能改变物体的位置时，所有的已实现目标在整个episode 中是相同的。在经验回放过程后，所有的事后目标也将与已实现目标具有相同的值，导致所有的事后样本都是成功的。然而，<strong>这样的成功并不是由智能体的行动造成的</strong>。这些样本对智能体的策略改进没有帮助，甚至阻碍了学习。</p>
+<div id="references" class="anchor"></div>
+<h3 class="relative group">References 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#references" aria-label="锚点">#</a></span>        
+    
+</h3>
+<ol>
+<li><a href="https://proceedings.neurips.cc/paper_files/paper/2017/file/453fadbd8a1a3af50a9df4df899537b5-Paper.pdf"   target="_blank">
+    Hindsight Experience Replay (neurips.cc)</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/51357496"   target="_blank">
+    【强化学习算法 34】HER - 知乎 (zhihu.com)</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/403527126"   target="_blank">
+    [强化学习5] HER（Hindsight Experience Replay） - 知乎 (zhihu.com)</a></li>
+<li><a href="https://arxiv.org/abs/2208.00843"   target="_blank">
+    [2208.00843] Relay Hindsight Experience Replay: Self-Guided Continual Reinforcement Learning for Sequential Object Manipulation Tasks with Sparse Rewards (arxiv.org)</a></li>
+<li><a href="https://github.com/openai/baselines/tree/master/baselines/her"   target="_blank">
+    baselines/baselines/her at master · openai/baselines (github.com)</a></li>
+</ol>
+<p>openai 使用 her 在机器人操作上的应用研究：
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/9-GCRL/openai-her.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<ul>
+<li><a href="https://openai.com/research/ingredients-for-robotics-research"   target="_blank">
+    ingredients-for-robotics-research</a></li>
+<li><a href="https://arxiv.org/pdf/1802.09464.pdf"   target="_blank">
+    Multi-Goal Reinforcement Learning: Challenging Robotics Environments and Request for Research</a></li>
+</ul>
+<div id="gcrl-with-sub-goal-selection--generation" class="anchor"></div>
+<h2 class="relative group">GCRL with Sub-goal Selection / Generation 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#gcrl-with-sub-goal-selection--generation" aria-label="锚点">#</a></span>        
+    
+</h2>
+<blockquote>
+<p>本文翻译与参考自: <a href="https://arxiv.org/pdf/2201.08299.pdf"   target="_blank">
+    Goal-Conditioned Reinforcement Learning: Problems and Solutions</a></p>
+</blockquote>
+<p>由于难以实现长期目标，可以把目标分割成许多短期目标来帮助智能体到达长期目标。
+在期望目标被替换后收集经验，就是将环境的目标分布从$f$改成$p_g$，目标函数变成</p>
+<p>$$
+J(\pi)=\mathbb{E}_{\textstyle{s_{t+1}\sim \mathcal{T}(\cdot\mid s_t,a_t),\atop a_{t}\sim \pi(\cdot\mid s_{t},g),g\sim f }}\left[\sum_t \gamma^tr(s_t,a_t,g)\right]
+$$</p>
+<p>$f$可以是一个规则，能够从过去的经验中选择$g$，或者是根据某种准则学习出的一个函数。</p>
+<p>下面介绍几种选择子目标的方法。</p>
+<div id="1-中间难度-intermediate-difficulty" class="anchor"></div>
+<h3 class="relative group">1. 中间难度 Intermediate difficulty 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%e4%b8%ad%e9%97%b4%e9%9a%be%e5%ba%a6-intermediate-difficulty" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p><em>准确评估到达目标的难度有助于确定在智能体的能力范围内学习什么，一个合理的目标应该超出智能体的范围（why？）</em></p>
+<ul>
+<li><em>Automatic goal generation for reinforcement learning agents.</em> 根据奖励给难度打分，用来把目标标记成正/负采样，然后训练一个GAN模型来生成具有合理难度分数的目标。</li>
+<li><em>Learning with amigo: Adversarially motivated intrinsic goals.</em> 提出了一种 teacher-student 框架。teacher充当目标提供者，尝试提供难度递增的目标。teacher从student在提供的目标上的表现中学习，student从环境中得到的外部奖励和teacher中得到的内部奖励学习。</li>
+<li><em>Automatic curriculum learning through value disagreement.</em> 把Q函数认知的不确定性看成是实现目标难度的衡量，用于构建一个分布来采样目标。当不确定性过高时，目标应该处于策略的知识边界，以一个合理的难度来学习。</li>
+</ul>
+<div id="2-探索意识-exploration-awareness" class="anchor"></div>
+<h3 class="relative group">2. 探索意识 Exploration awareness 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%e6%8e%a2%e7%b4%a2%e6%84%8f%e8%af%86-exploration-awareness" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>由于稀疏奖励限制了策略的学习效率，我们应该提高策略的探索能力，尽可能覆盖没有遇到的目标和状态。
+在GCRL，许多研究者们提议<strong>使用子目标采样</strong>来得到一个更好的探索能力。</p>
+<ul>
+<li><em>Maximum entropy gain exploration for long horizon multi-goal reinforcement learning.</em> 提出采样使过去<strong>已实现目标</strong>的熵最大化的目标，以提高目标空间（goal space）的覆盖范围。（这一点和SAC的目的很像）</li>
+<li><em>State-covering self-supervised reinforcement learning.</em> 训练一个自监督的生成式模型来生成行为目标，该目标在过去的经验中对已实现目标进行了近似均匀的倾斜，表现为最大化<strong>期望目标</strong>分布的熵。</li>
+<li><em>Unsupervised controlthrough non-parametric discriminative rewards.</em> 选择从不同的replay buffer中均匀地采样过去已实现的目标作为行为目标，这些储存的目标间的距离要尽可能地远。</li>
+<li><em>Visual reinforcement learning with imagined goals.</em> 选择从经验回放中均匀地采样过去已实现的目标，用这些历史目标拟合生成式模型来生成行为目标。</li>
+<li><em>Exploration via hindsight goal generation</em> 通过 Wasserstein Barycenter 问题，生成了一组事后目标以进行探索。把生成的目标作为隐性课程，可以有效地使用当前值函数来学习。</li>
+<li><em>Dynamical distance learning for semi-supervised and unsupervised skill discovery</em> 学习一个距离函数，并从replay buffer中选择距离初始状态最远的目标来提高探索效率。</li>
+</ul>
+<div id="3-从经验中搜索-searching-from-experience" class="anchor"></div>
+<h3 class="relative group">3. 从经验中搜索 Searching from experience. 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%e4%bb%8e%e7%bb%8f%e9%aa%8c%e4%b8%ad%e6%90%9c%e7%b4%a2-searching-from-experience" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>历史经验包含导向实现某些目标的路径点，可以使人类或智能体获益。</p>
+<ul>
+<li><em>Hindsight planner.</em> 从一个采样的回合中选择 $k$ 个关键的中间路径点，并训练一个RNN网络，根据给定的起始和终止点来生成序列。再应用这些中间点作为期望目标的序列来与环境交互。</li>
+<li><em>Search on the replay buffer: Bridging planning and reinforcement learning.</em> 在 replay buffer 上建立图，把状态作为节点，从起始状态到目标状态的距离作为边的权重。该工作利用了二值奖励下的状态值可以近似成到目标的距离这一直觉，使用图搜索去寻找路径点序列来实现目标，并不断通过在路径点上学习的策略来采取动作。</li>
+</ul>
+<div id="4-model-based-planning-和-learn-from-experts" class="anchor"></div>
+<h3 class="relative group">4. Model-based planning 和 Learn from experts. 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#4-model-based-planning-%e5%92%8c-learn-from-experts" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>model-based RL 与 learning from demonstrations 不在笔者的考虑范围内，故不在此翻译。</p>
+<div id="relabeling-in-gcrl" class="anchor"></div>
+<h2 class="relative group">Relabeling in GCRL 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#relabeling-in-gcrl" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>与子目标选择类似，relabeling也替换了初始的期望目标以提高学习效率。二者的区别是：</p>
+<ul>
+<li>Relabeling 关注于在训练前替换经验容器中的历史数据；</li>
+<li>Sub-goal Selection 关注于改变采样经验的分布。
+为了实现重标记操作，理论上需要一个重标记函数 $h$ 去替换从 replay buffer 采样出的 transition 中的目标，并重新计算奖励
+$$
+(s_t, a_t, g_t, r_t) \gets (s_t, a_t, h(·), r(s_t, a_t, h(·)))
+$$</li>
+</ul>
+<div id="1-事后回放-hindsight-relabeling" class="anchor"></div>
+<h3 class="relative group">1. 事后回放 Hindsight relabeling. 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%e4%ba%8b%e5%90%8e%e5%9b%9e%e6%94%be-hindsight-relabeling" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>该方法可以追溯到最著名的 Hindsight experience replay(HER)，想法源自于人类从失败的经验中来学习。HER 使用replay buffer相同轨迹中已实现目标来替换期望目标，同时减轻稀疏奖励的问题。</p>
+<ul>
+<li>
+<p><em>Curriculum-guided hindsight experience replay.</em> 提出 CHER，使用课程重标记方法自适应地从失败经验中选择重标记目标。课程的评价标准是与期望目标的相似度和目标的多样性。</p>
+</li>
+<li>
+<p><em>Goal densitybased hindsight experience prioritization for multi-goal
+robot manipulation reinforcement learning.</em> 为已实现目标学习了一个稠密模型，用于优先标记少见的目标。以实现在少见经验中探索来提高采样效率。</p>
+</li>
+</ul>
+<div id="2-relabeling-by-learning" class="anchor"></div>
+<h3 class="relative group">2. Relabeling by learning. 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-relabeling-by-learning" aria-label="锚点">#</a></span>        
+    
+</h3>
+<ul>
+<li><em>Guided goal generation for hindsight multigoal reinforcement learning</em>
+从过去的经验选择重标记目标限制了重标记目标的多样性，为了减轻该问题并能够重标记未见过的目标，这篇文章通过隐式地建模策略表现和已实现目标之间的关系来训练一个条件生成式RNN网络，用于根据当前策略的平均返回值生成重标记目标。</li>
+</ul>
+<div id="3-先见之明-foresight" class="anchor"></div>
+<h3 class="relative group">3. 先见之明 Foresight. 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#3-%e5%85%88%e8%a7%81%e4%b9%8b%e6%98%8e-foresight" aria-label="锚点">#</a></span>        
+    
+</h3>
+<p>人类不仅可以从失败中学习，还可以基于当前状态对未来作出规划。</p>
+<ul>
+<li><em>Mapgo: Modelassisted policy optimization for goal-oriented tasks.</em>  学习一个动态模型用来生成用于重标记的虚拟轨迹。先见目标重标记可以防止标记局限于历史数据的同质目标，规划出当前策略可以实现的新目标。</li>
+</ul>
+
+        </div>
+                
+        
+
+        
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://nonejou072.github.io/posts/9-gcrl/&amp;title=Goal-Conditioned%20RL"
+      title="分享到 LinkedIn"
+      aria-label="分享到 LinkedIn"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://twitter.com/intent/tweet/?url=https://nonejou072.github.io/posts/9-gcrl/&amp;text=Goal-Conditioned%20RL"
+      title="分享到 Twitter"
+      aria-label="分享到 Twitter"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://reddit.com/submit/?url=https://nonejou072.github.io/posts/9-gcrl/&amp;resubmit=true&amp;title=Goal-Conditioned%20RL"
+      title="提交到 Reddit"
+      aria-label="提交到 Reddit"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://nonejou072.github.io/posts/9-gcrl/&amp;quote=Goal-Conditioned%20RL"
+      title="分享到 Facebook"
+      aria-label="分享到 Facebook"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="mailto:?body=https://nonejou072.github.io/posts/9-gcrl/&amp;subject=Goal-Conditioned%20RL"
+      title="通过电子邮件发送"
+      aria-label="通过电子邮件发送"
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+      
+      <a
+      target="_blank"
+      class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+      href="https://t.me/share/url?url=https://nonejou072.github.io/posts/9-gcrl/&amp;resubmit=true&amp;title=Goal-Conditioned%20RL"
+      title=""
+      aria-label=""
+      >
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
+
+  </span>
+
+
+    </a>
+      
+    
+  </section>
+
+
+          
+      </div>
+     
+     <script>
+        var oid = "views_posts\\9-GCRL.md"
+        var oid_likes = "likes_posts\\9-GCRL.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.0e49973b4ad0a382c7c6012d8bff8226316642daabc4f8a20477bd08674f3da6e2fa993bc20ad4f51e7c5bb68e6f913a207a7c4fe37ea0e7b806894afce0a64e.js" integrity="sha512-DkmXO0rQo4LHxgEti/&#43;CJjFmQtqrxPiiBHe9CGdPPabi&#43;pk7wgrU9R58W7aOb5E6IHp8T&#43;N&#43;oOe4BolK/OCmTg=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/8-rher%E5%A4%8D%E7%8E%B0/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Relayed HER复现结果与分析</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-10-24 13:11:22 &#43;0800 CST">24 October 2023</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/10-git/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >常用 git 命令</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-12-21 13:11:22 &#43;0800 CST">21 December 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="" title="">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      圆润的海豚
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.35c1113bcc16c5a59bf031082f9e63822aa95280423881a7847a7ff33a16e6299ce6a840d9ef4e10d947e030a18f3f20359afb2ec0f35967484b9a9360ac3145.js" integrity="sha512-NcERO8wWxaWb8DEIL55jgiqpUoBCOIGnhHp/8zoW5imc5qhA2e9OENlH4DChjz8gNZr7LsDzWWdIS5qTYKwxRQ=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://nonejou072.github.io/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder=""
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title=""
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+  data-id="jou072" data-description="Support me on Buy me a coffee!" data-message="Buy me a coffee?"
+  data-color="#FFDD00" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Intelligent Redundant Manipulation for Long-Horizon Operations with Multiple Goal-conditioned Hierarchical Learning">
+  <meta name="keywords" content="Haoran Zhou, Xiankun Lin, Qingdu Li">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Intelligent Redundant Manipulation for Long-Horizon Operations with Multiple Goal-conditioned Hierarchical Learning</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./nerfies_static/css/bulma.min.css">
+  <link rel="stylesheet" href="./nerfies_static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./nerfies_static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./nerfies_static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./nerfies_static/css/index.css">
+  <link rel="icon" href="./nerfies_static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./nerfies_static/js/fontawesome.all.min.js"></script>
+  <script src="./nerfies_static/js/bulma-carousel.min.js"></script>
+  <script src="./nerfies_static/js/bulma-slider.min.js"></script>
+  <script src="./nerfies_static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Intelligent Redundant Manipulation for Long-Horizon Operations with Multiple Goal-conditioned Hierarchical Learning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://keunhong.com">Haoran Zhou</a>,</span>
+            <span class="author-block">
+              <a href="https://utkarshsinha.com">Xiankun Lin</a>,</span>
+            <span class="author-block">
+              <a href="https://jonbarron.info">Qingdu Li</a>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">University of Shanghai for Science and Technology</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=8w-XPpaM1xk"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/NoneJou072/MGHL"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./nerfies_static/videos/long-horizon.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Multiple Goal-conditioned Hierarchical Learning</span> studies long-horizon manipulation tasks by learning several sub-tasks.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Reinforcement Learning is a reasonable strategy to address object manipulation
+            with long-horizon operation tasks. However, due to limitations in network capac-
+            ity and exploration efficiency, it is challenging to achieve high success rates in
+            dealing with such complex tasks. In this paper, we propose a Multiple Goal-
+            conditioned Hierarchical Learning (MGHL) framework to tackle long-horizon
+            task manipulated by redundant robotic arms. A long-horizon operation task is
+            viewed as a sequential composition of multiple subtasks. By combining Multi-
+            Task Learning and Hierarchical Reinforcement Learning, MGHL simultaneously
+            learns multiple subtasks with sparse rewards under the same policy, and gradu-
+            ally completes the goals of each subtask. During the pre-training of subtasks, a
+            Mid-goal Guided Exploration Strategy is proposed to improve the sample qual-
+            ity by establishing mid-goals to guide the exploration of the policies. In addition,
+            MGHL implements a joint impedance controller that enables the robotic arm to
+            take advantage of the flexibility of each joint to handle complex operations in a
+            limited action space of the end effector. Three types of long-horizon manipulation
+            tasks are introduced for training subtasks. The experimental results show that
+            our proposed MGHL framework can learn multiple subtasks in the same policy
+            with high success rate. By completing pre-trained subtasks one by one, MGHL
+            outperforms several state-of-the-art algorithms on long-horizon tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/8w-XPpaM1xk?si=RW5hiGTuIdl5wtEK"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            Website template borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
