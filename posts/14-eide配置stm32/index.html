@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title> &middot; 海豚的博客</title>
-  <meta name="title" content=" &middot; 海豚的博客" />
+  <title>Tree-structured Parzen Estimator（TPE） &middot; 海豚的博客</title>
+  <meta name="title" content="Tree-structured Parzen Estimator（TPE） &middot; 海豚的博客" />
   
-  <meta name="description" content="My awesome website" />
+  <meta name="description" content="Tree-structured Parzen Estimator" />
+  <meta name="keywords" content="ml, " />
   
   
-  
-  <link rel="canonical" href="https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/" />
+  <link rel="canonical" href="https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/" />
   
   
   
@@ -61,16 +61,16 @@
   
   
   
-  <meta property="og:title" content="" />
-<meta property="og:description" content="折扣因子 discount factor - gamma # Reference: 曾伊言-深度强化学习调参技巧：以D3QN、TD3、PPO、SAC算法为例" />
+  <meta property="og:title" content="Tree-structured Parzen Estimator（TPE）" />
+<meta property="og:description" content="Tree-structured Parzen Estimator" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/" /><meta property="article:section" content="posts" />
-
-
+<meta property="og:url" content="https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-29T13:11:22+08:00" />
+<meta property="article:modified_time" content="2024-02-27T13:11:22+08:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="折扣因子 discount factor - gamma # Reference: 曾伊言-深度强化学习调参技巧：以D3QN、TD3、PPO、SAC算法为例"/>
+<meta name="twitter:title" content="Tree-structured Parzen Estimator（TPE）"/>
+<meta name="twitter:description" content="Tree-structured Parzen Estimator"/>
 
   
   <script type="application/ld+json">
@@ -78,26 +78,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "",
-    "headline": "",
-    
-    "abstract": "折扣因子 discount factor - gamma # Reference: 曾伊言-深度强化学习调参技巧：以D3QN、TD3、PPO、SAC算法为例",
+    "name": "Tree-structured Parzen Estimator（TPE）",
+    "headline": "Tree-structured Parzen Estimator（TPE）",
+    "description": "Tree-structured Parzen Estimator",
+    "abstract": "1.",
     "inLanguage": "zh-cn",
-    "url" : "https:\/\/nonejou072.github.io\/posts\/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83\/",
+    "url" : "https:\/\/nonejou072.github.io\/posts\/14-eide%E9%85%8D%E7%BD%AEstm32\/",
     "author" : {
       "@type": "Person",
       "name": "圆润的海豚"
     },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-03-29T13:11:22\u002b08:00",
+    "datePublished": "2023-03-29T13:11:22\u002b08:00",
     
+    "dateModified": "2024-02-27T13:11:22\u002b08:00",
     
-    
-    
-    
-    
-    
+    "keywords": ["ml"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "145"
+    "wordCount": "19"
   }]
   </script>
 
@@ -519,7 +519,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      
+      Tree-structured Parzen Estimator（TPE）
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -562,7 +562,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span>145 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2023-03-29 13:11:22 &#43;0800 CST">29 March 2023</time><span class="px-2 text-primary-500">&middot;</span><span>19 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -708,6 +708,7 @@
     
 
     
+    
 
     
     <div class="mb-5"></div>
@@ -725,62 +726,141 @@
 
 
         <div class="max-w-prose mb-20">
-          <div id="折扣因子-discount-factor---gamma" class="anchor"></div>
-<h2 class="relative group">折扣因子 discount factor - gamma 
+          <div id="1-新建工程" class="anchor"></div>
+<h2 class="relative group">1. 新建工程 
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%e6%8a%98%e6%89%a3%e5%9b%a0%e5%ad%90-discount-factor---gamma" aria-label="锚点">#</a></span>        
+            style="text-decoration-line: none !important;" href="#1-%e6%96%b0%e5%bb%ba%e5%b7%a5%e7%a8%8b" aria-label="锚点">#</a></span>        
     
 </h2>
-<p>Reference: <a href="https://zhuanlan.zhihu.com/p/345353294"   target="_blank">
-    曾伊言-深度强化学习调参技巧：以D3QN、TD3、PPO、SAC算法为例</a></p>
-<p>这个值的含义是“你希望你的智能体每做出一步，至少需要考虑接下来多少步的reward？”如果我希望考虑接下来的t 步，那么我让第t步的reward占现在这一步的Q值的 0.1，即公式 $0.1\approx\gamma^t$，变换后得到：$\gamma\approx 0.1^{1/t}$</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">gamma</span> <span class="o">**</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># 0.1 对于当前这一步来说，t步后的reward的权重</span>
-</span></span><span class="line"><span class="cl"><span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="mf">0.9</span>   <span class="o">~=</span> <span class="mf">0.1</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span>  <span class="mi">22</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="mf">0.96</span>  <span class="o">~=</span> <span class="mf">0.1</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span>  <span class="mi">56</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="mf">0.98</span>  <span class="o">~=</span> <span class="mf">0.1</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span> <span class="mi">114</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="mf">0.99</span>  <span class="o">~=</span> <span class="mf">0.1</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span> <span class="mi">229</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="mf">0.995</span> <span class="o">~=</span> <span class="mf">0.1</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span> <span class="mi">459</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="mf">0.999</span> <span class="o">~=</span> <span class="mf">0.1</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2301</span><span class="p">)</span>  <span class="c1"># 没必要，DRL目前无法预测这么长的MDPs过程</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">可以看到</span>  <span class="mf">0.96</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="mf">0.995</span> <span class="n">的gamma值</span>
-</span></span><span class="line"><span class="cl"><span class="n">分别对应</span>    <span class="mi">56</span><span class="p">,</span>  <span class="mi">114</span><span class="p">,</span>  <span class="mi">229</span><span class="p">,</span>   <span class="mi">459</span> <span class="n">的步数</span>
-</span></span></code></pre></div><p>调整 gamma 的意义在于加速收敛。如果 gamma 过于大，意味着越多考虑未来的奖励，而未来的不确定性更多，超出了智能体所能掌控的范围。
-gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”的风险。一般选择0.99，在某些任务上需要调整。
-而如果 gamma 选的很小，智能体只会关注短期回报，可能导致陷入局部最优。</p>
 <p>
 
 
 
 
-  <figure>
-    <img class="my-0 rounded-md" src="https://pic4.zhimg.com/80/v2-46e75a0af992d75a844a9042ab7b5aa7_720w.webp" alt="LunarLander" />
+  
+  
     
-  </figure>
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/14-eide/1.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/14-eide/2.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/14-eide/3.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
 
 </p>
-<p>动图是 LunarLander任务，悬空状态下会得到一些一般在 ±5之间的 reward。降落后会一次性得到 +100的reward（下图(a)、(b)的黄色曲线 Reward Success, <em>在400多步</em>）或者坠毁一次性扣-100（下图(b)的淡蓝色曲线 Reward Failure，<em>在300步左右</em>）。
-你希望智能体预见到多少步之后的 降落、坠毁事件？</p>
-<p>下图(a) 展示了一次成功降落的结果在不同 gamma值下的表现。横坐标是第t步，纵坐标是第t步的Q值。我把贝尔曼公式 $Q_t=r_t+\gamma Q_{t+1}$ 写成求和的形式 $Q_t=\sum_t\gamma^{t-1}r_t$。当 $\gamma \to 1$ 时，有偏红曲线 $Q_t=\sum_t\gamma^{t-1}r_t$。当  $\gamma \to 0$ 时，有偏黄曲线 $Q_t\to r_t$ 。</p>
+<p>文件夹名称最好和 CubeMX 项目名称一致</p>
 <p>
 
 
 
 
-  <figure>
-    <img class="my-0 rounded-md" src="https://pic2.zhimg.com/80/v2-1474bc1a30c75415bef6f996a26ffe85_720w.webp" alt="reward" />
+  
+  
     
-  </figure>
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/14-eide/4.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
 
 </p>
-<p>从(a)观察到，gamma=0.99的曲线在200多步时曲线斜率明显增加，说明提前200步“预测”到安全降落的事件，而gamma=0.97和0.9曲线分别在300和400多步时才明显增加（在这之前斜率上升的原因是400步之前有一段奖励较高），因此gamma=0.99比较合适。</p>
-<p>从右图(b)观察到，在 gamma=0.99 时，深蓝线在第150步预测到的Q值已经很小，预示着约150步后会坠毁。深红线在第350步预测到Q值已经很大，预示着约150步后能平稳降落。
-所以在这个环境，把gamma定为0.99 可以让智能体预见到 150步以后的事件。事件发生后会得到一个比 日常reward 大得多的 结算reward，在这里 日常reward 是结算reward的0.05倍。游戏结束在第t 步结束时，结算reward $r_t$ 可能是±100。</p>
-<p>而在基于时序差分的RL方法中，我们通常拟合神经网络 $\theta$ 来预测下一时刻的Q值 $Q_{t+1}=\theta(s_{t+1},a_{t+1})$，用来计算时序差分目标 $Q_{target} = r_t + \gamma Q_{t+1}$.</p>
+<p>
+
+
+
+
+  
+  
+    
+  
+  
+    <figure>
+      
+      <img
+        class="my-0 rounded-md"
+        src="/post_imgs/14-eide/5.png"
+        alt="alt text"
+      />
+      
+      
+    </figure>
+  
+
+</p>
+<div id="2-配置工程" class="anchor"></div>
+<h2 class="relative group">2. 配置工程 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%e9%85%8d%e7%bd%ae%e5%b7%a5%e7%a8%8b" aria-label="锚点">#</a></span>        
+    
+</h2>
+<p>首先把 .s 结尾的文件移动到 Core 文件夹内</p>
+<p>添加资源文件夹（Project Resources），把所有含有代码的文件夹都添加进去</p>
+<p>打开 makefile 文件，里面包含了编译信息</p>
 
         </div>
                 
@@ -794,7 +874,7 @@ gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/&amp;title="
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/&amp;title=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
       title="分享到 LinkedIn"
       aria-label="分享到 LinkedIn"
       >
@@ -813,7 +893,7 @@ gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/&amp;text="
+      href="https://twitter.com/intent/tweet/?url=https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/&amp;text=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
       title="分享到 Twitter"
       aria-label="分享到 Twitter"
       >
@@ -831,7 +911,7 @@ gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://reddit.com/submit/?url=https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/&amp;resubmit=true&amp;title="
+      href="https://reddit.com/submit/?url=https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/&amp;resubmit=true&amp;title=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
       title="提交到 Reddit"
       aria-label="提交到 Reddit"
       >
@@ -850,7 +930,7 @@ gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.facebook.com/sharer/sharer.php?u=https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/&amp;quote="
+      href="https://www.facebook.com/sharer/sharer.php?u=https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/&amp;quote=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
       title="分享到 Facebook"
       aria-label="分享到 Facebook"
       >
@@ -869,7 +949,7 @@ gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="mailto:?body=https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/&amp;subject="
+      href="mailto:?body=https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/&amp;subject=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
       title="通过电子邮件发送"
       aria-label="通过电子邮件发送"
       >
@@ -888,7 +968,7 @@ gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”�
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://t.me/share/url?url=https://nonejou072.github.io/posts/drl%E8%B0%83%E5%8F%82%E6%96%B9%E6%B3%95%E4%B8%8E%E6%80%9D%E8%80%83/&amp;resubmit=true&amp;title="
+      href="https://t.me/share/url?url=https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/&amp;resubmit=true&amp;title=Tree-structured%20Parzen%20Estimator%ef%bc%88TPE%ef%bc%89"
       title=""
       aria-label=""
       >
@@ -910,8 +990,8 @@ gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”�
       </div>
      
      <script>
-        var oid = "views_posts\\DRL调参方法与思考.md"
-        var oid_likes = "likes_posts\\DRL调参方法与思考.md"
+        var oid = "views_posts\\14-eide配置stm32.md"
+        var oid_likes = "likes_posts\\14-eide配置stm32.md"
       </script>
       
       
@@ -930,18 +1010,40 @@ gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”�
       <div class="flex justify-between pt-3">
         <span>
           
-        </span>
-        <span>
-          
-            <a class="flex text-right group ml-3" href="/posts/drl/14-rl/">
+            <a class="flex group mr-3" href="/posts/3-marching-cubes-1/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  ></span
+                  >Marching Cubes -1 原理介绍</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time>
+                    <time datetime="2023-01-29 22:07:25 &#43;0800 CST">29 January 2023</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/13-tpe/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Tree-structured Parzen Estimator（TPE）</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-03-29 13:11:22 &#43;0800 CST">29 March 2023</time>
                   
                 </span>
               </span>
