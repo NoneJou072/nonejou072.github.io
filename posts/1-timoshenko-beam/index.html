@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>使用 pyelastic 对悬臂梁进行仿真 &middot; 海豚的博客</title>
+  <meta name="title" content="使用 pyelastic 对悬臂梁进行仿真 &middot; 海豚的博客" />
+  
+  <meta name="description" content="使用 pyelastic 对悬臂梁进行仿真" />
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/posts/1-timoshenko-beam/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.4e2716d77ddb668a7c0d68157cff2048cbdf59d43ac1a9de02fd1a04ed3047a1829f54a8b18c01b94597aac05a30d1933f930e6c59382c3e25501049c92fc230.css"
+    integrity="sha512-TicW133bZop8DWgVfP8gSMvfWdQ6waneAv0aBO0wR6GCn1SosYwBuUWXqsBaMNGTP5MObFk4LD4lUBBJyS/CMA==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.a2d78d78672e549fbfc972ece871725b5478ba0b65708dda20cb97ab80a865eae6d247e1b05a4aec6ebbf78647ec3233bad8b2609ed98eee53cd58aa17128bc7.js"
+    integrity="sha512-oteNeGcuVJ&#43;/yXLs6HFyW1R4ugtlcI3aIMuXq4CoZerm0kfhsFpK7G6794ZH7DIzutiyYJ7Zju5TzViqFxKLxw==" data-copy="" data-copied=""></script>
+  
+  
+  
+  <script src="/lib/zoom/zoom.min.37d2094687372da3f7343a221a470f6b8806f7891aa46a5a03966af7f0ebd38b9fe536cb154e6ad28f006d184b294525a7c4054b6bbb4be62d8b453b42db99bd.js" integrity="sha512-N9IJRoc3LaP3NDoiGkcPa4gG94kapGpaA5Zq9/Dr04uf5TbLFU5q0o8AbRhLKUUlp8QFS2u7S&#43;Yti0U7QtuZvQ=="></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/1-timoshenko-beam/">
+  <meta property="og:site_name" content="海豚的博客">
+  <meta property="og:title" content="使用 pyelastic 对悬臂梁进行仿真">
+  <meta property="og:description" content="使用 pyelastic 对悬臂梁进行仿真">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-01-28T13:11:22+08:00">
+    <meta property="article:modified_time" content="2023-01-28T13:11:22+08:00">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用 pyelastic 对悬臂梁进行仿真">
+  <meta name="twitter:description" content="使用 pyelastic 对悬臂梁进行仿真">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "使用 pyelastic 对悬臂梁进行仿真",
+    "headline": "使用 pyelastic 对悬臂梁进行仿真",
+    "description": "使用 pyelastic 对悬臂梁进行仿真",
+    
+    "inLanguage": "zh-cn",
+    "url" : "http:\/\/localhost:1313\/posts\/1-timoshenko-beam\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2023",
+    "dateCreated": "2023-01-28T13:11:22\u002b08:00",
+    "datePublished": "2023-01-28T13:11:22\u002b08:00",
+    
+    "dateModified": "2023-01-28T13:11:22\u002b08:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "644"
+  }]
+  </script>
+
+
+  
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳过正文</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">海豚的博客</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      Blog
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/posts/leetcode/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            leetcode
+          </p>
+        </a>
+        
+        <a href="/posts/linux/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            linux
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/resume/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        Resume
+    </p>
+</a>
+
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" style="margin-right:5px">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" class="block">
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li id="menu-close-button">
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                     
+  <li class="mt-1">
+    <a href="/posts/" class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Blog
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/leetcode/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            leetcode
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/linux/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            linux
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/resume/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Resume
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+ 
+  
+   
+  
+ 
+
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/img/xingtong.jpg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      使用 pyelastic 对悬臂梁进行仿真
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-01-28T13:11:22&#43;08:00">28 January 2023</time><span class="px-2 text-primary-500">&middot;</span><span>644 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">4 分钟</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+  <div class="place-self-center">
+    
+    
+    <div class="text-2xl sm:text-lg">
+</div>
+  </div>
+</div>
+
+      
+
+      
+        
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+    
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+<h1 class="relative group">Timoshenko Beam 
+    <div id="timoshenko-beam" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#timoshenko-beam" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>​<code>elastica.modules</code>​用于构建不同的仿真系统</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Import modules</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elastica.modules</span> <span class="kn">import</span> <span class="n">BaseSystemCollection</span><span class="p">,</span> <span class="n">Constraints</span><span class="p">,</span> <span class="n">Forcing</span><span class="p">,</span> <span class="n">Damping</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Import Cosserat Rod Class</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elastica.rod.cosserat_rod</span> <span class="kn">import</span> <span class="n">CosseratRod</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Import Damping Class</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elastica.dissipation</span> <span class="kn">import</span> <span class="n">AnalyticalLinearDamper</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Import Boundary Condition Classes</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elastica.boundary_conditions</span> <span class="kn">import</span> <span class="n">OneEndFixedRod</span><span class="p">,</span> <span class="n">FreeRod</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elastica.external_forces</span> <span class="kn">import</span> <span class="n">EndpointForces</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Import Timestepping Functions</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elastica.timestepper.symplectic_steppers</span> <span class="kn">import</span> <span class="n">PositionVerlet</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elastica.timestepper</span> <span class="kn">import</span> <span class="n">integrate</span>
+</span></span></code></pre></div><p>在这个例子中，杆的一端被固定住，令另一端受力。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TimoshenkoBeamSimulator</span><span class="p">(</span><span class="n">BaseSystemCollection</span><span class="p">,</span> <span class="n">Constraints</span><span class="p">,</span> <span class="n">Forcing</span><span class="p">,</span> <span class="n">Damping</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">timoshenko_sim</span> <span class="o">=</span> <span class="n">TimoshenkoBeamSimulator</span><span class="p">()</span>
+</span></span></code></pre></div><p>接下来，定义这个杆的各项属性，包括材料、几何形状等。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># setting up test params</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># rod 中单元体 elements 的数量</span>
+</span></span><span class="line"><span class="cl"><span class="n">n_elem</span> <span class="o">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">density</span> <span class="o">=</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl"><span class="n">nu</span> <span class="o">=</span> <span class="mf">1e-4</span>
+</span></span><span class="line"><span class="cl"><span class="n">E</span> <span class="o">=</span> <span class="mf">1e6</span>  <span class="c1"># 弹性模量</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># For shear modulus of 1e4, nu is 99!</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 泊松比，一般不超过0.5，这里是为了让变形更明显</span>
+</span></span><span class="line"><span class="cl"><span class="n">poisson_ratio</span> <span class="o">=</span> <span class="mi">99</span> 
+</span></span><span class="line"><span class="cl"><span class="n">shear_modulus</span> <span class="o">=</span> <span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="n">poisson_ratio</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="c1"># 剪切系数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 三维空间中的起始坐标</span>
+</span></span><span class="line"><span class="cl"><span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># rod 的朝向</span>
+</span></span><span class="line"><span class="cl"><span class="n">direction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">base_length</span> <span class="o">=</span> <span class="mf">3.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">base_radius</span> <span class="o">=</span> <span class="mf">0.25</span>
+</span></span><span class="line"><span class="cl"><span class="n">base_area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">base_radius</span> <span class="o">**</span> <span class="mi">2</span>
+</span></span></code></pre></div><p>我们根据上述的参数构建出一根 rod，然后把它加入到一开始创建的仿真系统中</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">shearable_rod</span> <span class="o">=</span> <span class="n">CosseratRod</span><span class="o">.</span><span class="n">straight_rod</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_elem</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">direction</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">normal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_length</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_radius</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">density</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">0.0</span><span class="p">,</span>     <span class="c1"># internal damping constant, deprecated in v0.3.0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">E</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">shear_modulus</span><span class="o">=</span><span class="n">shear_modulus</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">timoshenko_sim</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">shearable_rod</span><span class="p">)</span>
+</span></span></code></pre></div>
+
+<h1 class="relative group">添加阻尼 
+    <div id="%E6%B7%BB%E5%8A%A0%E9%98%BB%E5%B0%BC" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%B7%BB%E5%8A%A0%E9%98%BB%E5%B0%BC" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>We also need to define <code>damping_constant</code>​ and simulation <code>time_step</code>​ and pass in <code>.using()</code>​ method.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">dl</span> <span class="o">=</span> <span class="n">base_length</span> <span class="o">/</span> <span class="n">n_elem</span>
+</span></span><span class="line"><span class="cl"><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">dl</span>
+</span></span><span class="line"><span class="cl"><span class="n">timoshenko_sim</span><span class="o">.</span><span class="n">dampen</span><span class="p">(</span><span class="n">shearable_rod</span><span class="p">)</span><span class="o">.</span><span class="n">using</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AnalyticalLinearDamper</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">damping_constant</span><span class="o">=</span><span class="n">nu</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time_step</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div>
+
+<h1 class="relative group">添加边界条件 
+    <div id="%E6%B7%BB%E5%8A%A0%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%B7%BB%E5%8A%A0%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>第一个约束是，固定杆一端的位置。<code>We do this using the </code>.constrain()<code>option and the</code>OneEndFixedRod<code>boundary condition. We are modifying the</code>timoshenko_sim<code>simulator to</code>constrain<code>the</code>shearable_rod<code>object using the</code>OneEndFixedRod<code> type of constraint. ​</code>​</p>
+<p>我们还要定义杆的哪一个节点需要被约束.，可以通过节点的索引 <code>constrained_position_idx</code>​来实现，这里我们固定了第一个节点。为了防止杆绕固定节点旋转, 我们需要在两个节点之间约束一个元素，这固定了杆的方向. 我们通过约束元素的索引 <code>constrained_director_idx</code>​来实现。例如对于 position, 我们约束杆的第一个元素. Together, this contrains the position and orientation of the rod at the origin.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">timoshenko_sim</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="n">shearable_rod</span><span class="p">)</span><span class="o">.</span><span class="n">using</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OneEndFixedRod</span><span class="p">,</span> <span class="n">constrained_position_idx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">constrained_director_idx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;One end of the rod is now fixed in place&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>第二个约束是对杆的末端施加一个力。我们想在d1方向施加一个负的力，同时加到杆的末端，可以通过指定origin_force 和end_force 实现。我们还想随着时间逐渐提高力的大小，通过指定ramp_up_time来改变，这防止了因力的不连续导致的错误。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">origin_force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">end_force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">ramp_up_time</span> <span class="o">=</span> <span class="mf">5.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">timoshenko_sim</span><span class="o">.</span><span class="n">add_forcing_to</span><span class="p">(</span><span class="n">shearable_rod</span><span class="p">)</span><span class="o">.</span><span class="n">using</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">EndpointForces</span><span class="p">,</span> <span class="n">origin_force</span><span class="p">,</span> <span class="n">end_force</span><span class="p">,</span> <span class="n">ramp_up_time</span><span class="o">=</span><span class="n">ramp_up_time</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Forces added to the rod&#34;</span><span class="p">)</span>
+</span></span></code></pre></div>
+
+<h1 class="relative group">添加 Unshearable Rod 
+    <div id="%E6%B7%BB%E5%8A%A0-unshearable-rod" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%B7%BB%E5%8A%A0-unshearable-rod" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>为了比较 shearable rod 和 unshearable rod，我们再添加一个unshearable rod。我们改变 rod 的泊松比来让它 unshearable。对于真实的unshearable rod，泊松比通常为 -1.0，然而这会导致系统数值不稳定，所以我们采用 -0.85 的泊松比。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Start into the plane</span>
+</span></span><span class="line"><span class="cl"><span class="n">unshearable_start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">unshearable_rod</span> <span class="o">=</span> <span class="n">CosseratRod</span><span class="o">.</span><span class="n">straight_rod</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_elem</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">unshearable_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">direction</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">normal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_length</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_radius</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">density</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">0.0</span><span class="p">,</span>     <span class="c1"># internal damping constant, deprecated in v0.3.0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">E</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Unshearable rod needs G -&gt; inf, which is achievable with a poisson ratio of -1.0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">shear_modulus</span><span class="o">=</span><span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.85</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">timoshenko_sim</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">unshearable_rod</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">timoshenko_sim</span><span class="o">.</span><span class="n">dampen</span><span class="p">(</span><span class="n">unshearable_rod</span><span class="p">)</span><span class="o">.</span><span class="n">using</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AnalyticalLinearDamper</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">damping_constant</span><span class="o">=</span><span class="n">nu</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time_step</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">timoshenko_sim</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="n">unshearable_rod</span><span class="p">)</span><span class="o">.</span><span class="n">using</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OneEndFixedRod</span><span class="p">,</span> <span class="n">constrained_position_idx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">constrained_director_idx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">timoshenko_sim</span><span class="o">.</span><span class="n">add_forcing_to</span><span class="p">(</span><span class="n">unshearable_rod</span><span class="p">)</span><span class="o">.</span><span class="n">using</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">EndpointForces</span><span class="p">,</span> <span class="n">origin_force</span><span class="p">,</span> <span class="n">end_force</span><span class="p">,</span> <span class="n">ramp_up_time</span><span class="o">=</span><span class="n">ramp_up_time</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Unshearable rod set up&#34;</span><span class="p">)</span>
+</span></span></code></pre></div>
+
+<h1 class="relative group">系统结束 
+    <div id="%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9D%9F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9D%9F" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>现在我们以及添加完需要的rods及其边界条件到我们的系统中。最后，我们需要结束这个系统。这个操作将遍历系统，重新排列事物，并预计算有用的数值，为系统进行仿真做好准备。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">timoshenko_sim</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;System finalized&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>注意，如果在 finalize 后对 rod 做出了一些改变，需要 re-setup 该系统，即重新运行上述的所有代码。</p>
+
+
+<h1 class="relative group">定义仿真时间 
+    <div id="%E5%AE%9A%E4%B9%89%E4%BB%BF%E7%9C%9F%E6%97%B6%E9%97%B4" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%AE%9A%E4%B9%89%E4%BB%BF%E7%9C%9F%E6%97%B6%E9%97%B4" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>我们还要决定该仿真的运行时间，以及使用哪种时间步长方法。默认方法是 PositionVerlet 算法。这里我们仿真10s。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">final_time</span> <span class="o">=</span> <span class="mf">10.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">total_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">final_time</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Total steps to take&#34;</span><span class="p">,</span> <span class="n">total_steps</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">timestepper</span> <span class="o">=</span> <span class="n">PositionVerlet</span><span class="p">()</span>
+</span></span></code></pre></div>
+
+<h1 class="relative group">运行仿真 
+    <div id="%E8%BF%90%E8%A1%8C%E4%BB%BF%E7%9C%9F" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E8%BF%90%E8%A1%8C%E4%BB%BF%E7%9C%9F" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>对于仿真的运行，我们结合 timoshenko_sim，使用 timestepper 方法，执行了 total_steps 步后，到达 final_time。</p>
+<p><code>integrate(timestepper, timoshenko_sim, final_time, total_steps)</code></p>
+<p>‍</p>
+
+
+<h1 class="relative group">Post Processing Results 
+    <div id="post-processing-results" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#post-processing-results" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>现在仿真已经结束，我们想处理仿真结果，我们将比较<code>the solutions for the shearable and unshearable beams</code>​与<code>analytical Timoshenko and Euler-Bernoulli beam results. ​</code>​</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Compute beam position for sherable and unsherable beams.</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">analytical_result</span><span class="p">(</span><span class="n">arg_rod</span><span class="p">,</span> <span class="n">arg_end_force</span><span class="p">,</span> <span class="n">shearing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_elem</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arg_rod</span><span class="o">.</span><span class="n">rest_lengths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 在间隔 0.0 和 base_length 之间返回 n_elem 个均匀间隔的数据</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 即每个节点距离起始点的长度</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arg_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">base_length</span><span class="p">,</span> <span class="n">n_elem</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">arg_end_force</span><span class="p">)</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">acting_force</span> <span class="o">=</span> <span class="n">arg_end_force</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">arg_end_force</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">acting_force</span> <span class="o">=</span> <span class="n">arg_end_force</span>
+</span></span><span class="line"><span class="cl">    <span class="n">acting_force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">acting_force</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">linear_prefactor</span> <span class="o">=</span> <span class="o">-</span><span class="n">acting_force</span> <span class="o">/</span> <span class="n">arg_rod</span><span class="o">.</span><span class="n">shear_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">quadratic_prefactor</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span><span class="n">acting_force</span>
+</span></span><span class="line"><span class="cl">        <span class="o">/</span> <span class="mf">2.0</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">arg_rod</span><span class="o">.</span><span class="n">rest_lengths</span> <span class="o">/</span> <span class="n">arg_rod</span><span class="o">.</span><span class="n">bend_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cubic_prefactor</span> <span class="o">=</span> <span class="p">(</span><span class="n">acting_force</span> <span class="o">/</span> <span class="mf">6.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">arg_rod</span><span class="o">.</span><span class="n">bend_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">shearing</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">arg_s</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">arg_s</span> <span class="o">*</span> <span class="n">linear_prefactor</span>
+</span></span><span class="line"><span class="cl">            <span class="o">+</span> <span class="n">arg_s</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">quadratic_prefactor</span>
+</span></span><span class="line"><span class="cl">            <span class="o">+</span> <span class="n">arg_s</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">cubic_prefactor</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">arg_s</span><span class="p">,</span> <span class="n">arg_s</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">quadratic_prefactor</span> <span class="o">+</span> <span class="n">arg_s</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">cubic_prefactor</span>
+</span></span></code></pre></div><p>现在，我们想去画出结果。首先需要指出的是，如何接收杆的位置，它们位于<code>rod.position_collection[dim, n_elem]</code>​。在本例中，我们画出 x- 和 z-轴。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plot_timoshenko</span><span class="p">(</span><span class="n">shearable_rod</span><span class="p">,</span> <span class="n">unshearable_rod</span><span class="p">,</span> <span class="n">end_force</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">analytical_shearable_positon</span> <span class="o">=</span> <span class="n">analytical_result</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">shearable_rod</span><span class="p">,</span> <span class="n">end_force</span><span class="p">,</span> <span class="n">shearing</span><span class="o">=</span><span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">analytical_unshearable_positon</span> <span class="o">=</span> <span class="n">analytical_result</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unshearable_rod</span><span class="p">,</span> <span class="n">end_force</span><span class="p">,</span> <span class="n">shearing</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&#34;major&#34;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;grey&#34;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">analytical_shearable_positon</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="n">analytical_shearable_positon</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;k--&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Timoshenko&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">analytical_unshearable_positon</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="n">analytical_unshearable_positon</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;k-.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Euler-Bernoulli&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">shearable_rod</span><span class="o">.</span><span class="n">position_collection</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span>
+</span></span><span class="line"><span class="cl">        <span class="n">shearable_rod</span><span class="o">.</span><span class="n">position_collection</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;b-&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">label</span><span class="o">=</span><span class="s2">&#34;n=&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">shearable_rod</span><span class="o">.</span><span class="n">n_elems</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unshearable_rod</span><span class="o">.</span><span class="n">position_collection</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unshearable_rod</span><span class="o">.</span><span class="n">position_collection</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;r-&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">label</span><span class="o">=</span><span class="s2">&#34;n=&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">unshearable_rod</span><span class="o">.</span><span class="n">n_elems</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;size&#34;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Y Position (m)&#34;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;X Position (m)&#34;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plot_timoshenko</span><span class="p">(</span><span class="n">shearable_rod</span><span class="p">,</span> <span class="n">unshearable_rod</span><span class="p">,</span> <span class="n">end_force</span><span class="p">)</span>
+</span></span></code></pre></div><p>​
+‍​
+    <figure>
+      <img class="my-0 rounded-md" loading="lazy" src="/images/image-20230110224747-4qwh58r.png" alt="image" />
+      
+    </figure>
+</p>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\/1-Timoshenko Beam.md"
+        var oid_likes = "likes_posts\/1-Timoshenko Beam.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+      
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/drl/14-rl/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  ></span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="0001-01-01T00:00:00&#43;00:00">1 January 0001</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/2-overview-of-imitation-learning/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >探讨-协作双臂的动作模仿</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2023-01-29T13:11:22&#43;08:00">29 January 2023</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="返回顶部" title="返回顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+  data-id="jou072" data-description="Support me on Buy me a coffee!" data-message="Buy me a coffee?"
+  data-color="#FFDD00" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+</html>

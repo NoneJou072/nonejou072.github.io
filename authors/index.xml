@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors on 海豚的博客</title>
+    <link>http://localhost:1313/authors/</link>
+    <description>Recent content in Authors on 海豚的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2024 </copyright>
+    <lastBuildDate>Mon, 26 Feb 2024 13:11:22 +0800</lastBuildDate><atom:link href="http://localhost:1313/authors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Haoran Zhou</title>
+      <link>http://localhost:1313/authors/haoran-zhou/</link>
+      <pubDate>Mon, 26 Feb 2024 13:11:22 +0800</pubDate>
+      
+      <guid>http://localhost:1313/authors/haoran-zhou/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Harlan-Chou</title>
+      <link>http://localhost:1313/authors/harlan-chou/</link>
+      <pubDate>Sun, 29 Jan 2023 22:07:25 +0800</pubDate>
+      
+      <guid>http://localhost:1313/authors/harlan-chou/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>海豚</title>
+      <link>http://localhost:1313/authors/zhou/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/authors/zhou/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>
