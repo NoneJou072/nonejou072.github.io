@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Harlan-Chou on 海豚的博客</title>
-    <link>http://localhost:1313/authors/harlan-chou/</link>
+    <link>https://nonejou072.github.io/authors/harlan-chou/</link>
     <description>Recent content in Harlan-Chou on 海豚的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2024 </copyright>
-    <lastBuildDate>Sun, 29 Jan 2023 22:07:25 +0800</lastBuildDate><atom:link href="http://localhost:1313/authors/harlan-chou/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 Jan 2023 22:07:25 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/authors/harlan-chou/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Marching Cubes -1 原理介绍</title>
-      <link>http://localhost:1313/posts/3-marching-cubes-1/</link>
+      <link>https://nonejou072.github.io/posts/3-marching-cubes-1/</link>
       <pubDate>Sun, 29 Jan 2023 22:07:25 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/3-marching-cubes-1/</guid>
+      <guid>https://nonejou072.github.io/posts/3-marching-cubes-1/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>探讨-协作双臂的动作模仿</title>
-      <link>http://localhost:1313/posts/2-overview-of-imitation-learning/</link>
+      <link>https://nonejou072.github.io/posts/2-overview-of-imitation-learning/</link>
       <pubDate>Sun, 29 Jan 2023 13:11:22 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/2-overview-of-imitation-learning/</guid>
+      <guid>https://nonejou072.github.io/posts/2-overview-of-imitation-learning/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>使用 pyelastic 对悬臂梁进行仿真</title>
-      <link>http://localhost:1313/posts/1-timoshenko-beam/</link>
+      <link>https://nonejou072.github.io/posts/1-timoshenko-beam/</link>
       <pubDate>Sat, 28 Jan 2023 13:11:22 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/1-timoshenko-beam/</guid>
+      <guid>https://nonejou072.github.io/posts/1-timoshenko-beam/</guid>
       <description></description>
       
     </item>
