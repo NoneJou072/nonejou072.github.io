@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>实用工具配置 &middot; 海豚的博客</title>
-  <meta name="title" content="实用工具配置 &middot; 海豚的博客" />
+  <title>实用工具配置 &middot; ZhouHaoran的博客</title>
+  <meta name="title" content="实用工具配置 &middot; ZhouHaoran的博客" />
   
   <meta name="description" content="实用工具配置" />
   <meta name="keywords" content="tools, " />
@@ -68,7 +68,7 @@
   
   
   <meta property="og:url" content="https://nonejou072.github.io/posts/15-%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/">
-  <meta property="og:site_name" content="海豚的博客">
+  <meta property="og:site_name" content="ZhouHaoran的博客">
   <meta property="og:title" content="实用工具配置">
   <meta property="og:description" content="实用工具配置">
   <meta property="og:locale" content="zh_cn">
@@ -108,7 +108,7 @@
     "keywords": ["tools"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "42"
+    "wordCount": "80"
   }]
   </script>
 
@@ -175,7 +175,7 @@
         <nav class="flex space-x-3">
 
             
-            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">海豚的博客</a>
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">ZhouHaoran的博客</a>
             
 
         </nav>
@@ -502,7 +502,7 @@
 
     
     <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
-    style="background-image:url(/img/xingtong.jpg);">
+    style="background-image:url(/img/cyberone.jpeg);">
     
 
 
@@ -573,7 +573,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-11-21T13:11:22&#43;08:00">21 November 2024</time><span class="px-2 text-primary-500">&middot;</span><span>42 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2024-11-21T13:11:22&#43;08:00">21 November 2024</time><span class="px-2 text-primary-500">&middot;</span><span>80 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -666,6 +666,25 @@ show_channel_urls: true
 </span></span></code></pre></div><p>删除源</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda config --remove channels xxx
 </span></span></code></pre></div>
+
+<h1 class="relative group">ssh 
+    <div id="ssh" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#ssh" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+<p>想用 A 主机通过 ssh 连接到 B 主机，报错 <code>Connection refused</code>。</p>
+<p>输入下面的命令，查看是否有 sshd 字样输出</p>
+<pre tabindex="0"><code>ps -e | grep ssh
+</code></pre><p>如果没有说明 sshd 没有启动，运行</p>
+<pre tabindex="0"><code>systemctl restart sshd
+</code></pre><p>如果报错 <code>Failed to restart sshd.service: Unit sshd.service not found.</code></p>
+<pre tabindex="0"><code>sudo apt install openssh-server
+</code></pre>
           
           
           
