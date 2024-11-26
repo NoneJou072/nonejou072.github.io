@@ -108,7 +108,7 @@
     "keywords": ["git"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "363"
+    "wordCount": "441"
   }]
   </script>
 
@@ -573,7 +573,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-12-21T13:11:22&#43;08:00">21 December 2023</time><span class="px-2 text-primary-500">&middot;</span><span>363 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  <time datetime="2023-12-21T13:11:22&#43;08:00">21 December 2023</time><span class="px-2 text-primary-500">&middot;</span><span>441 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
   
 
   
@@ -693,6 +693,18 @@ GITHUB -&gt; SETTINGS -&gt; SSH AND GPG KEYS -&gt; NEW SSH KEY
 </span></span><span class="line"><span class="cl"><span class="c1">#远端即可创建新的分支my_remote_new_branch,提交本地修改</span>
 </span></span></code></pre></div>
 
+<h1 class="relative group">关于配置 
+    <div id="%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AE" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%85%B3%E4%BA%8E%E9%85%8D%E7%BD%AE" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+
+
 <h2 class="relative group">使更改的.gitignore文件生效 
     <div id="%E4%BD%BF%E6%9B%B4%E6%94%B9%E7%9A%84gitignore%E6%96%87%E4%BB%B6%E7%94%9F%E6%95%88" class="anchor"></div>
     
@@ -757,6 +769,50 @@ GITHUB -&gt; SETTINGS -&gt; SSH AND GPG KEYS -&gt; NEW SSH KEY
 </span></span></code></pre></div><p>则会根据主项目的配置信息，拉取更新子模块中的代码。</p>
 
 
+<h1 class="relative group">Stash 
+    <div id="stash" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#stash" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+
+
+<h2 class="relative group">git stash 
+    <div id="git-stash" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#git-stash" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>有时，当你在项目的一部分上已经工作一段时间后，所有东西都进入了混乱的状态， 而这时你想要切换到另一个分支做一点别的事情。 问题是，你不想仅仅因为过会儿回到这一点而为做了一半的工作创建一次提交。 可以使用 <code>git stash</code> 或 <code>git stash push</code> 将新的贮藏推送到栈上。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git stash
+</span></span><span class="line"><span class="cl">Saved working directory and index state WIP on dev-m92u-mj3: 5a62067 添加兼容UDP协议. 如需打开UDP,在CMakeLists.txt中设置USE_SHM<span class="o">=</span>OFF
+</span></span></code></pre></div><p>此时，可以切换分支并在其他地方工作；你的修改被存储在栈上。 要查看贮藏的东西，可以使用 <code>git stash list</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git stash list
+</span></span><span class="line"><span class="cl">stash@<span class="o">{</span>0<span class="o">}</span>: WIP on dev-m92u-mj3: 5a62067 添加兼容UDP协议. 如需打开UDP,在CMakeLists.txt中设置USE_SHM<span class="o">=</span>OFF
+</span></span></code></pre></div><p>可以通过原来 stash 命令的帮助提示中的命令将你刚刚贮藏的工作重新应用：git stash apply。 如果想要应用其中一个更旧的贮藏，可以通过名字指定它，像这样：git stash apply stash@{2}。 如果不指定一个贮藏，Git 认为指定的是最近的贮藏</p>
+
+
+<h1 class="relative group">Remote 
+    <div id="remote" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#remote" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+
+
 <h2 class="relative group">一个项目push到多个远程Git仓库 
     <div id="%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AEpush%E5%88%B0%E5%A4%9A%E4%B8%AA%E8%BF%9C%E7%A8%8Bgit%E4%BB%93%E5%BA%93" class="anchor"></div>
     
@@ -767,16 +823,22 @@ GITHUB -&gt; SETTINGS -&gt; SSH AND GPG KEYS -&gt; NEW SSH KEY
     </span>        
     
 </h2>
-<p>1.1# 如下命令查看远程仓库的情况，可以看到只有一个叫 github 的远程仓库。</p>
+<ol>
+<li>如下命令查看远程仓库的情况，可以看到只有一个叫 github 的远程仓库。</li>
+</ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git remote
 </span></span><span class="line"><span class="cl">origin
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">git remote -v
 </span></span><span class="line"><span class="cl">origin  git@github.com:NoneJou072/IsaacLab.git <span class="o">(</span>fetch<span class="o">)</span>
 </span></span><span class="line"><span class="cl">origin  git@github.com:NoneJou072/IsaacLab.git <span class="o">(</span>push<span class="o">)</span>
-</span></span></code></pre></div><p>1.2# 使用如下命令再添加一个远程仓库</p>
+</span></span></code></pre></div><ol start="2">
+<li>使用如下命令再添加一个远程仓库</li>
+</ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git remote add gitlab git@git.n.xiaomi.com:zhouhaoran1/bimanual-hand-gym.git
-</span></span></code></pre></div><p>1.3# 再次查看远程仓库的情况，可以看到已经有两个远程仓库了。然后再使用相应的命令 push 到对应的仓库就行了。这种方法的缺点是每次要 push 两次。</p>
+</span></span></code></pre></div><ol start="3">
+<li>再次查看远程仓库的情况，可以看到已经有两个远程仓库了。然后再使用相应的命令 push 到对应的仓库就行了。这种方法的缺点是每次要 push 两次。</li>
+</ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git remote
 </span></span><span class="line"><span class="cl">github
 </span></span><span class="line"><span class="cl">oschina
@@ -787,6 +849,36 @@ GITHUB -&gt; SETTINGS -&gt; SSH AND GPG KEYS -&gt; NEW SSH KEY
 </span></span><span class="line"><span class="cl">oschina https://git.oschina.net/zxbetter/test.git <span class="o">(</span>fetch<span class="o">)</span>
 </span></span><span class="line"><span class="cl">oschina https://git.oschina.net/zxbetter/test.git <span class="o">(</span>push<span class="o">)</span>
 </span></span></code></pre></div>
+
+<h1 class="relative group">Branch 
+    <div id="branch" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#branch" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+
+
+<h2 class="relative group">新建本地分支 
+    <div id="%E6%96%B0%E5%BB%BA%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%96%B0%E5%BB%BA%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li>新建并切换到新建的分支 <code>git checkout -b iss53</code>
+它是下面两条命令的简写：</li>
+<li>新建分支 <code>git branch iss53</code></li>
+<li>切换到新建的分支 <code>git checkout iss53</code></li>
+</ul>
+
 
 <h2 class="relative group">实战：将A仓库的分支合并到B仓库的分支上 
     <div id="%E5%AE%9E%E6%88%98%E5%B0%86a%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6%E5%88%B0b%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%86%E6%94%AF%E4%B8%8A" class="anchor"></div>
