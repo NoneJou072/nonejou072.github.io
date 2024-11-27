@@ -108,7 +108,7 @@
     "keywords": ["git"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "441"
+    "wordCount": "476"
   }]
   </script>
 
@@ -573,7 +573,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-12-21T13:11:22&#43;08:00">21 December 2023</time><span class="px-2 text-primary-500">&middot;</span><span>441 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
+  <time datetime="2023-12-21T13:11:22&#43;08:00">21 December 2023</time><span class="px-2 text-primary-500">&middot;</span><span>476 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
   
 
   
@@ -767,6 +767,50 @@ GITHUB -&gt; SETTINGS -&gt; SSH AND GPG KEYS -&gt; NEW SSH KEY
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git submodule init
 </span></span><span class="line"><span class="cl">git submodule update
 </span></span></code></pre></div><p>则会根据主项目的配置信息，拉取更新子模块中的代码。</p>
+
+
+<h1 class="relative group">Commit 
+    <div id="commit" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#commit" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+
+
+<h2 class="relative group">撤销最近的一次 commit 
+    <div id="%E6%92%A4%E9%94%80%E6%9C%80%E8%BF%91%E7%9A%84%E4%B8%80%E6%AC%A1-commit" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%92%A4%E9%94%80%E6%9C%80%E8%BF%91%E7%9A%84%E4%B8%80%E6%AC%A1-commit" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>仅撤回commit操作，写的代码仍然保留。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reset --soft HEAD^
+</span></span></code></pre></div><p>参数：</p>
+<ul>
+<li>
+<p>&ndash;mixed
+意思是：不删除工作空间改动代码，撤销commit，并且撤销git add . 操作
+这个为默认参数,git reset &ndash;mixed HEAD^ 和 git reset HEAD^ 效果是一样的。</p>
+</li>
+<li>
+<p>&ndash;soft<br>
+不删除工作空间改动代码，撤销commit，不撤销git add .</p>
+</li>
+<li>
+<p>&ndash;hard
+删除工作空间改动代码，撤销commit，撤销git add .</p>
+</li>
+</ul>
+<p>HEAD^的意思是上一个版本，也可以写成HEAD<del>1
+如果你进行了2次commit，想都撤回，可以使用HEAD</del>2</p>
 
 
 <h1 class="relative group">Stash 
