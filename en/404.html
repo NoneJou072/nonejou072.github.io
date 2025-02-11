@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="light"
   data-auto-appearance="true"><head>
   <meta charset="utf-8" />
   
@@ -16,6 +16,8 @@
   
   
   <link rel="canonical" href="https://nonejou072.github.io/en/404.html" />
+  
+  
   
   
   
@@ -328,6 +330,16 @@
 
 
 
+<script>
+    (function () {
+        var $mainmenu = $('.main-menu');
+        var path = window.location.pathname;
+        $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+            $(e).children('p').addClass('active');
+        });
+    })();
+</script>
+
 
   </div>
 </div>
@@ -363,7 +375,7 @@
     
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
       &copy;
-      2024
+      2025
       
     </p>
     
