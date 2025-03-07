@@ -7,23 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 Haoran Zhou | 周浩然</copyright>
-    <lastBuildDate>Wed, 29 Mar 2023 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/tags/ml/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Jan 2025 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/tags/ml/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tree-structured Parzen Estimator（TPE）</title>
-      <link>https://nonejou072.github.io/posts/13-tpe/</link>
+      <title>ResNet调参</title>
+      <link>https://nonejou072.github.io/posts/algorithm/8-resnet/</link>
+      <pubDate>Wed, 29 Jan 2025 13:11:22 +0800</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/algorithm/8-resnet/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Eide 配置 Stm32</title>
+      <link>https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/</link>
       <pubDate>Wed, 29 Mar 2023 13:11:22 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/posts/13-tpe/</guid>
+      <guid>https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Tree-structured Parzen Estimator（TPE）</title>
-      <link>https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/</link>
+      <link>https://nonejou072.github.io/posts/algorithm/7-tpe/</link>
       <pubDate>Wed, 29 Mar 2023 13:11:22 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/posts/14-eide%E9%85%8D%E7%BD%AEstm32/</guid>
+      <guid>https://nonejou072.github.io/posts/algorithm/7-tpe/</guid>
       <description></description>
       
     </item>
