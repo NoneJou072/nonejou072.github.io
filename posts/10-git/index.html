@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="light"
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
   data-auto-appearance="true"><head>
   <meta charset="utf-8" />
   
@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>常用 git 命令 &middot; Haoran Zhou</title>
-  <meta name="title" content="常用 git 命令 &middot; Haoran Zhou" />
+  <title>Git食用手册 &middot; Haoran Zhou</title>
+  <meta name="title" content="Git食用手册 &middot; Haoran Zhou" />
   
   <meta name="description" content="常用 git 命令" />
   <meta name="keywords" content="git, " />
@@ -71,7 +71,7 @@
   
   <meta property="og:url" content="https://nonejou072.github.io/posts/10-git/">
   <meta property="og:site_name" content="Haoran Zhou">
-  <meta property="og:title" content="常用 git 命令">
+  <meta property="og:title" content="Git食用手册">
   <meta property="og:description" content="常用 git 命令">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
@@ -82,7 +82,7 @@
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="常用 git 命令">
+  <meta name="twitter:title" content="Git食用手册">
   <meta name="twitter:description" content="常用 git 命令">
 
   
@@ -91,8 +91,8 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "常用 git 命令",
-    "headline": "常用 git 命令",
+    "name": "Git食用手册",
+    "headline": "Git食用手册",
     "description": "常用 git 命令",
     
     "inLanguage": "zh-cn",
@@ -110,7 +110,7 @@
     "keywords": ["git"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "476"
+    "wordCount": "482"
   }]
   </script>
 
@@ -600,7 +600,7 @@
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
       href="/posts/10-git/"
-      >常用 git 命令</a
+      >Git食用手册</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -609,7 +609,7 @@
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      常用 git 命令
+      Git食用手册
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -654,7 +654,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-12-21T13:11:22&#43;08:00">21 December 2023</time><span class="px-2 text-primary-500">&middot;</span><span>476 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
+  <time datetime="2023-12-21T13:11:22&#43;08:00">21 December 2023</time><span class="px-2 text-primary-500">&middot;</span><span>482 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
   
 
   
@@ -856,6 +856,10 @@
   </ul>
 
   <ul>
+    <li><a href="#修改代码后将其他人的修改合并到当前分支上">修改代码后，将其他人的修改合并到当前分支上</a></li>
+  </ul>
+
+  <ul>
     <li><a href="#一个项目push到多个远程git仓库">一个项目push到多个远程Git仓库</a></li>
   </ul>
 
@@ -895,6 +899,10 @@
 
   <ul>
     <li><a href="#git-stash">git stash</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#修改代码后将其他人的修改合并到当前分支上">修改代码后，将其他人的修改合并到当前分支上</a></li>
   </ul>
 
   <ul>
@@ -1193,6 +1201,31 @@ GITHUB -&gt; SETTINGS -&gt; SSH AND GPG KEYS -&gt; NEW SSH KEY
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git stash list
 </span></span><span class="line"><span class="cl">stash@<span class="o">{</span>0<span class="o">}</span>: WIP on dev-m92u-mj3: 5a62067 添加兼容UDP协议. 如需打开UDP,在CMakeLists.txt中设置USE_SHM<span class="o">=</span>OFF
 </span></span></code></pre></div><p>可以通过原来 stash 命令的帮助提示中的命令将你刚刚贮藏的工作重新应用：git stash apply。 如果想要应用其中一个更旧的贮藏，可以通过名字指定它，像这样：git stash apply stash@{2}。 如果不指定一个贮藏，Git 认为指定的是最近的贮藏</p>
+
+
+<h1 class="relative group">Merge 
+    <div id="merge" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#merge" aria-label="锚点">#</a>
+    </span>        
+    
+</h1>
+
+
+<h2 class="relative group">修改代码后，将其他人的修改合并到当前分支上 
+    <div id="%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E5%90%8E%E5%B0%86%E5%85%B6%E4%BB%96%E4%BA%BA%E7%9A%84%E4%BF%AE%E6%94%B9%E5%90%88%E5%B9%B6%E5%88%B0%E5%BD%93%E5%89%8D%E5%88%86%E6%94%AF%E4%B8%8A" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E5%90%8E%E5%B0%86%E5%85%B6%E4%BB%96%E4%BA%BA%E7%9A%84%E4%BF%AE%E6%94%B9%E5%90%88%E5%B9%B6%E5%88%B0%E5%BD%93%E5%89%8D%E5%88%86%E6%94%AF%E4%B8%8A" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>问题描述： 在分支A对代码进行修改时，其它人也在分支A上进行了修改并完成推送。现在要把该分支上的最新内容合并到当前的修改。</p>
 
 
 <h1 class="relative group">Remote 

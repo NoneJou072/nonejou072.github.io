@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 Haoran Zhou | 周浩然</copyright>
-    <lastBuildDate>Wed, 29 Jan 2025 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Apr 2025 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于强化学习的双臂动态抛接任务</title>
+      <link>https://nonejou072.github.io/posts/algorithm/10-throw-catch/</link>
+      <pubDate>Wed, 02 Apr 2025 13:11:22 +0800</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/algorithm/10-throw-catch/</guid>
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>ResNet调参</title>
       <link>https://nonejou072.github.io/posts/algorithm/8-resnet/</link>
@@ -49,7 +59,7 @@
     </item>
     
     <item>
-      <title>常用 git 命令</title>
+      <title>Git食用手册</title>
       <link>https://nonejou072.github.io/posts/10-git/</link>
       <pubDate>Thu, 21 Dec 2023 13:11:22 +0800</pubDate>
       
@@ -179,7 +189,7 @@
     </item>
     
     <item>
-      <title>一文介绍 PPO 调参方法</title>
+      <title>以 skrl 库为例的 PPO 算法调参指南</title>
       <link>https://nonejou072.github.io/posts/algorithm/9-rl%E8%B0%83%E5%8F%82/</link>
       <pubDate>Wed, 29 Mar 2023 13:11:22 +0800</pubDate>
       
@@ -244,6 +254,16 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nonejou072.github.io/posts/leetcode/datawhale%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-%E5%88%86%E6%B2%BB/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://nonejou072.github.io/posts/vla/1-lerobot/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nonejou072.github.io/posts/vla/1-lerobot/</guid>
       <description></description>
       
     </item>

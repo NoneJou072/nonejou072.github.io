@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="light"
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
   data-auto-appearance="true"><head>
   <meta charset="utf-8" />
   
@@ -8,10 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>一文介绍 PPO 调参方法 &middot; Haoran Zhou</title>
-  <meta name="title" content="一文介绍 PPO 调参方法 &middot; Haoran Zhou" />
+  <title>以 skrl 库为例的 PPO 算法调参指南 &middot; Haoran Zhou</title>
+  <meta name="title" content="以 skrl 库为例的 PPO 算法调参指南 &middot; Haoran Zhou" />
   
-  <meta name="description" content="以 skrl 库为例" />
+  <meta name="description" content="以 skrl 库为例的 PPO 算法调参指南" />
   <meta name="keywords" content="rl, " />
   
   
@@ -71,8 +71,8 @@
   
   <meta property="og:url" content="https://nonejou072.github.io/posts/algorithm/9-rl%E8%B0%83%E5%8F%82/">
   <meta property="og:site_name" content="Haoran Zhou">
-  <meta property="og:title" content="一文介绍 PPO 调参方法">
-  <meta property="og:description" content="以 skrl 库为例">
+  <meta property="og:title" content="以 skrl 库为例的 PPO 算法调参指南">
+  <meta property="og:description" content="以 skrl 库为例的 PPO 算法调参指南">
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -82,8 +82,8 @@
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="一文介绍 PPO 调参方法">
-  <meta name="twitter:description" content="以 skrl 库为例">
+  <meta name="twitter:title" content="以 skrl 库为例的 PPO 算法调参指南">
+  <meta name="twitter:description" content="以 skrl 库为例的 PPO 算法调参指南">
 
   
   <script type="application/ld+json">
@@ -91,9 +91,9 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "一文介绍 PPO 调参方法",
-    "headline": "一文介绍 PPO 调参方法",
-    "description": "以 skrl 库为例",
+    "name": "以 skrl 库为例的 PPO 算法调参指南",
+    "headline": "以 skrl 库为例的 PPO 算法调参指南",
+    "description": "以 skrl 库为例的 PPO 算法调参指南",
     
     "inLanguage": "zh-cn",
     "url" : "https:\/\/nonejou072.github.io\/posts\/algorithm\/9-rl%E8%B0%83%E5%8F%82\/",
@@ -110,7 +110,7 @@
     "keywords": ["rl"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "379"
+    "wordCount": "450"
   }]
   </script>
 
@@ -611,7 +611,7 @@
     <a
       class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
       href="/posts/algorithm/9-rl%E8%B0%83%E5%8F%82/"
-      >一文介绍 PPO 调参方法</a
+      >以 skrl 库为例的 PPO 算法调参指南</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -620,7 +620,7 @@
 
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      一文介绍 PPO 调参方法
+      以 skrl 库为例的 PPO 算法调参指南
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -665,7 +665,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-03-29T13:11:22&#43;08:00">29 March 2023</time><span class="px-2 text-primary-500">&middot;</span><span>379 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  <time datetime="2023-03-29T13:11:22&#43;08:00">29 March 2023</time><span class="px-2 text-primary-500">&middot;</span><span>450 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">3 分钟</span>
   
 
   
@@ -848,9 +848,10 @@
       <ul>
         <li><a href="#rewards_shaper_scale">rewards_shaper_scale</a></li>
         <li><a href="#kl_threshold">kl_threshold</a></li>
+        <li><a href="#learning-rate-scheduler---kl-adaptive">Learning rate scheduler - KL Adaptive</a></li>
         <li><a href="#discount-factor---gamma">discount factor - gamma</a></li>
-        <li><a href="#rollouts">rollouts</a></li>
-        <li><a href="#batch_size">batch_size</a></li>
+        <li><a href="#rolloutsnum_envs">rollouts，num_envs</a></li>
+        <li><a href="#mini_batches">mini_batches</a></li>
         <li><a href="#learning_epoch">learning_epoch</a></li>
         <li><a href="#time_limit_bootstrap">time_limit_bootstrap</a></li>
       </ul>
@@ -872,9 +873,10 @@
       <ul>
         <li><a href="#rewards_shaper_scale">rewards_shaper_scale</a></li>
         <li><a href="#kl_threshold">kl_threshold</a></li>
+        <li><a href="#learning-rate-scheduler---kl-adaptive">Learning rate scheduler - KL Adaptive</a></li>
         <li><a href="#discount-factor---gamma">discount factor - gamma</a></li>
-        <li><a href="#rollouts">rollouts</a></li>
-        <li><a href="#batch_size">batch_size</a></li>
+        <li><a href="#rolloutsnum_envs">rollouts，num_envs</a></li>
+        <li><a href="#mini_batches">mini_batches</a></li>
         <li><a href="#learning_epoch">learning_epoch</a></li>
         <li><a href="#time_limit_bootstrap">time_limit_bootstrap</a></li>
       </ul>
@@ -973,8 +975,8 @@
     </span>        
     
 </h3>
-<p>在 skrl 中，可以通过设置缩放系数 <code>rewards_shaper_scale</code> 来对奖励进行缩放。
-而在参考文章中，大多都推荐动态计算奖励的 running mean 和 running var 来对奖励进行缩放，其代码为</p>
+<p>在 skrl 中，可以通过设置缩放系数 <code>rewards_shaper_scale</code> 来对奖励进行缩放。</p>
+<p>推荐修改 skrl 中的 <code>runner.py</code> 的 <code>reward_shaper_function</code>，将缩放函数调整为动态计算奖励的 running mean 和 running var 对奖励归一化处理，其代码为</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">RewardScaling</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span>  <span class="c1"># reward shape=1</span>
@@ -990,9 +992,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># When an episode is done,we should reset &#39;self.R&#39;</span>
 </span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</span></span></code></pre></div><p>可以修改 skrl 中的 <code>runner.py</code> 的 <code>reward_shaper_function</code> 来实现。</p>
-<p>在 PPO 中，Advantage Function A(s,a) 反映了采取某个动作 a 是否比平均策略期望更好，用于衡量当前策略应该如何调整，决定了策略梯度的方向和强度。</p>
-
+</span></span></code></pre></div>
 
 <h3 class="relative group">kl_threshold 
     <div id="kl_threshold" class="anchor"></div>
@@ -1067,11 +1067,37 @@
 这说明，<code>kl_threshold=0.01</code>对于当前训练的任务来说还是太高了，策略发生稍微较大的更新就会破坏学习，可以尝试重新调整为<code>kl_threshold=0.001</code>。</p>
 </blockquote>
 <p>针对情景B，reward 突然下降这一问题，在<a href="https://www.zhihu.com/question/647959607/answer/3428608902" target="_blank">知乎回答</a>中【whycadi​】也提到，办法之一是“要限制最终采样的动作值的范围，减小学习率。”。这其实和早停方法的道理是一样的，我们通过早停方法来限制策略的更新，避免过度向外采样。</p>
-<p>此外，skrl 默认使用 <code>KLAdaptiveLR</code> 作为学习率调度器，该调度器也接受一个名为 <code>kl_threshold</code> 的参数，当 KL 散度值超过这一阈值时，学习率会开始下降，避免策略更新过猛。</p>
+
+
+<h3 class="relative group">Learning rate scheduler - KL Adaptive 
+    <div id="learning-rate-scheduler---kl-adaptive" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#learning-rate-scheduler---kl-adaptive" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<p>skrl 默认使用 <code>KLAdaptiveLR</code> 作为学习率调度器，该调度器也接受一个名为 <code>kl_threshold</code> 的参数，其更新策略为:</p>
+<p>IF KL &gt; <code>kl_threshold</code> * <code>kl_factor</code> THEN<br>
+next_lr = max(lr / <code>lr_factor</code>, <code>min_lr</code>)<br>
+IF KL &lt; <code>kl_threshold</code> / <code>kl_factor</code> THEN<br>
+next_lr = min(lr * <code>lr_factor</code>, <code>max_lr</code>)</p>
+<blockquote>
+<p>默认值：
+<code>kl_threshold</code>: float = 0.008,
+<code>min_lr</code>: float = 1e-6,
+<code>max_lr</code>: float = 1e-2,
+<code>kl_factor</code>: float = 2,
+<code>lr_factor</code>: float = 1.5,</p>
+</blockquote>
+<p>举个例子，假如设置 <code>kl_threshold=0.008</code>，其它参数使用默认值。
+如果 KL 散度值超过阈值 <code>0.008*2=0.016</code> ，学习率会开始下降，避免策略更新过猛。当小于阈值 <code>0.008/2=0.004</code> 时，说明策略更新幅度小，调度器会增加学习率。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">learning_rate_scheduler_kwargs</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">kl_threshold</span><span class="p">:</span><span class="w"> </span><span class="m">0.008</span><span class="w">
-</span></span></span></code></pre></div><p>针对情景B，也可以尝试降低该调度器中的 <code>kl_threshold</code>。</p>
-<p>然而，如果<code>kl_threshold</code>设置的过低，会限制策略的探索能力，容易收敛到局部最优解。（不过，收敛到局部最优解总比不收敛好一些&hellip;）</p>
+</span></span></span></code></pre></div><p>针对情景B，也可以尝试降低该调度器中的 <code>kl_threshold</code>。
+然而，如果<code>kl_threshold</code>设置的过低，会限制策略的探索能力，容易收敛到局部最优解。</p>
 
 
 <h3 class="relative group">discount factor - gamma 
@@ -1085,7 +1111,8 @@
     
 </h3>
 <p>这一参数【曾伊言】已经讲解的非常清楚，因此直接将原文复制过来：</p>
-<p>这个值的含义是“你希望你的智能体每做出一步，至少需要考虑接下来多少步的reward？”如果我希望考虑接下来的t 步，那么我让第t步的reward占现在这一步的Q值的 0.1，即公式 $0.1\approx\gamma^t$，变换后得到：$\gamma\approx 0.1^{1/t}$</p>
+<p>这个值的含义是“你希望你的智能体每做出一步，至少需要考虑接下来多少步的reward？”如果我希望考虑接下来的t 步，那么我让第t步的reward占现在这一步的Q值的 0.1，
+即公式 $0.1\approx\gamma^t$ ，变换后得到：$\gamma\approx 0.1^{1/t}$</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">gamma</span> <span class="o">**</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># 0.1 对于当前这一步来说，t步后的reward的权重</span>
 </span></span><span class="line"><span class="cl"><span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">t</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
@@ -1104,36 +1131,39 @@ gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”�
 而如果 gamma 选的很小，智能体只会关注短期回报，可能导致陷入局部最优。</p>
 
 
-<h3 class="relative group">rollouts 
-    <div id="rollouts" class="anchor"></div>
+<h3 class="relative group">rollouts，num_envs 
+    <div id="rolloutsnum_envs" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#rollouts" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#rolloutsnum_envs" aria-label="锚点">#</a>
     </span>        
     
 </h3>
-<p>对应 rl_games 中的 <code>horizon_length</code></p>
+<p><code>rollouts</code> 对应 rl_games 中的 <code>horizon_length</code></p>
 <p><code>rollouts</code>： 与环境交互的次数，rollout 一次，可以得到 <code>num_envs</code> 条 transitions，每次 update 前，可以收集到 <code>rollouts * num_envs</code> 条 transitions。</p>
 <blockquote>
-<p>假设 <code>rollouts=96, num_envs=128</code>，那么每次 update 时的 buffer size 为 12288（~2^13.5）</p>
+<p>假设 <code>rollouts=96, num_envs=128</code>，那么每次 update 时的 buffer size 为 12288（~2^13.5）。因</p>
 </blockquote>
-<p>为了尽可能准确地用多条轨迹去描述环境与策略的关系，在随机因素大的环境中，需要加大采样步数。</p>
+<p>此，并行环境数量 <code>num_envs</code> 实际上也是一个我们需要去调整的超参数，该参数通常根据计算机性能来选择。先确定 <code>num_envs</code>，再确定 <code>rollouts</code>。</p>
+<p>为了尽可能准确地用多条轨迹去描述环境与策略的关系，在随机因素大的环境中，推荐增加 <code>rollouts</code> 的值以加大采样步数。</p>
 
 
-<h3 class="relative group">batch_size 
-    <div id="batch_size" class="anchor"></div>
+<h3 class="relative group">mini_batches 
+    <div id="mini_batches" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#batch_size" aria-label="锚点">#</a>
+            style="text-decoration-line: none !important;" href="#mini_batches" aria-label="锚点">#</a>
     </span>        
     
 </h3>
-<p>对应 rl_games 中的 <code>minibatch_size</code></p>
 <p><code>mini_batches = rollouts * num_envs / batch_size</code>，</p>
+<p>这里的 <code>batch_size</code> 对应 rl_games 中的 <code>minibatch_size</code></p>
+<p>同理，</p>
+<p><code>batch_size = rollouts * num_envs / mini_batches</code>，</p>
 <blockquote>
 <p>假设 <code>batch_size = 2**12(4096)</code>，<code>num_envs=128</code>， <code>rollouts=96</code>，可以计算出 <code>mini_batches=3</code></p>
 </blockquote>
@@ -1154,7 +1184,7 @@ gamma绝对不能选择1.0，gamma等于或过于接近1会有“Q值过大”�
     
 </h3>
 <p>对应 rl_games 中的 <code>mini_epochs</code></p>
-<p>对应【曾伊言】提到的数据复用次数 <code>reuse_times</code>（而不是 update_times）。该参数一般设为 8，可以从偏小的数值开始尝试，以避免过拟合。</p>
+<p>对应【曾伊言】提到的数据复用次数 <code>reuse_times</code>（不是 update_times）。该参数一般设为 8，可以从偏小的数值开始尝试，以避免过拟合。</p>
 
 
 <h3 class="relative group">time_limit_bootstrap 
