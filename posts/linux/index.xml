@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>linux on Haoran Zhou</title>
-    <link>http://localhost:1313/posts/linux/</link>
+    <link>https://nonejou072.github.io/posts/linux/</link>
     <description>Recent content in linux on Haoran Zhou</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 Haoran Zhou | 周浩然</copyright>
-    <lastBuildDate>Tue, 13 Jun 2023 20:55:37 +0100</lastBuildDate><atom:link href="http://localhost:1313/posts/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Jun 2023 20:55:37 +0100</lastBuildDate><atom:link href="https://nonejou072.github.io/posts/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>linux端口通信相关</title>
-      <link>http://localhost:1313/posts/linux/linux%E7%AB%AF%E5%8F%A3%E7%9B%B8%E5%85%B3/</link>
+      <link>https://nonejou072.github.io/posts/linux/linux%E7%AB%AF%E5%8F%A3%E7%9B%B8%E5%85%B3/</link>
       <pubDate>Thu, 14 Dec 2023 13:11:22 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/linux/linux%E7%AB%AF%E5%8F%A3%E7%9B%B8%E5%85%B3/</guid>
+      <guid>https://nonejou072.github.io/posts/linux/linux%E7%AB%AF%E5%8F%A3%E7%9B%B8%E5%85%B3/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>linux挂载新硬盘</title>
-      <link>http://localhost:1313/posts/linux/linux%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</link>
+      <link>https://nonejou072.github.io/posts/linux/linux%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</link>
       <pubDate>Thu, 14 Dec 2023 13:11:22 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/linux/linux%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</guid>
+      <guid>https://nonejou072.github.io/posts/linux/linux%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</guid>
       <description></description>
       
     </item>
