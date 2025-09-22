@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Harlan-Chou on Haoran Zhou</title>
-    <link>https://nonejou072.github.io/authors/harlan-chou/</link>
+    <link>http://localhost:1313/authors/harlan-chou/</link>
     <description>Recent content in Harlan-Chou on Haoran Zhou</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 Haoran Zhou | 周浩然</copyright>
-    <lastBuildDate>Sun, 29 Jan 2023 22:07:25 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/authors/harlan-chou/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 Jan 2023 22:07:25 +0800</lastBuildDate><atom:link href="http://localhost:1313/authors/harlan-chou/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Marching Cubes -1 原理介绍</title>
-      <link>https://nonejou072.github.io/posts/algorithm/3-marching-cubes-1/</link>
+      <link>http://localhost:1313/posts/algorithm/3-marching-cubes-1/</link>
       <pubDate>Sun, 29 Jan 2023 22:07:25 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/posts/algorithm/3-marching-cubes-1/</guid>
+      <guid>http://localhost:1313/posts/algorithm/3-marching-cubes-1/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>探讨-协作双臂的动作模仿</title>
-      <link>https://nonejou072.github.io/posts/algorithm/2-overview-of-imitation-learning/</link>
+      <link>http://localhost:1313/posts/algorithm/2-overview-of-imitation-learning/</link>
       <pubDate>Sun, 29 Jan 2023 13:11:22 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/posts/algorithm/2-overview-of-imitation-learning/</guid>
+      <guid>http://localhost:1313/posts/algorithm/2-overview-of-imitation-learning/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>基于 pyelastic 的悬臂梁仿真</title>
-      <link>https://nonejou072.github.io/posts/algorithm/1-timoshenko-beam/</link>
+      <link>http://localhost:1313/posts/algorithm/1-timoshenko-beam/</link>
       <pubDate>Sat, 28 Jan 2023 13:11:22 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/posts/algorithm/1-timoshenko-beam/</guid>
+      <guid>http://localhost:1313/posts/algorithm/1-timoshenko-beam/</guid>
       <description></description>
       
     </item>

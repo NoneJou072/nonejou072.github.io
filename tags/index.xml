@@ -2,58 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Haoran Zhou</title>
-    <link>https://nonejou072.github.io/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Haoran Zhou</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2025 Haoran Zhou | 周浩然</copyright>
-    <lastBuildDate>Wed, 02 Apr 2025 13:11:22 +0800</lastBuildDate><atom:link href="https://nonejou072.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Apr 2025 13:11:22 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rl</title>
-      <link>https://nonejou072.github.io/tags/rl/</link>
+      <link>http://localhost:1313/tags/rl/</link>
       <pubDate>Wed, 02 Apr 2025 13:11:22 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/tags/rl/</guid>
+      <guid>http://localhost:1313/tags/rl/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Ml</title>
-      <link>https://nonejou072.github.io/tags/ml/</link>
+      <link>http://localhost:1313/tags/ml/</link>
       <pubDate>Wed, 29 Jan 2025 13:11:22 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/tags/ml/</guid>
+      <guid>http://localhost:1313/tags/ml/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Tools</title>
-      <link>https://nonejou072.github.io/tags/tools/</link>
+      <link>http://localhost:1313/tags/tools/</link>
       <pubDate>Thu, 21 Nov 2024 13:11:22 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/tags/tools/</guid>
+      <guid>http://localhost:1313/tags/tools/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Moe</title>
-      <link>https://nonejou072.github.io/tags/moe/</link>
+      <link>http://localhost:1313/tags/moe/</link>
       <pubDate>Mon, 26 Feb 2024 13:11:22 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/tags/moe/</guid>
+      <guid>http://localhost:1313/tags/moe/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Git</title>
-      <link>https://nonejou072.github.io/tags/git/</link>
+      <link>http://localhost:1313/tags/git/</link>
       <pubDate>Thu, 21 Dec 2023 13:11:22 +0800</pubDate>
       
-      <guid>https://nonejou072.github.io/tags/git/</guid>
+      <guid>http://localhost:1313/tags/git/</guid>
       <description></description>
       
     </item>
