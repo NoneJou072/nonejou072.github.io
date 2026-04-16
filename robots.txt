@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nonejou072.github.io/sitemap.xml
